@@ -19,10 +19,6 @@ namespace WorkHours
         public SetTillæg2()
         {
             InitializeComponent();
-            InitializeComponent();
-            InitializeComponent();
-            InitializeComponent();
-            // first commit.
         }
 
 
