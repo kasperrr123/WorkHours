@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.SetTimeLøn">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout x:Name="InfoArea" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding EmployeeName, StringFormat='Navn: {0}' }"></Label>
+                <Label Text="{Binding CompanyName, StringFormat='Virksomhed: {0}'  }"></Label>
+                <Label Text="{Binding Month, StringFormat='Valgte måned: {0}'  }"></Label>
+            </StackLayout>
+            <StackLayout x:Name="AftenTillæg" Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                <Label Text="Hvad er din basis timeløn?"></Label>
+                <Entry x:Name="TimeLøn" Keyboard="Numeric" Text="114.5" Placeholder="Timeløn"></Entry>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+                <Button Text="Tillæg" Clicked="Button_Clicked"></Button>
+            </StackLayout>
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

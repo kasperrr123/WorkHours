@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.CreatingNewMonth.GetWorkPlaceName">
+
+    <StackLayout VerticalOptions="CenterAndExpand">
+        <Label Text="Den ansattes navn" HorizontalOptions="Center"></Label>
+        <Entry x:Name="EmployeeNameInput" Text="Kasper Jørgensen" Placeholder="Navn"></Entry>
+        <Label></Label>
+        <Label HorizontalTextAlignment="Center">Hvad hedder din arbejdsplads?</Label>
+        <Entry x:Name="NameInput" Text="Elgiganten A/S" Placeholder="Virksomhed"></Entry>
+        <Button Text="Næste" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked"></Button>
+    </StackLayout>
+
+</ContentPage>
