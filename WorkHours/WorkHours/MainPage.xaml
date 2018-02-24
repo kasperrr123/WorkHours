@@ -3,37 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WorkHours"
              x:Class="WorkHours.MainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
 
-    <Grid x:Name="mainGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Label x:Name="WelcomeLabel" FontSize="Medium"  Grid.ColumnSpan="4" Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" Text="{Binding welcomeText}"></Label>
+            <StackLayout  Grid.Row="0">
+                <StackLayout HorizontalOptions="Center">
+                    <Label x:Name="WelcomeLabel" HorizontalOptions="Center" Text="{Binding WelcomeText}"></Label>
+                </StackLayout>
 
-        <Label  x:Name="ShowTimeAndDate" Grid.Row="2" Grid.Column="1 " Grid.ColumnSpan="2" FontSize="Medium" Text="{Binding DateTime}"></Label>
+            </StackLayout>
+            <StackLayout  Grid.Row="1" >
+                <StackLayout HorizontalOptions="Center">
+                    <Label  x:Name="ShowTimeAndDate" FontSize="Medium" Text="{Binding DateTime}"></Label>
 
-        <StackLayout Grid.Row="6" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalOptions="Center" Grid.Column="0">
-            <Button Text="Opret ny måned" Clicked="Button_Clicked" BackgroundColor="AliceBlue" ></Button>
-            <Button Text="Se ældre måneder" BackgroundColor="CadetBlue" >Check database</Button>
-        </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="2">
+                <StackLayout HorizontalOptions="Center">
+                    <Label BackgroundColor="Yellow" Text="Login her"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Entry Placeholder="Brugernavn" x:Name="username"></Entry>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="3">
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Button Text="Opret ny måned" Clicked="Button_Clicked" BackgroundColor="AliceBlue" ></Button>
+                    <Button Text="Se ældre måneder" BackgroundColor="CadetBlue" >Check database</Button>
+                </StackLayout>
+            </StackLayout>
 
 
 
-    </Grid>
+        </Grid>
 
-
+    </ContentPage.Content>
 </ContentPage>

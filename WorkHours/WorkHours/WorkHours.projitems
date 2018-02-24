@@ -24,11 +24,11 @@
       <DependentUpon>GetWorkPlaceName.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)DatabaseStuff\Database.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DatabaseStuff\TabelMonth.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DatabaseStuff\TabelUser.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DatabaseStuff\TabelCompany.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DatabaseStuff\SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\WorkHoursDatabaseController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Month.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Company.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\ISQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -84,5 +84,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
   </ItemGroup>
 </Project>

@@ -31,7 +31,6 @@
                 <StackLayout>
                     <Entry x:Name="SøndagsTillægKr" Placeholder="Beløb i kr"></Entry>
                 </StackLayout>
-
             </StackLayout>
             <StackLayout Grid.Row="2">
                 <Button x:Name="FærdigBtn" Text="Færdig" Clicked="FærdigBtn_Clicked"></Button>
