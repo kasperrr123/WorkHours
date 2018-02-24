@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WorkHours"
+             x:Class="WorkHours.FirstTimeUse">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+        
+            </Grid.RowDefinitions>
+
+            <StackLayout  Grid.Row="0">
+                <StackLayout HorizontalOptions="Center">
+                    <Label x:Name="WelcomeLabel" HorizontalTextAlignment="Center"  Text="{Binding LabelText}"></Label>
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="1">
+                <StackLayout HorizontalOptions="Center">
+                    <Label Text="Opret ny database, så du kan komme i gang"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Entry Placeholder="Dit fulde navn" x:Name="FuldeNavn"></Entry>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center">
+                    <Button x:Name="OpretDatabaseBtn" Clicked="OpretDatabaseBtn_Clicked" Text="Opret"></Button>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Row="2"></StackLayout>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

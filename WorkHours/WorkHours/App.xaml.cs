@@ -19,7 +19,7 @@ namespace WorkHours
             InitializeComponent();
 
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new FirstTimeUse());
         }
 
         protected override void OnStart()
@@ -43,8 +43,9 @@ namespace WorkHours
         {
             get
             {
-                if(userDatabase == null)
+                if (userDatabase == null)
                 {
+
                     userDatabase = new WorkHoursDatabaseController();
                 }
                 return userDatabase;

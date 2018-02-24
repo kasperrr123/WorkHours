@@ -6,7 +6,7 @@ using WorkHours.Models;
 using Xamarin.Forms;
 namespace WorkHours.Data
 {
-   public class WorkHoursDatabaseController
+    public class WorkHoursDatabaseController
     {
         static object locker = new object();
 
@@ -15,9 +15,16 @@ namespace WorkHours.Data
         public WorkHoursDatabaseController()
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
+
+            database.DropTable<User>();
+            database.DropTable<Company>();
+            database.DropTable<Month>();
+
             database.CreateTable<User>();
             database.CreateTable<Company>();
             database.CreateTable<Month>();
+
+         
         }
 
         // Controllers for TABLE: User.
@@ -28,16 +35,17 @@ namespace WorkHours.Data
             var query = database.Table<User>();
             foreach (var names in query)
             {
+                
                 listOfUsers.Add(names);
             }
-
+           
             return listOfUsers;
 
         }
 
-        public User GetUser(string FullName)
+        public User GetUser()
         {
-            return database.Table<User>().Where(t => t.FullName == FullName).First();
+            return database.Table<User>().First();
         }
 
         public int AddUser(User user)

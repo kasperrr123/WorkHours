@@ -23,7 +23,7 @@ namespace WorkHours.Models
 
         public User()
         {
-          
+        
         }
 
     }
