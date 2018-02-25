@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.HomePage">
+             x:Class="WorkHours.HomePageFolder.HomePage" Title="Home">
+
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -9,7 +10,6 @@
 
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -24,18 +24,16 @@
 
             <StackLayout Grid.Row="1">
                 <StackLayout HorizontalOptions="Center">
-                    <Label Text="Her vil der være en aktiv log"></Label>
+                    <Label Text="{Binding Time}"></Label>
                 </StackLayout>
             </StackLayout>
             <StackLayout Grid.Row="2">
                 <StackLayout>
-                    <Button x:Name="MenuBtn" HorizontalOptions="End" Text="Menu"></Button>
+                    
                 </StackLayout>
-            </StackLayout>
-            <StackLayout Grid.Row="3">
-                <StackLayout></StackLayout>
             </StackLayout>
 
         </Grid>
     </ContentPage.Content>
+
 </ContentPage>

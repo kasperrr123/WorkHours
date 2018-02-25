@@ -28,7 +28,7 @@
                     <Label Text="Opret ny database, så du kan komme i gang"></Label>
                 </StackLayout>
                 <StackLayout>
-                    <Entry Placeholder="Dit fulde navn" x:Name="FuldeNavn"></Entry>
+                    <Entry Placeholder="Dit fulde navn" Text="Kasper Jørgensen" x:Name="FuldeNavn"></Entry>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center">
                     <Button x:Name="OpretDatabaseBtn" Clicked="OpretDatabaseBtn_Clicked" Text="Opret"></Button>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkHours.CreatingNewMonth;
+using WorkHours.HomePageFolder;
 using WorkHours.Models;
 using Xamarin.Forms;
 
@@ -33,7 +34,8 @@ namespace WorkHours
                     FullName = FuldeNavn.Text,
                 };
                 database.AddUser(newUser);
-                Navigation.PushAsync(new HomePage());
+                
+                Navigation.PushAsync(new TabbedPage1());
             }
             else
             {
