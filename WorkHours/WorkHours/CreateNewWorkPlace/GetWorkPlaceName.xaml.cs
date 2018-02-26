@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WorkHours.CreatingNewMonth
+namespace WorkHours.CreateNewWorkPlace
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GetWorkPlaceName : ContentPage
 	{
-        private NewMonthObj newMonthObj = NewMonthObj.Instance;
+        private CreateNewWorkPlaceObj obj = CreateNewWorkPlaceObj.Instance;
 
         public GetWorkPlaceName()
 		{
@@ -22,15 +22,14 @@ namespace WorkHours.CreatingNewMonth
 
         async void Button_Clicked(object sender, EventArgs e)
         {
-            if (NameInput.Text == null || EmployeeNameInput.Text == null)
+            if (NameInput.Text == null)
             {
-               await DisplayAlert("Hov!", "Skriv venligst dit navn og navnet på din arbejdsplads", "Ok");
+               await DisplayAlert("Hov!", "Skriv venligst navnet på din arbejdsplads", "Ok");
             }
             else
             {
-                newMonthObj.CompanyName = NameInput.Text;
-                newMonthObj.EmployeeName = EmployeeNameInput.Text;
-                await Navigation.PushAsync(new GetMonthName());
+                obj.CompanyName = NameInput.Text;
+                await Navigation.PushAsync(new SetTimeLøn());
             }
         }
     }

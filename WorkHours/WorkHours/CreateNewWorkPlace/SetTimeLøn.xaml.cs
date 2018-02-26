@@ -7,16 +7,12 @@ using WorkHours;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WorkHours
+namespace WorkHours.CreateNewWorkPlace
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetTimeLøn : ContentPage
     {
-        public static NewMonthObj obj = NewMonthObj.Instance;
-        public static SalarySettings SalarySettings = SalarySettings.Instance;
-        public String EmployeeName { get; set; } = obj.EmployeeName;
-        public String CompanyName { get; set; } = obj.CompanyName;
-        public String Month { get; set; } = obj.Month;
+        public static CreateNewWorkPlaceObj obj = CreateNewWorkPlaceObj.Instance;
 
         public SetTimeLøn()
         {
@@ -27,7 +23,7 @@ namespace WorkHours
         private void Button_Clicked(object sender, EventArgs e)
         {
 
-            SalarySettings.BasisTimeLøn = TimeLøn.Text;
+            obj.BasisTimeLøn = TimeLøn.Text;
             Navigation.PushAsync(new SetTillæg1());
 
 

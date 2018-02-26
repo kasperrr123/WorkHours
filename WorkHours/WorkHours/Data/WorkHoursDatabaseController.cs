@@ -19,7 +19,10 @@ namespace WorkHours.Data
             database.DropTable<User>();
             database.DropTable<Company>();
             database.DropTable<Month>();
+            database.DropTable<Tillæg>();
 
+
+            database.CreateTable<Tillæg>();
             database.CreateTable<User>();
             database.CreateTable<Company>();
             database.CreateTable<Month>();

@@ -13,23 +13,44 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
 
             </Grid.RowDefinitions>
 
-            <StackLayout  Grid.Row="0">
+            <StackLayout Grid.Row="0" Grid.RowSpan="1">
                 <StackLayout HorizontalOptions="Center">
-                    <Label x:Name="WelcomeLabel" HorizontalTextAlignment="Center"  Text="{Binding WelcomeUser}"></Label>
+                    <Label x:Name="CompanyLabel" HorizontalTextAlignment="Center" VerticalOptions="Center" Text="{Binding WhatCompany}"></Label>
+                    <Label x:Name="WelcomeLabel" HorizontalTextAlignment="Center" VerticalOptions="Center"  Text="{Binding WelcomeUser}"></Label>
                 </StackLayout>
             </StackLayout>
-
-            <StackLayout Grid.Row="1">
-                <StackLayout HorizontalOptions="Center">
-                    <Label Text="{Binding Time}"></Label>
-                </StackLayout>
+            <StackLayout x:Name="IngenAktivMåned" IsVisible="False" Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
+                <Label Text="Ingen lønseddel oprettet endnu" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Label>
             </StackLayout>
-            <StackLayout Grid.Row="2">
+            <StackLayout  Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                
+                <StackLayout HorizontalOptions="Center">
+                    <Label Text="Du har arbejdet i dag" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Large"></Label>
+                    <Label Text="{Binding Date}" HorizontalOptions="Center" FontSize="Medium"></Label>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Fra" VerticalTextAlignment="Center"></Label>
+                    <TimePicker></TimePicker>
+                    <Label Text="Til" VerticalTextAlignment="Center"></Label>
+                    <TimePicker></TimePicker>
+                </StackLayout>
                 <StackLayout>
-                    
+                    <Button Text="Gem" BackgroundColor="Red" HorizontalOptions="CenterAndExpand"></Button>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Row="8" Grid.RowSpan="2" VerticalOptions="End" >
+                <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
+                    <Button x:Name="SettingsBtn" Clicked="SettingsBtn_Clicked" Text="Indstillinger" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"></Button>
                 </StackLayout>
             </StackLayout>
 

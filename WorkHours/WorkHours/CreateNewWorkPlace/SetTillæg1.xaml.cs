@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WorkHours
+namespace WorkHours.CreateNewWorkPlace
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetTillæg1 : ContentPage
     {
-        SalarySettings salary = SalarySettings.Instance;
+        CreateNewWorkPlaceObj obj = CreateNewWorkPlaceObj.Instance;
+
         public SetTillæg1()
         {
             InitializeComponent();
@@ -22,22 +23,22 @@ namespace WorkHours
         {
             if (AftenTillægKr.Text != null)
             {
-                salary.AftenTillæg = new SalarySettings.AftenTillægObj(AftenTimePicker.Time, AftenTillægKr.Text);
+                obj.AftenTillæg = new CreateNewWorkPlaceObj.AftenTillægObj(AftenTimePicker.Time, AftenTillægKr.Text);
 
             }
             else
             {
-                salary.AftenTillæg = new SalarySettings.AftenTillægObj(AftenTimePicker.Time, "0");
+                obj.AftenTillæg = new CreateNewWorkPlaceObj.AftenTillægObj(AftenTimePicker.Time, "0");
 
             }
             if (LørdagsTillægKr.Text != null)
             {
-                salary.LørdagsTillæg = new SalarySettings.LørdagsTillægObj(LørdagTimePicker.Time, LørdagsTillægKr.Text);
+                obj.LørdagsTillæg = new CreateNewWorkPlaceObj.LørdagsTillægObj(LørdagTimePicker.Time, LørdagsTillægKr.Text);
 
             }
             else
             {
-                salary.LørdagsTillæg = new SalarySettings.LørdagsTillægObj(LørdagTimePicker.Time, "0");
+                obj.LørdagsTillæg = new CreateNewWorkPlaceObj.LørdagsTillægObj(LørdagTimePicker.Time, "0");
 
             }
 

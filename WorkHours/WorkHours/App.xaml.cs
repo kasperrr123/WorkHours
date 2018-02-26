@@ -39,7 +39,7 @@ namespace WorkHours
 
 
 
-        public static WorkHoursDatabaseController UserDatabase
+        public static WorkHoursDatabaseController Database
         {
             get
             {

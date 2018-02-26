@@ -11,7 +11,7 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FirstTimeUse.xaml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)SetTillæg2.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -20,7 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)CreatingNewMonth\GetWorkPlaceName.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\GetWorkPlaceName.xaml.cs">
       <DependentUpon>GetWorkPlaceName.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -42,67 +42,69 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Month.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Tillæg.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Company.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\ISQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FirstTimeUse.xaml.cs">
       <DependentUpon>FirstTimeUse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)CreatingNewMonth\GetMonthName.xaml.cs">
-      <DependentUpon>GetMonthName.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)HomePageFolder\OpretNy.xaml.cs">
+      <DependentUpon>OpretNy.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)FinalSettingsPage.xaml.cs">
-      <DependentUpon>FinalSettingsPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FinalPage.xaml.cs">
+      <DependentUpon>FinalPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)SetTillæg2.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg2.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>SetTillæg2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)SetTillæg1.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg1.xaml.cs">
       <DependentUpon>SetTillæg1.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)SalarySettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\CreateNewWorkPlaceObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NewMonthObj.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SetTimeLøn.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTimeLøn.xaml.cs">
       <DependentUpon>SetTimeLøn.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SalarySettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreatingNewMonth\GetMonthName.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\OpretNy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreatingNewMonth\GetWorkPlaceName.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\GetWorkPlaceName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)SetTimeLøn.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTimeLøn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)SetTillæg1.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)FinalSettingsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FinalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\HomePage.xaml">
@@ -127,10 +129,5 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)hdmigrjuocjydsjbuitr.png" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)homeicon.png" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)plus-512.png" />
   </ItemGroup>
 </Project>

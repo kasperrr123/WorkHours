@@ -21,10 +21,11 @@ namespace WorkHours.Models
         [OneToMany]
         public List<Company> Companies { get; set; }
 
+        //public List<Tillæg> Tillæg { get; set; }
+
         public User()
         {
         
         }
-
     }
 }

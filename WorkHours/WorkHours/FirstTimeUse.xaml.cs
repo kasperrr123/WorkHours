@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkHours.CreatingNewMonth;
+using WorkHours.CreateNewWorkPlace;
 using WorkHours.HomePageFolder;
 using WorkHours.Models;
 using Xamarin.Forms;
@@ -26,7 +26,7 @@ namespace WorkHours
 
         private void OpretDatabaseBtn_Clicked(object sender, EventArgs e)
         {
-            var database = App.UserDatabase;
+            var database = App.Database;
             if (FuldeNavn.Text != null)
             {
                 var newUser = new User

@@ -7,13 +7,13 @@ using WorkHours;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WorkHours
+namespace WorkHours.CreateNewWorkPlace
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetTillæg2 : ContentPage
     {
 
-        SalarySettings salary = SalarySettings.Instance;
+        CreateNewWorkPlaceObj obj = CreateNewWorkPlaceObj.Instance;
 
 
         public SetTillæg2()
@@ -27,17 +27,17 @@ namespace WorkHours
             // Checking if SøndagsTillægKr input is null or not. If not we insert the value into our Salary object.
             if (SøndagsTillægKr.Text != null)
             {
-                
-                salary.SøndagsTillæg = new SalarySettings.SøndagsTillægObj(SøndagTimePicker.Time, SøndagsTillægKr.Text, AllDaySwitch.IsToggled);
+
+                obj.SøndagsTillæg = new CreateNewWorkPlaceObj.SøndagsTillægObj(SøndagTimePicker.Time, SøndagsTillægKr.Text, AllDaySwitch.IsToggled);
 
             }
             else{
                 // Setting SøndagsTillæg to 0 kroner.
-                salary.SøndagsTillæg = new SalarySettings.SøndagsTillægObj(SøndagTimePicker.Time, "0", AllDaySwitch.IsToggled);
+                obj.SøndagsTillæg = new CreateNewWorkPlaceObj.SøndagsTillægObj(SøndagTimePicker.Time, "0", AllDaySwitch.IsToggled);
             }
           
 
-            Navigation.PushAsync(new FinalSettingsPage());
+            Navigation.PushAsync(new FinalPage());
         }
 
         private void FlereTillægBtn_Clicked(object sender, EventArgs e)

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Name="Carousel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.HomePageFolder.OpretNy">
+
+    <StackLayout>
+        <StackLayout>
+            <Label Text="Opret ny" HorizontalTextAlignment="Center" TextColor="CadetBlue"></Label>
+            <Button x:Name="OpretNyArbejdspladsBtn" Clicked="OpretNyArbejdspladsBtn_Clicked" Text="Opret ny arbejdsplads" ></Button>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="Ændre arbejdsplads" HorizontalTextAlignment="Center" TextColor="CadetBlue"></Label>
+            <Label Text="Vælge en arbejdsplads du vil ændre i" HorizontalTextAlignment="Start"></Label>
+            <Picker ItemDisplayBinding="{Binding ArbejdsPladser}"></Picker>
+            <Button Text="Ændre i arbejdsplads"></Button>
+        </StackLayout>
+
+    </StackLayout>
+
+
+
+
+</ContentPage>
+    
+    

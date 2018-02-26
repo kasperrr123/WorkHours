@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WorkHours.CreateNewWorkPlace;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +16,7 @@ namespace WorkHours.HomePageFolder
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage, INotifyPropertyChanged
     {
-        private DateTime time;
+        private String date;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -27,25 +28,27 @@ namespace WorkHours.HomePageFolder
             }
         }
 
-        public DateTime Time
+        public String Date
         {
-            get { return time; }
+            get { return date; }
             set
             {
-                time = value;
+                date = value;
                 INotifyPropertyChanged();
             }
         }
+
+        public String WhatCompany { get; set; }
 
         public String WelcomeUser { get; set; }
         public HomePage()
         {
             BindingContext = this;
-
             ThreadStart timer = new ThreadStart(TimerFunction);
             Thread myThread = new Thread(timer);
             myThread.Start();
-            WelcomeUser = "Velkommen " + GetUser();
+            WhatCompany = "Arbejdsplads: ";
+            WelcomeUser = "Velkommen tilbage " + GetUser();
             InitializeComponent();
         }
 
@@ -53,7 +56,13 @@ namespace WorkHours.HomePageFolder
         {
             while (true)
             {
-                Time = System.DateTime.Now;
+                DateTime d = System.DateTime.Now;
+                String dag = System.DateTime.Now.DayOfWeek.ToString();
+                String date = System.DateTime.Now.Day.ToString();
+                String måned = System.DateTime.Now.Month.ToString();
+                String år = System.DateTime.Now.Year.ToString();
+                String dateString = dag + " d. " + date + "-" + måned + "-" + år;
+                Date = dateString;
                 Thread.Sleep(100);
 
             }
@@ -62,8 +71,21 @@ namespace WorkHours.HomePageFolder
 
         private string GetUser()
         {
-            var database = App.UserDatabase;
+            var database = App.Database;
             return database.GetUser().FullName;
+        }
+        private string GetCompany()
+        {
+            var database = App.Database;
+            var companies = database.GetUser().Companies;
+
+            return companies.First().ToString();
+        }
+
+        private void SettingsBtn_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new OpretNy());
+
         }
     }
 }
