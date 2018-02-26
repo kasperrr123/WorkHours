@@ -47,9 +47,25 @@ namespace WorkHours.CreateNewWorkPlace
                 From = obj.AftenTillæg.Time.ToString(),
                 TillægKr = obj.AftenTillæg.Løn,
             });
+            database.AddTillæg(new Tillæg
+            {
+                Company = obj.CompanyName,
+                Day = obj.LørdagsTillæg.Day,
+                From = obj.LørdagsTillæg.Time.ToString(),
+                TillægKr = obj.LørdagsTillæg.Løn,
+            });
+            database.AddTillæg(new Tillæg
+            {
+                Company = obj.CompanyName,
+                Day = obj.SøndagsTillæg.Day,
+                From = obj.SøndagsTillæg.Time.ToString(),
+                TillægKr = obj.SøndagsTillæg.Løn,
+            });
 
 
-            Navigation.PushAsync(new HomePage());
+            database.Commit();
+            Navigation.PushAsync(new TabbedPage1());
+       
 
 
         }

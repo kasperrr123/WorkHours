@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WorkHours.Data;
+using WorkHours.HomePageFolder;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 
@@ -19,12 +20,26 @@ namespace WorkHours
             InitializeComponent();
 
 
-            MainPage = new NavigationPage(new FirstTimeUse());
+
+            if (Database.GetUser() == null)
+            {
+                MainPage = new NavigationPage(new FirstTimeUse());
+
+            }
+            else
+            {
+                MainPage = new NavigationPage(new TabbedPage1());
+
+            }
+
+
+
+
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+
         }
 
         protected override void OnSleep()
@@ -51,6 +66,8 @@ namespace WorkHours
                 return userDatabase;
             }
         }
+
+
 
     }
 }

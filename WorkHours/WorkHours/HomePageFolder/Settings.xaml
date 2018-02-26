@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage x:Name="Carousel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.HomePageFolder.OpretNy">
+             x:Class="WorkHours.HomePageFolder.Settings">
 
     <StackLayout>
         <StackLayout>
@@ -14,6 +14,12 @@
             <Picker x:Name="WorkPlacePicker" ItemsSource="{Binding ArbejdsPladser}"></Picker>
             <Button x:Name="ÆndreArbejdspladsBtn" Clicked="ÆndreArbejdspladsBtn_Clicked" Text="Ændre i arbejdsplads" ></Button>
         </StackLayout>
+        <StackLayout>
+            <Label Text="Advanceret indstillinger" HorizontalTextAlignment="Center" TextColor="IndianRed"></Label>
+            <Button x:Name="DeleteUserAndDatabaseBtn" BackgroundColor="Red" TextColor="Black" Clicked="ResetAppBtn_Clicked" Text="Reset app"></Button>
+        </StackLayout>
+
+       
 
     </StackLayout>
 

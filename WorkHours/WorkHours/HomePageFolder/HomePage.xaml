@@ -29,11 +29,13 @@
                     <Label x:Name="WelcomeLabel" HorizontalTextAlignment="Center" VerticalOptions="Center"  Text="{Binding WelcomeUser}"></Label>
                 </StackLayout>
             </StackLayout>
-            <StackLayout x:Name="IngenAktivMåned" IsVisible="False" Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
-                <Label Text="Ingen lønseddel oprettet endnu" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Label>
+            
+            <StackLayout x:Name="IngenAktivMåned" IsVisible="{Binding NoActiveMonth}" Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
+                <Label Text="Ingen arbejdsplads oprettet endnu" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Label>
+                <Button x:Name="NoAvtiveMonthCreateWorkPlaceBtn" Clicked="NoAvtiveMonthCreateWorkPlaceBtn_Clicked" Text="Opret arbejdsplads nu" HorizontalOptions="CenterAndExpand"></Button>
             </StackLayout>
-            <StackLayout  Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                
+            
+            <StackLayout x:Name="AktivMåned" IsVisible="{Binding ActiveMonth}" Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                 <StackLayout HorizontalOptions="Center">
                     <Label Text="Du har arbejdet i dag" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Large"></Label>
                     <Label Text="{Binding Date}" HorizontalOptions="Center" FontSize="Medium"></Label>
@@ -48,6 +50,7 @@
                     <Button Text="Gem" BackgroundColor="Red" HorizontalOptions="CenterAndExpand"></Button>
                 </StackLayout>
             </StackLayout>
+            
             <StackLayout Grid.Row="8" Grid.RowSpan="2" VerticalOptions="End" >
                 <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
                     <Button x:Name="SettingsBtn" Clicked="SettingsBtn_Clicked" Text="Indstillinger" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"></Button>

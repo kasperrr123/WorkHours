@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
+using WorkHours.Droid.Data;
 using WorkHours.Models;
 using Xamarin.Forms;
 namespace WorkHours.Data
@@ -17,25 +19,33 @@ namespace WorkHours.Data
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
 
-            database.DropTable<User>();
-            database.DropTable<Company>();
-            database.DropTable<Month>();
-            database.DropTable<Tillæg>();
-
-
             database.CreateTable<Tillæg>();
             database.CreateTable<User>();
             database.CreateTable<Company>();
             database.CreateTable<Month>();
-
          
         }
+
+  
 
         // Controllers for TABLE: User.
 
         public User GetUser()
         {
-            return database.Table<User>().First();
+            try
+            {
+                if (database.Table<User>().First() == null)
+                {
+                    return null;
+                }
+                return database.Table<User>().First();
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+           
         }
 
         public int AddUser(User user)
@@ -73,6 +83,8 @@ namespace WorkHours.Data
         {
             return database.Update(month);
         }
+
+    
 
         public void DeleteMonth(Month month)
         {
@@ -124,5 +136,31 @@ namespace WorkHours.Data
             }
             return list;
         }
+
+        // Other methods
+        public void Commit()
+        {
+            database.Commit();
+        }
+
+        internal void DeleteDatabase()
+        {
+            try
+            {
+                database.DeleteAll<Company>();
+                database.DeleteAll<Month>();
+                database.DeleteAll<Tillæg>();
+                database.DeleteAll<User>();
+
+            }
+            catch (Exception x)
+            {
+                Console.WriteLine("ERROR: " + x.Message);
+            
+            }
+
+           
+        }
+
     }
 }

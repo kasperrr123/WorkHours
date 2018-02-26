@@ -22,7 +22,6 @@ namespace WorkHours.Droid.Data
 {
     class SQlite_Android : ISQLite
     {
-
         public SQlite_Android() { }
 
         public SQLiteConnection GetConnection()

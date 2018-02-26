@@ -65,8 +65,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)FirstTimeUse.xaml.cs">
       <DependentUpon>FirstTimeUse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)HomePageFolder\OpretNy.xaml.cs">
-      <DependentUpon>OpretNy.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)HomePageFolder\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FinalPage.xaml.cs">
@@ -107,7 +107,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\OpretNy.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

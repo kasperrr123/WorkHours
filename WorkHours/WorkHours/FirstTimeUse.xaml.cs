@@ -34,7 +34,7 @@ namespace WorkHours
                     FullName = FuldeNavn.Text,
                 };
                 database.AddUser(newUser);
-                
+
                 Navigation.PushAsync(new TabbedPage1());
             }
             else

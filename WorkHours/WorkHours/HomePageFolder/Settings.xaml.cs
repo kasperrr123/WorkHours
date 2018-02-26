@@ -14,12 +14,12 @@ using Xamarin.Forms.Xaml;
 namespace WorkHours.HomePageFolder
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OpretNy : ContentPage
+    public partial class Settings : ContentPage
     {
 
         public List<String> ArbejdsPladser { get; set; }
 
-        public OpretNy()
+        public Settings()
         {
             BindingContext = this;
             ArbejdsPladser = new List<String>();
@@ -58,6 +58,22 @@ namespace WorkHours.HomePageFolder
             {
                 Navigation.PushAsync(new UpdateWorkPlaceNameAndTimeLøn(WorkPlacePicker.SelectedItem.ToString()));
             }
+        }
+
+        private void ResetAppBtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                App.Database.DeleteDatabase();
+                DisplayAlert("Succes", "Database has been deleted", "Return to home");
+                Navigation.PushAsync(new FirstTimeUse());
+            }
+            catch (Exception x)
+            {
+                DisplayAlert("Error", "Error with deleting database: " + x.Message, "ok");
+
+            }
+
         }
     }
 }

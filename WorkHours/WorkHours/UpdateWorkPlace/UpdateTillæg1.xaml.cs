@@ -27,13 +27,14 @@ namespace WorkHours.UpdateWorkPlace
         {
             var database = App.Database;
             // Setting the aften tillæg values
-            var time = database.GetCompanies().Find(n => n.CompanyName == workPlace).tillægs.Where(n => n.Day == "Aften").Select(n => n.From).ToString();
-            AftenTimePicker.Time = TimeSpan.Parse(time);
-            AftenTillægKr.Text = database.GetCompanies().Find(n => n.CompanyName == workPlace).tillægs.Where(n => n.Day == "Aften").Select(n => n.TillægKr).ToString();
+            //var company = database.GetCompanies().Find(n => n.CompanyName == workPlace)
+            //DisplayAlert("ok", company, "ok");
+            //AftenTimePicker.Time = TimeSpan.Parse(company);
+            //AftenTillægKr.Text = database.GetCompanies().Find(n => n.CompanyName == workPlace).tillægs.Select(n => n.From).ToString();
             // Setting the lørdags tillæg values.
-            var time1 = database.GetCompanies().Find(n => n.CompanyName == workPlace).tillægs.Where(n => n.Day == "Lørdag").Select(n => n.From).ToString();
-            LørdagTimePicker.Time = TimeSpan.Parse(time1);
-            LørdagsTillægKr.Text = database.GetCompanies().Find(n => n.CompanyName == workPlace).tillægs.Where(n => n.Day == "Lørdag").Select(n => n.TillægKr).ToString();
+            //var time1 = database.GetCompanies().Find(n => n.CompanyName == workPlace).tillægs.Where(n => n.Day == "Lørdag").Select(n => n.From).ToString();
+            //LørdagTimePicker.Time = TimeSpan.Parse(time1);
+            //LørdagsTillægKr.Text = database.GetCompanies().Find(n => n.CompanyName == workPlace).tillægs.Where(n => n.Day == "Lørdag").Select(n => n.TillægKr).ToString();
         }
 
         private void Button_Clicked(object sender, EventArgs e)

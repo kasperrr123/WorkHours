@@ -14,7 +14,12 @@ namespace WorkHours.HomePageFolder
 		public TabbedPage1()
 		{
             NavigationPage.SetHasNavigationBar(this, false);
+         
             InitializeComponent ();
 		}
-	}
+
+
+
+
+    }
 }

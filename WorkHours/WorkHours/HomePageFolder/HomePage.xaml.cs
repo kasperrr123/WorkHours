@@ -41,15 +41,36 @@ namespace WorkHours.HomePageFolder
         public String WhatCompany { get; set; }
 
         public String WelcomeUser { get; set; }
+
+        public bool ActiveMonth { get; set; }
+        public bool NoActiveMonth { get; set; }
         public HomePage()
         {
             BindingContext = this;
             ThreadStart timer = new ThreadStart(TimerFunction);
             Thread myThread = new Thread(timer);
             myThread.Start();
-            WhatCompany = "Arbejdsplads: ";
             WelcomeUser = "Velkommen tilbage " + GetUser();
+            CheckIfAvtiveCompany();
+
             InitializeComponent();
+        }
+
+        private void CheckIfAvtiveCompany()
+        {
+            var database = App.Database;
+            if (database.GetCompanies().Count==0)
+            {
+                NoActiveMonth = true;
+                ActiveMonth= false;
+            }
+            else {
+                WhatCompany = "Arbejdsplads: " + App.Database.GetCompanies().First().CompanyName;
+
+                NoActiveMonth = false;
+                ActiveMonth = true;
+            }
+  
         }
 
         public void TimerFunction()
@@ -84,8 +105,20 @@ namespace WorkHours.HomePageFolder
 
         private void SettingsBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new OpretNy());
+            Navigation.PushAsync(new Settings());
 
         }
+
+        private void NoAvtiveMonthCreateWorkPlaceBtn_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new GetWorkPlaceName());
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
+
     }
 }

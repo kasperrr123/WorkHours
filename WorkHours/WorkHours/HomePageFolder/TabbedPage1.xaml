@@ -6,7 +6,6 @@
 
 
     <local:HomePage />
-    <!--<local:CreateNewMonth />-->
     <local:SeeOtherMonths />
 
 
