@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WorkHours.CreateNewWorkPlace
+namespace WorkHours.UpdateWorkPlace
 {
     public sealed class CreateNewWorkPlaceObj
     {

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.UpdateWorkPlace.UpdateWorkPlaceNameAndTimeLøn">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label HorizontalTextAlignment="Center">Vil du ændre på din arbejdsplads navn?</Label>
+                <Entry x:Name="NameInput" Placeholder="Virksomhed"></Entry>
+            </StackLayout>
+            <StackLayout x:Name="AftenTillæg" Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                <Label Text="Fået ny basis timeløn?"></Label>
+                <Entry x:Name="TimeLøn" Keyboard="Numeric" Placeholder="Timeløn"></Entry>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+                <Button Text="Gå videre til tillæg" Clicked="Button_Clicked"></Button>
+            </StackLayout>
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

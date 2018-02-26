@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using WorkHours;
 using WorkHours.CreateNewWorkPlace;
 using WorkHours.Models;
+using WorkHours.UpdateWorkPlace;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,9 +21,10 @@ namespace WorkHours.HomePageFolder
 
         public OpretNy()
         {
+            BindingContext = this;
             ArbejdsPladser = new List<String>();
             ArbejdsPladser = GetCompanies();
-            BindingContext = this;
+
             InitializeComponent();
         }
 
@@ -30,24 +32,32 @@ namespace WorkHours.HomePageFolder
         {
 
             List<String> listOfCompanies = new List<String>();
-            if (App.Database.GetUser().Companies != null)
+            if (App.Database.GetCompanies() != null)
             {
-                {
-                    foreach (var item in App.Database.GetUser().Companies)
-                    {
-                        listOfCompanies.Add(item.CompanyName);
-                    }
 
-                    return listOfCompanies;
+                foreach (var item in App.Database.GetCompanies())
+                {
+                    listOfCompanies.Add(item.CompanyName);
                 }
-        
+
+                return listOfCompanies;
+
+
             }
-            return null;
+            return new List<string> { "Can't find any companies" };
         }
 
         private void OpretNyArbejdspladsBtn_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new GetWorkPlaceName());
+        }
+
+        private void ÆndreArbejdspladsBtn_Clicked(object sender, EventArgs e)
+        {
+            if (WorkPlacePicker.SelectedItem != null)
+            {
+                Navigation.PushAsync(new UpdateWorkPlaceNameAndTimeLøn(WorkPlacePicker.SelectedItem.ToString()));
+            }
         }
     }
 }

@@ -15,6 +15,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateFinalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateTillæg1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateTillæg2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateWorkPlaceNameAndTimeLøn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -72,6 +88,23 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)SalarySettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\CreateNewWorkPlaceObj.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateFinalPage.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>UpdateFinalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateTillæg1.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>UpdateTillæg1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateTillæg2.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>UpdateTillæg2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateWorkPlaceNameAndTimeLøn.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>UpdateWorkPlaceNameAndTimeLøn.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\OpretNy.xaml">

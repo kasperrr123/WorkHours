@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using WorkHours.Models;
 using Xamarin.Forms;
@@ -31,20 +32,6 @@ namespace WorkHours.Data
         }
 
         // Controllers for TABLE: User.
-        public List<User> GetUsers()
-        {
-            List<User> listOfUsers = new List<User>();
-            //return database.Table<TableUser>();
-            var query = database.Table<User>();
-            foreach (var names in query)
-            {
-                
-                listOfUsers.Add(names);
-            }
-           
-            return listOfUsers;
-
-        }
 
         public User GetUser()
         {
@@ -93,9 +80,15 @@ namespace WorkHours.Data
         }
 
         // Controllers for TABLE: Company.
-        public Company GetCompanies()
+        public List<Company> GetCompanies()
         {
-            return database.Table<Company>().First();
+            List<Company> list = new List<Company>();
+            foreach (var item in database.Table<Company>())
+            {
+                list.Add(item);
+            }
+
+            return list;
         }
 
         public Company GetCompany(string company)
@@ -117,6 +110,19 @@ namespace WorkHours.Data
         {
             database.Delete(company);
         }
-
+        // Controller for TABLE: Tillæg.
+        public int AddTillæg(Tillæg tillæg)
+        {
+            return database.Insert(tillæg);
+        }
+        public ObservableCollection<Tillæg> getTillægs()
+        {
+            ObservableCollection<Tillæg> list = new ObservableCollection<Tillæg>();
+            foreach (var item in database.Table<Tillæg>())
+            {
+                list.Add(item);
+            }
+            return list;
+        }
     }
 }

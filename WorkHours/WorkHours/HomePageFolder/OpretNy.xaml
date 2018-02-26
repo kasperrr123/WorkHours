@@ -11,8 +11,8 @@
         <StackLayout>
             <Label Text="Ændre arbejdsplads" HorizontalTextAlignment="Center" TextColor="CadetBlue"></Label>
             <Label Text="Vælge en arbejdsplads du vil ændre i" HorizontalTextAlignment="Start"></Label>
-            <Picker ItemDisplayBinding="{Binding ArbejdsPladser}"></Picker>
-            <Button Text="Ændre i arbejdsplads"></Button>
+            <Picker x:Name="WorkPlacePicker" ItemsSource="{Binding ArbejdsPladser}"></Picker>
+            <Button x:Name="ÆndreArbejdspladsBtn" Clicked="ÆndreArbejdspladsBtn_Clicked" Text="Ændre i arbejdsplads" ></Button>
         </StackLayout>
 
     </StackLayout>

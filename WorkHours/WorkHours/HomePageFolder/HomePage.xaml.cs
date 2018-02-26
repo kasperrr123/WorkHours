@@ -77,9 +77,9 @@ namespace WorkHours.HomePageFolder
         private string GetCompany()
         {
             var database = App.Database;
-            var companies = database.GetUser().Companies;
+            var companies = database.GetCompanies();
 
-            return companies.First().ToString();
+            return companies.ToString();
         }
 
         private void SettingsBtn_Clicked(object sender, EventArgs e)

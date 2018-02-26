@@ -18,11 +18,10 @@ namespace WorkHours.Models
 
 
         [PrimaryKey]
+        public string Company { get; set; }
         public string Day { get; set; }
-
         public String From { get; set; }
-        public String To { get; set; }
-        public Decimal TillægKr { get; set; }
+        public String TillægKr { get; set; }
 
 
         [ForeignKey(typeof(Company))]

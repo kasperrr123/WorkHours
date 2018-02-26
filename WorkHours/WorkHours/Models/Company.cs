@@ -20,19 +20,16 @@ namespace WorkHours.Models
         [PrimaryKey]
         public string CompanyName { get; set; }
 
+        public String TimeLøn { get; set; }
 
-
-        [ForeignKey(typeof(User))]
-        public String FullName { get; set; }
-
-        [ManyToOne]
-        public User User { get; set; }
-
-
+        [OneToMany]
+        public List<Tillæg> tillægs { get; set; }
 
         public Company()
         {
             
         }
+
+    
     }
 }

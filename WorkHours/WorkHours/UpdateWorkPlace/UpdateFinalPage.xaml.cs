@@ -9,10 +9,10 @@ using Xamarin.Forms.Xaml;
 using WorkHours.Models;
 using WorkHours.HomePageFolder;
 
-namespace WorkHours.CreateNewWorkPlace
+namespace WorkHours.UpdateWorkPlace
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FinalPage : ContentPage
+    public partial class UpdateFinalPage : ContentPage
     {
         private static CreateNewWorkPlaceObj obj = CreateNewWorkPlaceObj.Instance;
 
@@ -23,7 +23,7 @@ namespace WorkHours.CreateNewWorkPlace
 
         public String SøndagTillæg { get; set; } = obj.SøndagsTillæg.ToString();
 
-        public FinalPage()
+        public UpdateFinalPage()
         {
             BindingContext = this;
             InitializeComponent();
@@ -38,7 +38,6 @@ namespace WorkHours.CreateNewWorkPlace
             database.AddCompany(new Company
             {
                 CompanyName = obj.CompanyName,
-                TimeLøn = obj.BasisTimeLøn,
             });
             database.AddTillæg(new Tillæg
             {
