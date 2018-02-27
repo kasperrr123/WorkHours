@@ -7,7 +7,7 @@ using WorkHours.Data;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WorkHours.Models;
-using WorkHours.HomePageFolder;
+using WorkHours.HomePage;
 
 namespace WorkHours.CreateNewWorkPlace
 {

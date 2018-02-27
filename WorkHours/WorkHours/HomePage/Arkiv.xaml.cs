@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WorkHours.HomePageFolder
+namespace WorkHours.HomePage
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CreateNewMonth : ContentPage
+	public partial class Arkiv : ContentPage
 	{
-		public CreateNewMonth ()
+		public Arkiv()
 		{
 			InitializeComponent ();
 		}

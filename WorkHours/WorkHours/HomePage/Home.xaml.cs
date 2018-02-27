@@ -11,10 +11,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 
-namespace WorkHours.HomePageFolder
+namespace WorkHours.HomePage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage, INotifyPropertyChanged
+    public partial class Home : ContentPage, INotifyPropertyChanged
     {
         private String date;
 
@@ -44,7 +44,7 @@ namespace WorkHours.HomePageFolder
 
         public bool ActiveMonth { get; set; }
         public bool NoActiveMonth { get; set; }
-        public HomePage()
+        public Home()
         {
             BindingContext = this;
             ThreadStart timer = new ThreadStart(TimerFunction);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WorkHours.Data;
-using WorkHours.HomePageFolder;
+using WorkHours.HomePage;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 

@@ -8,25 +8,16 @@ using SQLiteNetExtensions.Attributes;
 
 namespace WorkHours.Models
 {
-
-
-
+    
     [Table("Tillæg")]
     public class Tillæg
     {
-
-
-
-        [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
-        public string Company { get; set; }
+        
+        [PrimaryKey]
         public string Day { get; set; }
+        public string Company { get; set; }
         public String From { get; set; }
         public String TillægKr { get; set; }
-
-
-        [ForeignKey(typeof(Company))]
-        public String CompanyName { get; set; }
 
 
         public Tillæg()

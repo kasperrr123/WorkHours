@@ -11,7 +11,7 @@ using WorkHours.UpdateWorkPlace;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WorkHours.HomePageFolder
+namespace WorkHours.HomePage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Settings : ContentPage
@@ -19,20 +19,23 @@ namespace WorkHours.HomePageFolder
 
         public List<String> ArbejdsPladser { get; set; }
 
+        public String CantFindAnyCompany { get; set; }
+
         public Settings()
         {
             BindingContext = this;
             ArbejdsPladser = new List<String>();
             ArbejdsPladser = GetCompanies();
-
             InitializeComponent();
+                 
+
         }
 
         private List<String> GetCompanies()
         {
 
             List<String> listOfCompanies = new List<String>();
-            if (App.Database.GetCompanies() != null)
+            if (App.Database.GetCompanies().Count>0)
             {
 
                 foreach (var item in App.Database.GetCompanies())
@@ -44,7 +47,7 @@ namespace WorkHours.HomePageFolder
 
 
             }
-            return new List<string> { "Can't find any companies" };
+            return new List<string> { "Ingen arbejdspladser er oprettet endnu" };
         }
 
         private void OpretNyArbejdspladsBtn_Clicked(object sender, EventArgs e)
@@ -60,19 +63,24 @@ namespace WorkHours.HomePageFolder
             }
         }
 
-        private void ResetAppBtn_Clicked(object sender, EventArgs e)
+        private async Task ResetAppBtn_ClickedAsync(object sender, EventArgs e)
         {
-            try
+          var alert = await DisplayAlert("Vigtigt!", "Hvis du trykker ok vil din app blive nulstillet og du mister ALT dit data", "Ok", "Gå tilbage");
+            if (alert==true)
             {
-                App.Database.DeleteDatabase();
-                DisplayAlert("Succes", "Database has been deleted", "Return to home");
-                Navigation.PushAsync(new FirstTimeUse());
-            }
-            catch (Exception x)
-            {
-                DisplayAlert("Error", "Error with deleting database: " + x.Message, "ok");
+                try
+                {
+                    App.Database.DeleteDatabase();
+                    await DisplayAlert("Succes", "Database has been deleted", "Return to home");
+                    await Navigation.PushAsync(new FirstTimeUse());
+                }
+                catch (Exception x)
+                {
+                    await DisplayAlert("Error", "Error with deleting database: " + x.Message, "ok");
 
+                }
             }
+           
 
         }
     }

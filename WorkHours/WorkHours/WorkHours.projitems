@@ -41,22 +41,23 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Data\WorkHoursDatabaseController.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)HomePageFolder\CreateNewMonth.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)HomePage\CreateNewMonth.xaml.cs">
       <DependentUpon>CreateNewMonth.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)HomePageFolder\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)HomePage\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)HomePageFolder\SeeOtherMonths.xaml.cs">
-      <DependentUpon>SeeOtherMonths.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)HomePage\Arkiv.xaml.cs">
+      <DependentUpon>Arkiv.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)HomePageFolder\TabbedPage1.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)HomePage\TabbedPage1.xaml.cs">
       <DependentUpon>TabbedPage1.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Record.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Month.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Tillæg.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)FirstTimeUse.xaml.cs">
       <DependentUpon>FirstTimeUse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)HomePageFolder\Settings.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)HomePage\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -82,6 +83,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\CreateNewWorkPlaceObj.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Year.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NewMonthObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTimeLøn.xaml.cs">
       <DependentUpon>SetTimeLøn.xaml</DependentUpon>
@@ -107,7 +109,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\Settings.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -140,25 +142,25 @@
     <Folder Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\HomePage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\CreateNewMonth.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\CreateNewMonth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\SeeOtherMonths.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\Arkiv.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePageFolder\TabbedPage1.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\TabbedPage1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

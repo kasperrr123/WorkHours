@@ -17,5 +17,7 @@ namespace WorkHours.Models
         [ForeignKey(typeof(Company))]
         public String CompanyName { get; set; }
 
+
+
     }
 }
