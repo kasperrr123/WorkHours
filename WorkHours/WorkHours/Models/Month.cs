@@ -11,8 +11,10 @@ namespace WorkHours.Models
     [Table("Month")]
     public class Month
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string MonthName { get; set; }
+        public int Year { get; set; }
 
         [ForeignKey(typeof(Company))]
         public String CompanyName { get; set; }

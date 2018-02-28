@@ -83,7 +83,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\CreateNewWorkPlaceObj.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Year.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NewMonthObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTimeLøn.xaml.cs">
       <DependentUpon>SetTimeLøn.xaml</DependentUpon>
