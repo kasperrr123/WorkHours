@@ -31,7 +31,20 @@ namespace WorkHours.CreateNewWorkPlace
 
         private void YesBtn_Clicked(object sender, EventArgs e)
         {
+            // inserting data into database.
+            InsertIntoDatabase();
 
+            
+
+
+            // Go to homePage
+            Navigation.PushAsync(new TabbedPage1());
+
+
+        }
+
+        private void InsertIntoDatabase()
+        {
             var database = App.Database;
             var user = database.GetUser();
             // Inserting new workplace for the user.
@@ -39,40 +52,36 @@ namespace WorkHours.CreateNewWorkPlace
             {
                 CompanyName = obj.CompanyName,
                 TimeLøn = obj.BasisTimeLøn,
+                User = "Kasper Jørgensen",
+
             });
             database.AddTillæg(new Tillæg
             {
-                Company = obj.CompanyName,
-                Day = obj.AftenTillæg.Day,
+                CompanyName = obj.CompanyName,
+                TypeOfTillæg = obj.AftenTillæg.Day,
                 From = obj.AftenTillæg.Time.ToString(),
                 TillægKr = obj.AftenTillæg.Løn,
+
             });
             database.AddTillæg(new Tillæg
             {
-                Company = obj.CompanyName,
-                Day = obj.LørdagsTillæg.Day,
+                CompanyName = obj.CompanyName,
+                TypeOfTillæg = obj.LørdagsTillæg.Day,
                 From = obj.LørdagsTillæg.Time.ToString(),
                 TillægKr = obj.LørdagsTillæg.Løn,
             });
             database.AddTillæg(new Tillæg
             {
-                Company = obj.CompanyName,
-                Day = obj.SøndagsTillæg.Day,
+                CompanyName = obj.CompanyName,
+                TypeOfTillæg = obj.SøndagsTillæg.Day,
                 From = obj.SøndagsTillæg.Time.ToString(),
                 TillægKr = obj.SøndagsTillæg.Løn,
             });
-
-
-            database.Commit();
-            Navigation.PushAsync(new TabbedPage1());
-       
-
-
         }
 
         private void NoBtn_Clicked(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

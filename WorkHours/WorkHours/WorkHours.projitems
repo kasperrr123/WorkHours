@@ -53,6 +53,7 @@
       <DependentUpon>Arkiv.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)HomePage\Record.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage\TabbedPage1.xaml.cs">
       <DependentUpon>TabbedPage1.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -136,9 +137,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\Home.xaml">

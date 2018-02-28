@@ -17,15 +17,22 @@ namespace WorkHours.Data
         public WorkHoursDatabaseController()
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
-
+            // Dropping the tables.
+            database.DropTable<Tillæg>();
+            database.DropTable<User>();
+            database.DropTable<Record>();
+            database.DropTable<Company>();
+            database.DropTable<Month>();
+            // Creating tables.
             database.CreateTable<Tillæg>();
             database.CreateTable<User>();
+            database.CreateTable<Record>();
             database.CreateTable<Company>();
             database.CreateTable<Month>();
-         
+
         }
 
-  
+
 
         // Controllers for TABLE: User.
 
@@ -44,7 +51,7 @@ namespace WorkHours.Data
 
                 return null;
             }
-           
+
         }
 
         public int AddUser(User user)
@@ -83,7 +90,7 @@ namespace WorkHours.Data
             return database.Update(month);
         }
 
-    
+
 
         public void DeleteMonth(Month month)
         {
@@ -93,6 +100,8 @@ namespace WorkHours.Data
         // Controllers for TABLE: Company.
         public List<Company> GetCompanies()
         {
+
+
             List<Company> list = new List<Company>();
             foreach (var item in database.Table<Company>())
             {
@@ -100,6 +109,8 @@ namespace WorkHours.Data
             }
 
             return list;
+
+
         }
 
         public Company GetCompany(string company)
@@ -149,17 +160,22 @@ namespace WorkHours.Data
                 database.DeleteAll<Company>();
                 database.DeleteAll<Month>();
                 database.DeleteAll<Tillæg>();
+                database.DeleteAll<Record>();
                 database.DeleteAll<User>();
 
             }
             catch (Exception x)
             {
                 Console.WriteLine("ERROR: " + x.Message);
-            
+
             }
 
-           
+
         }
 
+        internal void AddRecord(Record record)
+        {
+            database.Insert(record);
+        }
     }
 }

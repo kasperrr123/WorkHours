@@ -13,11 +13,15 @@ namespace WorkHours.Models
     public class Tillæg
     {
         
-        [PrimaryKey]
-        public string TypeOfTillæg { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public String TypeOfTillæg { get; set; }
+
         public String From { get; set; }
         public String TillægKr { get; set; }
 
+        [ForeignKey (typeof(Company))]
+        public string CompanyName { get; set; }
 
         public Tillæg()
         {

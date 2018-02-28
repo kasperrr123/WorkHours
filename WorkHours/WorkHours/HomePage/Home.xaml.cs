@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WorkHours.CreateNewWorkPlace;
+using WorkHours.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,41 +39,58 @@ namespace WorkHours.HomePage
             }
         }
 
+        public List<String> Companies { get; set; }
+
         public String WhatCompany { get; set; }
 
         public String WelcomeUser { get; set; }
 
         public bool ActiveMonth { get; set; }
         public bool NoActiveMonth { get; set; }
+
+
         public Home()
         {
             BindingContext = this;
             ThreadStart timer = new ThreadStart(TimerFunction);
             Thread myThread = new Thread(timer);
             myThread.Start();
-            WelcomeUser = "Velkommen tilbage " + GetUser();
+            WelcomeUser = GetUser();
+            WhatCompany = "Der er ingen arbejdsplads oprettet endnu.";
             CheckIfAvtiveCompany();
-
+            Companies = GetCompanyNames();
             InitializeComponent();
         }
+
+
 
         private void CheckIfAvtiveCompany()
         {
             var database = App.Database;
-            if (database.GetCompanies().Count==0)
+            if (database.GetCompanies().Count == 0)
             {
                 NoActiveMonth = true;
-                ActiveMonth= false;
+                ActiveMonth = false;
             }
-            else {
+            else
+            {
                 WhatCompany = "Arbejdsplads: " + App.Database.GetCompanies().First().CompanyName;
 
                 NoActiveMonth = false;
                 ActiveMonth = true;
             }
-  
-        }
 
+        }
+        public List<String> GetCompanyNames()
+        {
+            List<String> a = new List<string>();
+            foreach (var item in App.Database.GetCompanies())
+            {
+                a.Add(item.CompanyName);
+            }
+
+            return a;
+        }
         public void TimerFunction()
         {
             while (true)
@@ -95,13 +113,7 @@ namespace WorkHours.HomePage
             var database = App.Database;
             return database.GetUser().FullName;
         }
-        private string GetCompany()
-        {
-            var database = App.Database;
-            var companies = database.GetCompanies();
 
-            return companies.ToString();
-        }
 
         private void SettingsBtn_Clicked(object sender, EventArgs e)
         {
@@ -119,6 +131,25 @@ namespace WorkHours.HomePage
             return true;
         }
 
+        private void GemBtn_Clicked(object sender, EventArgs e)
+        {
+            var record = new Models.Record
+            {
+                EndTime = TimeFrom.Time.ToString(),
+                StartTime = TimeTo.Time.ToString(),
+                LoggedDate = System.DateTime.Now.ToString(),
+                Pause = inputPause.Text.ToString(),
 
+            };
+            App.Database.AddRecord(record);
+
+
+
+        }
+
+        private void ChooseOtherWorkPlaceBtn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -18,6 +18,10 @@ namespace WorkHours.Models
         [PrimaryKey]
         public String FullName { get; set; }
 
+
+        [OneToMany]
+        public List<Company> Companies { get; set; }
+
         public User()
         {
         

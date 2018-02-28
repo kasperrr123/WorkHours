@@ -41,8 +41,7 @@ namespace WorkHours.UpdateWorkPlace
             });
             database.AddTillæg(new Tillæg
             {
-                Company = obj.CompanyName,
-                Day = obj.AftenTillæg.Day,
+                TypeOfTillæg = obj.AftenTillæg.Day,
                 From = obj.AftenTillæg.Time.ToString(),
                 TillægKr = obj.AftenTillæg.Løn,
             });

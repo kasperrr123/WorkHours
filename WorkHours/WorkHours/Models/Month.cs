@@ -13,6 +13,7 @@ namespace WorkHours.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
+
         public string MonthName { get; set; }
         public int Year { get; set; }
 
@@ -20,7 +21,7 @@ namespace WorkHours.Models
         public String CompanyName { get; set; }
 
         [OneToMany]
-        public Record Record { get; set; }
+        public List<Record> Records { get; set; }
 
     }
 }
