@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
-using WorkHours.Droid.Data;
 using WorkHours.Models;
 using Xamarin.Forms;
 namespace WorkHours.Data

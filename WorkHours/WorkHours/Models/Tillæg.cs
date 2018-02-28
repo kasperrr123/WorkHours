@@ -14,8 +14,7 @@ namespace WorkHours.Models
     {
         
         [PrimaryKey]
-        public string Day { get; set; }
-        public string Company { get; set; }
+        public string TypeOfTillæg { get; set; }
         public String From { get; set; }
         public String TillægKr { get; set; }
 

@@ -9,9 +9,10 @@ namespace WorkHours.Models
 
     [Table("Day")]
 
-    class Record
+   public  class Record
     {
         [PrimaryKey]
+        public String Logged { get; set; }
         public String Date { get; set; }
 
         public String From { get; set; }

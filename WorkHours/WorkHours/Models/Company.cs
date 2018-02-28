@@ -22,6 +22,10 @@ namespace WorkHours.Models
 
         public String TimeLøn { get; set; }
 
+        [OneToMany]
+        public Month Month { get; set; }
+
+
         public Company()
         {
             
