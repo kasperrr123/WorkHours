@@ -40,6 +40,10 @@
       <DependentUpon>GetWorkPlaceName.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\LønPeriode.xaml.cs">
+      <DependentUpon>LønPeriode.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Data\WorkHoursDatabaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage\CreateNewMonth.xaml.cs">
       <DependentUpon>CreateNewMonth.xaml</DependentUpon>
@@ -158,6 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\TabbedPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\LønPeriode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

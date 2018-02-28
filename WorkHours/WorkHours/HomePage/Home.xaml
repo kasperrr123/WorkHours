@@ -49,8 +49,11 @@
                     <TimePicker x:Name="TimeFrom" HorizontalOptions="CenterAndExpand"></TimePicker>
                     <Label HorizontalTextAlignment="Center" Text="Til" VerticalTextAlignment="Center"></Label>
                     <TimePicker x:Name="TimeTo" HorizontalOptions="CenterAndExpand"></TimePicker>
-                    <Entry Keyboard="numeric" Placeholder="Pause" x:Name="inputPause"></Entry>
                 </StackLayout>
+                <StackLayout HorizontalOptions="Center">
+                    <Entry Keyboard="Numeric" Placeholder="Pause" x:Name="inputPause"></Entry>
+
+                </StackLayout >
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Button x:Name="GemBtn" Text="Gem" BackgroundColor="CadetBlue" Clicked="GemBtn_Clicked"></Button>
                 </StackLayout>

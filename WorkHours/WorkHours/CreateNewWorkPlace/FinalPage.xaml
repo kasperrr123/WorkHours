@@ -27,6 +27,8 @@
             <StackLayout Grid.Row="1">
                 <Label Text="Basis timeløn" ></Label>
                 <Label Text="{Binding BasisLøn}" HorizontalOptions="Start"></Label>
+                <Label Text="Løn periode" FontSize="Large"></Label>
+                <Label Text="{Binding LønPeriode}" HorizontalOptions="Start"></Label>
                 <Label Text="Tillæg"></Label>
                 <Label Text="{Binding AftenTillæg}" HorizontalOptions="Start"></Label>
                 <Label Text="{Binding LørdagTillæg}" HorizontalOptions="Start"></Label>

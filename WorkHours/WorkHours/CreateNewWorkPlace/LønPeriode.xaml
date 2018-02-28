@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.CreateNewWorkPlace.LønPeriode">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout x:Name="AftenTillæg" Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                     <Label Text="Hvilken dato går din løn seddel fra og til?"></Label>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Label HorizontalTextAlignment="Center" Text="Fra d." VerticalTextAlignment="Center"></Label>
+                    <Picker x:Name="TimeFrom" ItemsSource="{Binding Days}" Title="Dato" HorizontalOptions="CenterAndExpand"></Picker>
+                    <Label HorizontalTextAlignment="Center" Text="til d." VerticalTextAlignment="Center"></Label>
+                    <Picker x:Name="TimeTo" ItemsSource="{Binding Days}" Title="Dato"  HorizontalOptions="CenterAndExpand"></Picker>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Button x:Name="GåTilTillægBtn" Text="Gå til tillæg" Clicked="GåTilTillægBtn_Clicked" HorizontalOptions="CenterAndExpand" BackgroundColor="CadetBlue"></Button>
+                </StackLayout>
+
+            </StackLayout>
+   
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

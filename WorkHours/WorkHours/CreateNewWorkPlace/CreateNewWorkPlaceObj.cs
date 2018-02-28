@@ -10,6 +10,8 @@ namespace WorkHours.CreateNewWorkPlace
 
 
         public String BasisTimeLøn { get; set; }
+        public String LønPeriode_FraDato { get; set; }
+        public String LønPeriode_TilDato { get; set; }
         public AftenTillægObj AftenTillæg { get; set; }
         public LørdagsTillægObj LørdagsTillæg { get; set; }
         public SøndagsTillægObj SøndagsTillæg { get; set; }

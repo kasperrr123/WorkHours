@@ -23,9 +23,13 @@ namespace WorkHours.CreateNewWorkPlace
 
         public String SøndagTillæg { get; set; } = obj.SøndagsTillæg.ToString();
 
+        public String LønPeriode { get; set; }
+
+
         public FinalPage()
         {
             BindingContext = this;
+            LønPeriode = "Løn perioden løber fra d. " + obj.LønPeriode_FraDato + " til og med d. " + obj.LønPeriode_TilDato + " den efterfølgende måned.";
             InitializeComponent();
         }
 
@@ -34,7 +38,7 @@ namespace WorkHours.CreateNewWorkPlace
             // inserting data into database.
             InsertIntoDatabase();
 
-            
+
 
 
             // Go to homePage
