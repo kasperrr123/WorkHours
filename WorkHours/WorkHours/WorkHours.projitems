@@ -40,8 +40,9 @@
       <DependentUpon>GetWorkPlaceName.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\LønPeriode.xaml.cs">
-      <DependentUpon>LønPeriode.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalVariables.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FåLønPeriode.xaml.cs">
+      <DependentUpon>FåLønPeriode.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Data\WorkHoursDatabaseController.cs" />
@@ -57,13 +58,16 @@
       <DependentUpon>Arkiv.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)HomePage\Record.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HomePage\OpretNyLønPeriode.xaml.cs">
+      <DependentUpon>OpretNyLønPeriode.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)HomePage\TabbedPage1.xaml.cs">
       <DependentUpon>TabbedPage1.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Record.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Month.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LønPeriode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Tillæg.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Company.cs" />
@@ -167,7 +171,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\LønPeriode.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FåLønPeriode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\OpretNyLønPeriode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

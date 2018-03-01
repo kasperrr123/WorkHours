@@ -24,7 +24,7 @@ namespace WorkHours.CreateNewWorkPlace
         {
 
             obj.BasisTimeLøn = TimeLøn.Text;
-            Navigation.PushAsync(new LønPeriode());
+            Navigation.PushAsync(new FåLønPeriode());
 
 
         }

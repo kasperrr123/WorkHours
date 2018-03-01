@@ -22,12 +22,15 @@ namespace WorkHours.Models
 
         public String TimeLøn { get; set; }
 
+        public String LønPeriode_FraDato { get; set; }
+        public String LønPeriode_TilDato { get; set; }
+
         [ForeignKey(typeof(User))]
         public String User { get; set; }
 
 
         [OneToMany]
-        public List<Month> Months { get; set; }
+        public List<LønPeriode> LønPerioder { get; set; }
 
         [OneToMany]
         public List<Tillæg> Tillæg { get; set; }

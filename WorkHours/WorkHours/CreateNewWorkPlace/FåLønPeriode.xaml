@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.CreateNewWorkPlace.LønPeriode">
+             x:Class="WorkHours.CreateNewWorkPlace.FåLønPeriode">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
                     <Picker x:Name="TimeTo" ItemsSource="{Binding Days}" Title="Dato"  HorizontalOptions="CenterAndExpand"></Picker>
                 </StackLayout>
                 <StackLayout HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="GåTilTillægBtn" Text="Gå til tillæg" Clicked="GåTilTillægBtn_Clicked" HorizontalOptions="CenterAndExpand" BackgroundColor="CadetBlue"></Button>
+                    <Button x:Name="GåTilTillægBtn" Text="Opret" Clicked="GåTilTillægBtn_Clicked" HorizontalOptions="CenterAndExpand" BackgroundColor="CadetBlue"></Button>
                 </StackLayout>
 
             </StackLayout>

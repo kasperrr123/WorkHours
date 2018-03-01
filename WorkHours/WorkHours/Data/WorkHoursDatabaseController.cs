@@ -22,13 +22,13 @@ namespace WorkHours.Data
             database.DropTable<User>();
             database.DropTable<Record>();
             database.DropTable<Company>();
-            database.DropTable<Month>();
+            database.DropTable<LønPeriode>();
             // Creating tables.
             database.CreateTable<Tillæg>();
             database.CreateTable<User>();
             database.CreateTable<Record>();
             database.CreateTable<Company>();
-            database.CreateTable<Month>();
+            database.CreateTable<LønPeriode>();
 
         }
 
@@ -54,6 +54,11 @@ namespace WorkHours.Data
 
         }
 
+        public int TilføjLønPeriode(LønPeriode lønPeriode)
+        {
+            return database.Insert(lønPeriode);
+        }
+
         public int AddUser(User user)
         {
             return database.Insert(user);
@@ -70,29 +75,29 @@ namespace WorkHours.Data
         }
 
         // Controllers for TABLE: Month.
-        public Month GetMonths()
+        public LønPeriode GetMonths()
         {
-            return database.Table<Month>().First();
+            return database.Table<LønPeriode>().First();
         }
 
-        public Month GetMonth(string Month)
+        public LønPeriode GetMonth(string Month)
         {
-            return database.Table<Month>().Where(t => t.MonthName == Month).First();
+            return null;
         }
 
-        public int AddMonth(Month month)
+        public int AddMonth(LønPeriode month)
         {
             return database.Insert(month);
         }
 
-        public int UpdateMonth(Month month)
+        public int UpdateMonth(LønPeriode month)
         {
             return database.Update(month);
         }
 
 
 
-        public void DeleteMonth(Month month)
+        public void DeleteMonth(LønPeriode month)
         {
             database.Delete(month);
         }
@@ -121,6 +126,18 @@ namespace WorkHours.Data
         public int AddCompany(Company company)
         {
             return database.Insert(company);
+        }
+
+        internal List<LønPeriode> GetLønPerioder()
+        {
+
+            List<LønPeriode> list = new List<LønPeriode>();
+            foreach (var item in database.Table<LønPeriode>())
+            {
+                list.Add(item);
+            }
+
+            return list;
         }
 
         public int UpdateCompany(Company company)
@@ -158,7 +175,7 @@ namespace WorkHours.Data
             try
             {
                 database.DeleteAll<Company>();
-                database.DeleteAll<Month>();
+                database.DeleteAll<LønPeriode>();
                 database.DeleteAll<Tillæg>();
                 database.DeleteAll<Record>();
                 database.DeleteAll<User>();

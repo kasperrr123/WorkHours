@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.HomePage.OpretNyLønPeriode">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Vi har oprettet din løn periode for dig!"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Fra d. " FontSize="Medium" HorizontalOptions="FillAndExpand" />
+                <Label Text="{Binding FromDate}" FontSize="Medium" FontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Til d. " FontSize="Medium" HorizontalOptions="FillAndExpand" />
+                <Label Text="{Binding ToDate}" FontSize="Medium" FontAttributes="Bold" />
+            </StackLayout>
+            <Button x:Name="DismissButton" Text="Ok" Clicked="DismissButton_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

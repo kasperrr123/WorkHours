@@ -21,8 +21,8 @@ namespace WorkHours.Models
         [ForeignKey(typeof(Tillæg))]
         public String TypeOfTillæg { get; set; }
 
-        [ForeignKey(typeof(Month))]
-        public int ID { get; set; }
+        [ForeignKey(typeof(LønPeriode))]
+        public int LønPeriodeID { get; set; }
 
 
         public Record()

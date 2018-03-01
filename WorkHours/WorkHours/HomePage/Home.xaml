@@ -23,26 +23,34 @@
 
             </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="0" Grid.RowSpan="1">
-                    <Frame HasShadow="True" OutlineColor="CadetBlue"  Margin="0,10,0,0">
-                        <StackLayout HorizontalOptions="FillAndExpand">
-                            <Label x:Name="WelcomeLabel" HorizontalTextAlignment="Center" TextColor="Black"  Text="{Binding WelcomeUser}"></Label>
-                            <Label x:Name="CompanyLabel" HorizontalTextAlignment="Center" TextColor="Black"  Text="{Binding WhatCompany}"></Label>
-                        </StackLayout>
-                      
-            
-                    </Frame>
+            <!-- Top panelllet der viser en velkomst samt hvilken arbejdsplads man har valgt -->
+            <StackLayout Grid.Row="0" Grid.RowSpan="2">
+                <Frame HasShadow="True" OutlineColor="CadetBlue"  Margin="0,10,0,0">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Label x:Name="Welcome" HorizontalTextAlignment="Center" TextColor="Black"  Text="{Binding WelcomeUserLabel}"></Label>
+                        <Label x:Name="Company" HorizontalTextAlignment="Center" TextColor="Black"  Text="{Binding WhatCompanyLabel}"></Label>
+                        <Label x:Name="LønPeriode" HorizontalTextAlignment="Center" TextColor="Black"  Text="{Binding LønPeriodeLabel}"></Label>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
 
-            <StackLayout x:Name="IngenAktivMåned" IsVisible="{Binding NoActiveMonth}" Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
+            <!-- Panel der vises når der ikke er nogen arbejdsplads oprettet endnu -->
+            <StackLayout x:Name="IngenArbejdsPladsOprettetStackLayout" IsVisible="{Binding IngenArbejdsPladsOprettet}" Grid.Row="2" Grid.RowSpan="6" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
                 <Label Text="Ingen arbejdsplads oprettet endnu" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Label>
-                <Button x:Name="NoAvtiveMonthCreateWorkPlaceBtn" Clicked="NoAvtiveMonthCreateWorkPlaceBtn_Clicked" Text="Opret arbejdsplads nu" HorizontalOptions="CenterAndExpand"></Button>
+                <Button x:Name="OpretArbejdsPladsBtn" Clicked="OpretArbejdsPlads_Clicked" Text="Opret arbejdsplads nu" HorizontalOptions="CenterAndExpand"></Button>
             </StackLayout>
 
-            <StackLayout x:Name="AktivMåned" IsVisible="{Binding ActiveMonth}" Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <!-- Panel der vises når der ikke er nogen løn periode for den gældende måned -->
+            <StackLayout x:Name="IngenLønPeriodeOprettetStackLayout" IsVisible="{Binding IngenLønPeriodeForNuværendeMånedFundet}" Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                <Label Text="Ingen time seddel er oprettet for denne periode" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Label>
+                <Button x:Name="OpretLønPeriodeBtn" Clicked="OpretLønPeriodeBtn_Clicked" Text="Opret løn periode nu" HorizontalOptions="CenterAndExpand"></Button>
+            </StackLayout>
+
+            <!-- Panel der vises når der er oprettet en løn periode -->
+            <StackLayout x:Name="LønPeriodeOprettet" IsVisible="{Binding LønPeriodeForNuværendeMånedFundet}" Grid.Row="2" Grid.RowSpan="7" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Label Text="Du har arbejdet i dag" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Large"></Label>
-                    <Label Text="{Binding Date}" HorizontalTextAlignment="Center" FontSize="Medium"></Label>
+                    <Label Text="{Binding TodaysDate}" HorizontalTextAlignment="Center" FontSize="Medium"></Label>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label HorizontalTextAlignment="Center" Text="Fra" VerticalTextAlignment="Center"></Label>
@@ -50,8 +58,10 @@
                     <Label HorizontalTextAlignment="Center" Text="Til" VerticalTextAlignment="Center"></Label>
                     <TimePicker x:Name="TimeTo" HorizontalOptions="CenterAndExpand"></TimePicker>
                 </StackLayout>
-                <StackLayout HorizontalOptions="Center">
-                    <Entry Keyboard="Numeric" Placeholder="Pause" x:Name="inputPause"></Entry>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Text="Pause holdt:" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                    <Entry Keyboard="Numeric" HorizontalOptions="CenterAndExpand" Placeholder="Pause" x:Name="inputPause"></Entry>
+                    <Label Text="min" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
 
                 </StackLayout >
                 <StackLayout HorizontalOptions="FillAndExpand">
@@ -59,11 +69,12 @@
                 </StackLayout>
             </StackLayout>
 
+            <!-- Nederste panel hvor indstillinger knappen og vælg en arbejdsplads ligger -->
             <StackLayout Grid.Row="8" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.RowSpan="2" VerticalOptions="End" >
 
                 <Button x:Name="SettingsBtn" BorderRadius="8" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Clicked="SettingsBtn_Clicked" Text="Indstillinger" 
                         BackgroundColor="CadetBlue"></Button>
-                <Picker x:Name="ChooseOtherWorkPlaceBtn" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" SelectedIndexChanged="ChooseOtherWorkPlaceBtn_SelectedIndexChanged" Title="Skift arbejdsplads"
+                <Picker x:Name="ChooseOtherWorkPlacePicker" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" SelectedIndexChanged="ChooseOtherWorkPlacePicker_SelectedIndexChanged" Title="Skift arbejdsplads"
                          ItemsSource="{Binding Companies}"></Picker>
             </StackLayout>
 

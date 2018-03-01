@@ -22,9 +22,7 @@ namespace WorkHours.CreateNewWorkPlace
         public String BasisLøn { get; set; } = "Timeløn: " + obj.BasisTimeLøn;
 
         public String SøndagTillæg { get; set; } = obj.SøndagsTillæg.ToString();
-
         public String LønPeriode { get; set; }
-
 
         public FinalPage()
         {
@@ -51,14 +49,17 @@ namespace WorkHours.CreateNewWorkPlace
         {
             var database = App.Database;
             var user = database.GetUser();
-            // Inserting new workplace for the user.
+            // Tilføjer Arbejdsplads.
             database.AddCompany(new Company
             {
                 CompanyName = obj.CompanyName,
                 TimeLøn = obj.BasisTimeLøn,
                 User = "Kasper Jørgensen",
+                LønPeriode_FraDato = obj.LønPeriode_FraDato,
+                LønPeriode_TilDato = obj.LønPeriode_TilDato,
 
             });
+            // Tilføjer første tillæg
             database.AddTillæg(new Tillæg
             {
                 CompanyName = obj.CompanyName,
@@ -67,6 +68,7 @@ namespace WorkHours.CreateNewWorkPlace
                 TillægKr = obj.AftenTillæg.Løn,
 
             });
+            // Tilføjer andet tillæg
             database.AddTillæg(new Tillæg
             {
                 CompanyName = obj.CompanyName,
@@ -74,6 +76,7 @@ namespace WorkHours.CreateNewWorkPlace
                 From = obj.LørdagsTillæg.Time.ToString(),
                 TillægKr = obj.LørdagsTillæg.Løn,
             });
+            // Tilføjer tredje tillæg
             database.AddTillæg(new Tillæg
             {
                 CompanyName = obj.CompanyName,
@@ -81,6 +84,12 @@ namespace WorkHours.CreateNewWorkPlace
                 From = obj.SøndagsTillæg.Time.ToString(),
                 TillægKr = obj.SøndagsTillæg.Løn,
             });
+
+            // Sætter globale Variabler.
+            var variable = GlobalVariables.Instance;
+            variable.ChosenCompany = obj.CompanyName;
+            variable.LønPeriode_FraDato = obj.LønPeriode_FraDato;
+            variable.LønPeriode_TilDato = obj.LønPeriode_TilDato;
         }
 
         private void NoBtn_Clicked(object sender, EventArgs e)

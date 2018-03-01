@@ -8,13 +8,14 @@ using SQLiteNetExtensions.Attributes;
 
 namespace WorkHours.Models
 {
-    [Table("Month")]
-    public class Month
+    [Table("LønPeriode")]
+    public class LønPeriode
     {
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
-
-        public string MonthName { get; set; }
+        public int LønPeriodeID { get; set; }
+        public String WhenToGetSalary { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
         public int Year { get; set; }
 
         [ForeignKey(typeof(Company))]
