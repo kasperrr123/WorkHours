@@ -14,8 +14,8 @@ namespace WorkHours.Models
         [PrimaryKey, AutoIncrement]
         public int LønPeriodeID { get; set; }
         public String WhenToGetSalary { get; set; }
-        public string From { get; set; }
-        public string To { get; set; }
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
         public int Year { get; set; }
 
         [ForeignKey(typeof(Company))]

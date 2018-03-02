@@ -88,8 +88,8 @@ namespace WorkHours.CreateNewWorkPlace
             // Sætter globale Variabler.
             var variable = GlobalVariables.Instance;
             variable.ChosenCompany = obj.CompanyName;
-            variable.LønPeriode_FraDato = obj.LønPeriode_FraDato;
-            variable.LønPeriode_TilDato = obj.LønPeriode_TilDato;
+            variable.LønPeriode_GårFraDag = obj.LønPeriode_FraDato;
+            variable.LønPeriode_GårTilDag = obj.LønPeriode_TilDato;
         }
 
         private void NoBtn_Clicked(object sender, EventArgs e)

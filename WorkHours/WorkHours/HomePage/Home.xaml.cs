@@ -49,7 +49,18 @@ namespace WorkHours.HomePage
         public List<String> Companies { get; set; }
         public String WelcomeUserLabel { get; set; }
         public bool IngenArbejdsPladsOprettet { get; set; }
-        public bool LønPeriodeForNuværendeMånedFundet { get; set; }
+        private bool lønPeriodeForNuværendeMånedFundet;
+
+        public bool LønPeriodeForNuværendeMånedFundet
+        {
+            get { return lønPeriodeForNuværendeMånedFundet; }
+            set
+            {
+                lønPeriodeForNuværendeMånedFundet = value;
+                INotifyPropertyChanged();
+            }
+        }
+
         private String lønPeriodeLabel;
         public String LønPeriodeLabel
         {
@@ -101,9 +112,9 @@ namespace WorkHours.HomePage
                 // Sætter label til arbejdsplads.
                 WhatCompanyLabel = globalVariables.ChosenCompany;
                 // Tjek om der er oprettet en løn periode.
-                if (FindesDerEnAktivLønPeriode())
+                if (FindesDerEnAktivLønPeriodeForArbejdsplads())
                 {
-                    LønPeriodeLabel = "Fra d. " + globalVariables.ValgteLønPeriode.From + " til d. " + globalVariables.ValgteLønPeriode.To;
+                    LønPeriodeLabel = "Fra d. " + globalVariables.ValgteLønPeriode.From.ToString("dd/MM/yyyy") + " til d. " + globalVariables.ValgteLønPeriode.To.ToString("dd/MM/yyyy");
                     IngenLønPeriodeForNuværendeMånedFundet = false;
                     LønPeriodeForNuværendeMånedFundet = true;
 
@@ -120,14 +131,17 @@ namespace WorkHours.HomePage
             }
         }
 
-        private bool FindesDerEnAktivLønPeriode()
+        private bool FindesDerEnAktivLønPeriodeForArbejdsplads()
         {
+           
             if (database.GetLønPerioder().Count > 0)
             {
-                String todaysDate = System.DateTime.Now.ToString("dd/MM/yyyy");
-                foreach (var item in database.GetLønPerioder().Where(n => n.Year == System.DateTime.Now.Year).Where(n=>n.CompanyName==globalVariables.ChosenCompany))
+                foreach (var item in database.GetLønPerioder().Where(n => n.Year == System.DateTime.Now.Year).Where(n => n.CompanyName == globalVariables.ChosenCompany))
                 {
-                    if (DateTime.Parse(todaysDate) >= DateTime.Parse(item.From) && DateTime.Parse(todaysDate) <= DateTime.Parse(item.To))
+                    DateTime date = DateTime.Today;
+                    DateTime lønPeriodeFra = item.From;
+                    DateTime lønPeriodeTil = item.To;
+                    if (date >= lønPeriodeFra  && date <= lønPeriodeTil)
                     {
                         return true;
                     }
@@ -144,6 +158,22 @@ namespace WorkHours.HomePage
             }
             return false;
         }
+
+        private LønPeriode FåFatILønPeriodeForArbejdsplads()
+        {
+            try
+            {
+                return database.FåLønPeriodeForArbejdsplads(globalVariables.ChosenCompany).First();
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
+        }
+
 
         private bool FindesDerArbejdsplads()
         {
@@ -221,11 +251,16 @@ namespace WorkHours.HomePage
         {
             String company = ChooseOtherWorkPlacePicker.SelectedItem.ToString();
             globalVariables.ChosenCompany = company;
-            WhatCompanyLabel = company;
-            // TO BE MADE - WHEN CHANGING COMPANY I NEED TO GET THE CORRECT LØN PERIODE ON THE HOME SCREEN. HAVE TO MAKE SOME KIND OF CHECK IF TODAYS DATE IS IN BETWEEN ONE OF
-            // THE LØN PERIODER IN THE DATABASE.
-            LønPeriodeLabel = "Fra d. " + globalVariables.ValgteLønPeriode.From + " til d. " + globalVariables.ValgteLønPeriode.To;
+            if (FåFatILønPeriodeForArbejdsplads() != null)
+            {
+                globalVariables.ValgteLønPeriode = FåFatILønPeriodeForArbejdsplads();
+                LønPeriodeLabel = "Fra d. " + globalVariables.ValgteLønPeriode.From + " til d. " + globalVariables.ValgteLønPeriode.To;
+                LønPeriodeForNuværendeMånedFundet = false;
+                IngenLønPeriodeForNuværendeMånedFundet = true;
 
+            }
+            WhatCompanyLabel = company;
+            Navigation.PushAsync(new TabbedPage1());
 
         }
 

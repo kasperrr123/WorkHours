@@ -22,8 +22,8 @@ namespace WorkHours.Models
 
         public String TimeLøn { get; set; }
 
-        public String LønPeriode_FraDato { get; set; }
-        public String LønPeriode_TilDato { get; set; }
+        public int LønPeriode_FraDato { get; set; }
+        public int LønPeriode_TilDato { get; set; }
 
         [ForeignKey(typeof(User))]
         public String User { get; set; }

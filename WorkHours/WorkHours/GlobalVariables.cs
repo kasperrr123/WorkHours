@@ -12,8 +12,8 @@ namespace WorkHours
         public String ChosenCompany { get; set; }
         public LønPeriode ValgteLønPeriode { get; set; }
 
-        public String LønPeriode_FraDato { get; set; }
-        public String LønPeriode_TilDato { get; set; }
+        public int LønPeriode_GårFraDag { get; set; }
+        public int LønPeriode_GårTilDag { get; set; }
 
         public GlobalVariables()
         {

@@ -34,8 +34,8 @@ namespace WorkHours.CreateNewWorkPlace
             if (TimeFrom.SelectedItem != null && TimeTo.SelectedItem != null)
             {
 
-                createNewWorkPlace.LønPeriode_FraDato = TimeFrom.SelectedItem.ToString();
-                createNewWorkPlace.LønPeriode_TilDato = TimeTo.SelectedItem.ToString();
+                createNewWorkPlace.LønPeriode_FraDato = int.Parse(TimeFrom.SelectedItem.ToString());
+                createNewWorkPlace.LønPeriode_TilDato = int.Parse(TimeTo.SelectedItem.ToString());
                 // Sætter den valgte periode ind til global variabler.
 
                 Navigation.PushAsync(new SetTillæg1());

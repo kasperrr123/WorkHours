@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.WorkHours" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="WorkHours.Android" android:icon="@drawable/icon"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="WorkHours.ByKJ" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="23" />
+	<application android:icon="@drawable/icon" android:label="Track your hours"></application>
 </manifest>

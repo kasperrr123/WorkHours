@@ -19,14 +19,14 @@ namespace WorkHours.HomePage
         public OpretNyLønPeriode()
         {
             BindingContext = this;
-            FromDate = globalVariables.LønPeriode_FraDato + "/" + current.Month + "/" + current.Year;
-            ToDate = globalVariables.LønPeriode_TilDato + "/" + (current.Month + 1) + "/" + current.Year;
+            FromDate = globalVariables.LønPeriode_GårFraDag + "/" + current.Month + "/" + current.Year;
+            ToDate = globalVariables.LønPeriode_GårTilDag + "/" + (current.Month + 1) + "/" + current.Year;
             Console.WriteLine(current.Date.ToString());
             // Tilføjer lønperiode
             var lønPeriode = new LønPeriode
             {
-                From = globalVariables.LønPeriode_FraDato + "/" + current.Month + "/" + current.Year,
-                To = globalVariables.LønPeriode_TilDato + "/" + (current.Month + 1) + "/" + current.Year,
+                From = new DateTime(current.Year, current.Month, globalVariables.LønPeriode_GårFraDag),
+                To = new DateTime(current.Year, (current.Month + 1), globalVariables.LønPeriode_GårTilDag),
                 Year = current.Year,
                 CompanyName = globalVariables.ChosenCompany,
                 WhenToGetSalary = System.DateTime.DaysInMonth(current.Year, (current.Month + 1)).ToString() + "/" + (current.Month + 1) + "/" + current.Year,

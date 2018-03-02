@@ -128,7 +128,25 @@ namespace WorkHours.Data
             return database.Insert(company);
         }
 
-        internal List<LønPeriode> GetLønPerioder()
+        public List<LønPeriode> FåLønPeriodeForArbejdsplads(String arbejdsplads)
+        {
+            if (database.Table<LønPeriode>()!=null)
+            {
+                List<LønPeriode> list = new List<LønPeriode>();
+                foreach (var item in database.Table<LønPeriode>().Where(n => n.CompanyName == arbejdsplads))
+                {
+                    list.Add(item);
+                }
+
+                return list;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<LønPeriode> GetLønPerioder()
         {
 
             List<LønPeriode> list = new List<LønPeriode>();
