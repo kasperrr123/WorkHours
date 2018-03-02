@@ -2,11 +2,12 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:WorkHours.HomePage"
+            xmlns:arkiv="clr-namespace:WorkHours.Arkiv"
              x:Class="WorkHours.HomePage.TabbedPage1" >
 
 
     <local:Home/>
-    <local:Arkiv />
+    <arkiv:ArkivPage />
 
 
 

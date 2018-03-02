@@ -234,14 +234,24 @@ namespace WorkHours.HomePage
         {
             var record = new Record
             {
-                EndTime = TimeFrom.Time.ToString(),
-                StartTime = TimeTo.Time.ToString(),
-                LoggedDate = DateTime.Now.ToString(),
+                EndTime = TimeFrom.Time,
+                StartTime = TimeTo.Time,
+                LoggedDate = DateTime.Now,
                 Pause = inputPause.Text.ToString(),
                 LønPeriodeID = globalVariables.ValgteLønPeriode.LønPeriodeID,
 
             };
-            App.Database.AddRecord(record);
+            try
+            {
+                App.Database.AddRecord(record);
+                DisplayAlert("Success", "Din arbejdsdag er blevet gemt under " + globalVariables.ChosenCompany, "Ok");
+
+            }
+            catch (Exception)
+            {
+
+                DisplayAlert("ERROR", "Der var en fejl ved gemning af din arbejdsdag", "Ok");
+            }
 
 
 

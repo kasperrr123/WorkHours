@@ -54,8 +54,8 @@
       <DependentUpon>Home.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)HomePage\Arkiv.xaml.cs">
-      <DependentUpon>Arkiv.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\Arkiv.xaml.cs">
+      <DependentUpon>ArkivPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)HomePage\OpretNyLønPeriode.xaml.cs">
@@ -92,12 +92,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\CreateNewWorkPlaceObj.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NewMonthObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTimeLøn.xaml.cs">
       <DependentUpon>SetTimeLøn.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)SalarySettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\CreateNewWorkPlaceObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateFinalPage.xaml.cs">
       <SubType>Code</SubType>
@@ -159,7 +157,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\Arkiv.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\ArkivPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -181,5 +179,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Arkiv\" />
   </ItemGroup>
 </Project>

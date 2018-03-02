@@ -12,10 +12,10 @@ namespace WorkHours.Models
    public class Record
     {
         [PrimaryKey]
-        public String LoggedDate { get; set; }
+        public DateTime LoggedDate { get; set; }
 
-        public String StartTime { get; set; }
-        public String EndTime { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
         public String Pause { get; set; }
 
         [ForeignKey(typeof(Tillæg))]

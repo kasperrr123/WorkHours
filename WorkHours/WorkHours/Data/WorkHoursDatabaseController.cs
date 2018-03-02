@@ -32,6 +32,27 @@ namespace WorkHours.Data
 
         }
 
+        internal List<Record> FåRecords(string chosenCompany, LønPeriode valgteLønPeriode)
+        {
+            try
+            {
+                List<Record> list = new List<Record>();
+                foreach (var item in database.Table<Record>().Where(n => n.LønPeriodeID == valgteLønPeriode.LønPeriodeID))
+                {
+                    list.Add(item);
+                }
+
+                return list;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+           
+
+        }
+
 
 
         // Controllers for TABLE: User.
