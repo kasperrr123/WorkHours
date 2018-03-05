@@ -54,7 +54,7 @@
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label HorizontalTextAlignment="Center" Text="Fra" VerticalTextAlignment="Center"></Label>
-                    <TimePicker x:Name="TimeFrom" HorizontalOptions="CenterAndExpand"></TimePicker>
+                    <TimePicker x:Name="TimeFrom" Time="{Binding currentTimeSpan}" HorizontalOptions="CenterAndExpand"></TimePicker>
                     <Label HorizontalTextAlignment="Center" Text="Til" VerticalTextAlignment="Center"></Label>
                     <TimePicker x:Name="TimeTo" HorizontalOptions="CenterAndExpand"></TimePicker>
                 </StackLayout>
@@ -62,7 +62,6 @@
                     <Label Text="Pause holdt:" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
                     <Entry Keyboard="Numeric" HorizontalOptions="CenterAndExpand" Placeholder="Pause" x:Name="inputPause"></Entry>
                     <Label Text="min" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-
                 </StackLayout >
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Button x:Name="GemBtn" Text="Gem" BackgroundColor="CadetBlue" Clicked="GemBtn_Clicked"></Button>

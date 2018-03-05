@@ -62,10 +62,14 @@ namespace WorkHours.Arkiv
         protected override void OnAppearing()
         {
             FåPerioder();
-            Console.WriteLine("Just entered");
         }
 
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var cell = (ListView)sender;
+            DisplayAlert("Damn", cell.SelectedItem.ToString(), "ok");
 
+        }
     }
 
     public struct Period
@@ -82,7 +86,7 @@ namespace WorkHours.Arkiv
 
         public override string ToString()
         {
-            return Date + "/" + From + "/" + To;
+            return Date.DayOfWeek + " " + Date;
         }
 
     }

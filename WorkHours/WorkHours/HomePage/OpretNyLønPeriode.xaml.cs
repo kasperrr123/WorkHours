@@ -19,18 +19,44 @@ namespace WorkHours.HomePage
         public OpretNyLønPeriode()
         {
             BindingContext = this;
-            FromDate = globalVariables.LønPeriode_GårFraDag + "/" + current.Month + "/" + current.Year;
-            ToDate = globalVariables.LønPeriode_GårTilDag + "/" + (current.Month + 1) + "/" + current.Year;
-            Console.WriteLine(current.Date.ToString());
-            // Tilføjer lønperiode
-            var lønPeriode = new LønPeriode
+            if (globalVariables.LønPeriode_GårFraDag >= current.Day)
             {
-                From = new DateTime(current.Year, current.Month, globalVariables.LønPeriode_GårFraDag),
-                To = new DateTime(current.Year, (current.Month + 1), globalVariables.LønPeriode_GårTilDag),
-                Year = current.Year,
-                CompanyName = globalVariables.ChosenCompany,
-                WhenToGetSalary = System.DateTime.DaysInMonth(current.Year, (current.Month + 1)).ToString() + "/" + (current.Month + 1) + "/" + current.Year,
-            };
+                FromDate = globalVariables.LønPeriode_GårFraDag + "/" + (current.Month - 1) + "/" + current.Year;
+                ToDate = globalVariables.LønPeriode_GårTilDag + "/" + current.Month + "/" + current.Year;
+            }
+            else
+            {
+                FromDate = globalVariables.LønPeriode_GårFraDag + "/" + current.Month + "/" + current.Year;
+                ToDate = globalVariables.LønPeriode_GårTilDag + "/" + (current.Month + 1) + "/" + current.Year;
+            }
+
+            LønPeriode lønPeriode;
+            // Hvis løn perioden starter på dagen eller først er om et par dage. 
+            // Opret en løn periode bagud.
+            if (globalVariables.LønPeriode_GårFraDag >= current.Day)
+            {
+                lønPeriode = new LønPeriode
+                {
+                    From = new DateTime(current.Year, current.Month - 1, globalVariables.LønPeriode_GårFraDag),
+                    To = new DateTime(current.Year, (current.Month), globalVariables.LønPeriode_GårTilDag),
+                    Year = current.Year,
+                    CompanyName = globalVariables.ChosenCompany,
+                    WhenToGetSalary = System.DateTime.DaysInMonth(current.Year, (current.Month + 1)).ToString() + "/" + (current.Month + 1) + "/" + current.Year,
+                };
+            }
+            else
+            {
+                lønPeriode = new LønPeriode
+                {
+                    From = new DateTime(current.Year, current.Month, globalVariables.LønPeriode_GårFraDag),
+                    To = new DateTime(current.Year, (current.Month + 1), globalVariables.LønPeriode_GårTilDag),
+                    Year = current.Year,
+                    CompanyName = globalVariables.ChosenCompany,
+                    WhenToGetSalary = System.DateTime.DaysInMonth(current.Year, (current.Month + 1)).ToString() + "/" + (current.Month + 1) + "/" + current.Year,
+                };
+            }
+            // Tilføjer lønperiode
+
             try
             {
 

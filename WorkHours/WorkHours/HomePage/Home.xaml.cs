@@ -26,6 +26,8 @@ namespace WorkHours.HomePage
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+
         private String todaysDate;
         public String TodaysDate
         {
@@ -76,6 +78,7 @@ namespace WorkHours.HomePage
         private WorkHoursDatabaseController database = App.Database;
         // Global Variable instance
         private GlobalVariables globalVariables = GlobalVariables.Instance;
+        private TimeSpan currentTimeSpan = new TimeSpan();
 
         // CONSTRUCTOR
         public Home()
@@ -87,6 +90,9 @@ namespace WorkHours.HomePage
             WelcomeUserLabel = GetUser();
             HvilketPanelSkalVises();
             SetChooseWorkPlacePickerValues();
+            String h = DateTime.Now.Hour.ToString();
+            String m = DateTime.Now.Minute.ToString();
+            currentTimeSpan = TimeSpan.Parse(h + ":" + m);
 
 
             InitializeComponent();
@@ -133,7 +139,7 @@ namespace WorkHours.HomePage
 
         private bool FindesDerEnAktivLønPeriodeForArbejdsplads()
         {
-           
+
             if (database.GetLønPerioder().Count > 0)
             {
                 foreach (var item in database.GetLønPerioder().Where(n => n.Year == System.DateTime.Now.Year).Where(n => n.CompanyName == globalVariables.ChosenCompany))
@@ -141,7 +147,7 @@ namespace WorkHours.HomePage
                     DateTime date = DateTime.Today;
                     DateTime lønPeriodeFra = item.From;
                     DateTime lønPeriodeTil = item.To;
-                    if (date >= lønPeriodeFra  && date <= lønPeriodeTil)
+                    if (date >= lønPeriodeFra && date <= lønPeriodeTil)
                     {
                         return true;
                     }
@@ -232,12 +238,16 @@ namespace WorkHours.HomePage
 
         private void GemBtn_Clicked(object sender, EventArgs e)
         {
+            if (inputPause.Text == null)
+            {
+                inputPause.Text = "0";
+            }
             var record = new Record
             {
                 EndTime = TimeFrom.Time,
                 StartTime = TimeTo.Time,
                 LoggedDate = DateTime.Now,
-                Pause = inputPause.Text.ToString(),
+                Pause = inputPause.Text,
                 LønPeriodeID = globalVariables.ValgteLønPeriode.LønPeriodeID,
 
             };
