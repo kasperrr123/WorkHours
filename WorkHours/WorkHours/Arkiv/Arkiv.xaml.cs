@@ -66,37 +66,11 @@ namespace WorkHours.Arkiv
 
        
 
-        async private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var cell = (ListView)sender;
-           
-            if (cell.SelectedItem != null)
-            {
-
-                var popup = await DisplayActionSheet("Menu", "Go back", null, "Slet", "Ændre");
-
-                if (popup == "Go back")
-                {
-                    cell.SelectedItem = null;
-
-                }
-                if (popup == "Slet")
-                {
-                    cell.SelectedItem = null;
-
-                    await DisplayAlert("How", "Slet", "ok");
-
-                }
-                if (popup == "Ændre")
-                {
-                    cell.SelectedItem = null;
-
-                    await DisplayAlert("Hov!", "Ændre", "Ok");
-
-                }
-
-
-            }
+            
+            Navigation.PushModalAsync(new ViewLogModal(cell));
 
 
         }

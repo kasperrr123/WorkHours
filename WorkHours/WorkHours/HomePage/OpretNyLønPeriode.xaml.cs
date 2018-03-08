@@ -61,6 +61,7 @@ namespace WorkHours.HomePage
             {
 
                 App.Database.TilføjLønPeriode(lønPeriode);
+                App.Database.Commit();
                 globalVariables.ValgteLønPeriode = lønPeriode;
 
             }

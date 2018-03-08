@@ -30,9 +30,10 @@ namespace WorkHours.Data
             database.CreateTable<Company>();
             database.CreateTable<LønPeriode>();
 
+            
         }
 
-        internal List<Record> FåRecords(string chosenCompany, LønPeriode valgteLønPeriode)
+        public List<Record> FåRecords(string chosenCompany, LønPeriode valgteLønPeriode)
         {
             try
             {
@@ -50,6 +51,21 @@ namespace WorkHours.Data
                 return null;
             }
            
+
+        }
+
+        internal Record FåRecordByLoggedDate(DateTime loggedDate, LønPeriode valgteLønPeriode)
+        {
+            List<Record> list = new List<Record>();
+            foreach (var item in database.Table<Record>().Where(n => n.LønPeriodeID == valgteLønPeriode.LønPeriodeID))
+            {
+                list.Add(item);
+            }
+          
+        Record a = list.Find(n => n.LoggedDate == loggedDate);
+            Console.WriteLine(a.Pause);
+            return null;
+
 
         }
 
@@ -78,6 +94,7 @@ namespace WorkHours.Data
         public int TilføjLønPeriode(LønPeriode lønPeriode)
         {
             return database.Insert(lønPeriode);
+           
         }
 
         public int AddUser(User user)

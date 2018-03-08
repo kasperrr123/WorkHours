@@ -85,6 +85,9 @@ namespace WorkHours.CreateNewWorkPlace
                 TillægKr = obj.SøndagsTillæg.Løn,
             });
 
+            database.Commit();
+
+
             // Sætter globale Variabler.
             var variable = GlobalVariables.Instance;
             variable.ChosenCompany = obj.CompanyName;

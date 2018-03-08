@@ -36,6 +36,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\ViewLogModal.xaml.cs">
+      <DependentUpon>ViewLogModal.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\GetWorkPlaceName.xaml.cs">
       <DependentUpon>GetWorkPlaceName.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -181,6 +185,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Arkiv\" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\ViewLogModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
