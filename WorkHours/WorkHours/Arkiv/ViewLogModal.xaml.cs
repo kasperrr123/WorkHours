@@ -19,6 +19,9 @@ namespace WorkHours.Arkiv
         public TimeSpan Fra { get; set; }
         public TimeSpan Til { get; set; }
         public ListView SelectedListView { get; set; }
+        private GlobalVariables global = GlobalVariables.Instance;
+
+
         public ViewLogModal (ListView listview)
 		{
             BindingContext = this;
@@ -31,13 +34,12 @@ namespace WorkHours.Arkiv
         {
             Oprettet = SelectedListView.SelectedItem.ToString();
             DateTime a = DateTime.Parse(Oprettet);
-            Console.WriteLine(GlobalVariables.Instance.ValgteLønPeriode.From);
-            Console.WriteLine(GlobalVariables.Instance.ValgteLønPeriode.To);
-            Console.WriteLine(GlobalVariables.Instance.ValgteLønPeriode.CompanyName);
-            List<Record> lønperioder = database.FåRecords(GlobalVariables.Instance.ChosenCompany, GlobalVariables.Instance.ValgteLønPeriode);
+            Console.WriteLine(global.ValgteLønPeriode.From);
+            Console.WriteLine(global.ValgteLønPeriode.To);
+            Console.WriteLine(global.ValgteLønPeriode.CompanyName);
 
             // WTF is going on here!!! Should be so fucking simple. jesus fuck.
-            Record recordObj = database.FåRecordByLoggedDate(a, GlobalVariables.Instance.ValgteLønPeriode);
+            Record recordObj = database.FåRecordByLoggedDate(a, global.ValgteLønPeriode);
             Fra = recordObj.StartTime;
             Til = recordObj.EndTime;
         }

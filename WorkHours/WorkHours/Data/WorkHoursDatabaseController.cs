@@ -62,7 +62,7 @@ namespace WorkHours.Data
                 list.Add(item);
             }
           
-        Record a = list.Find(n => n.LoggedDate == loggedDate);
+        Record a = list.Find(n => n.LoggedDate.Equals(loggedDate));
             Console.WriteLine(a.Pause);
             return null;
 
