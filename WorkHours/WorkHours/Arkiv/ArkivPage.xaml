@@ -23,7 +23,7 @@
 
             <StackLayout Grid.Row="0" Grid.RowSpan="8">
                 <ScrollView>
-                    <ListView SeparatorColor="Black" ItemsSource="{Binding ListOfRecords}"  ItemSelected="ListView_ItemSelected"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <ListView x:Name="ListViewRecords" SeparatorColor="Black" ItemsSource="{Binding ListOfRecords}"  ItemSelected="ListView_ItemSelected"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         
                     </ListView>
                 </ScrollView>

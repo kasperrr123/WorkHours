@@ -51,6 +51,7 @@ namespace WorkHours.Arkiv
             {
                 foreach (var item in App.Database.FåRecords(GlobalVariables.Instance.ChosenCompany, GlobalVariables.Instance.ValgteLønPeriode))
                 {
+                    Console.WriteLine("Milliseconds when insert into list: " + item.LoggedDate.Millisecond);
                     list.Add(new Period(item.LoggedDate, item.StartTime, item.EndTime));
                 }
 
@@ -69,7 +70,7 @@ namespace WorkHours.Arkiv
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var cell = (ListView)sender;
-            
+            ListViewRecords.Unfocus();
             Navigation.PushModalAsync(new ViewLogModal(cell));
 
 

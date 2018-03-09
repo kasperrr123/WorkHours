@@ -56,17 +56,34 @@ namespace WorkHours.Data
 
         internal Record FåRecordByLoggedDate(DateTime loggedDate, LønPeriode valgteLønPeriode)
         {
+
             List<Record> list = new List<Record>();
             foreach (var item in database.Table<Record>().Where(n => n.LønPeriodeID == valgteLønPeriode.LønPeriodeID))
             {
                 list.Add(item);
             }
-          
-        Record a = list.Find(n => n.LoggedDate.Equals(loggedDate));
-            Console.WriteLine(a.Pause);
+            foreach (var periode in list)
+            {
+                String time1 = loggedDate.ToString("hh/mm/ss");
+                String time2 = periode.LoggedDate.ToString("hh/mm/ss");
+                if (time1 == time2)
+                {
+                    return periode;
+                }
+            }
             return null;
 
 
+        }
+
+        internal void ÆndreRecord(Record selectedRecord)
+        {
+            database.Update(selectedRecord);
+        }
+
+        public void SletRecord(Record selectedRecord)
+        {
+            database.Delete(selectedRecord);
         }
 
 

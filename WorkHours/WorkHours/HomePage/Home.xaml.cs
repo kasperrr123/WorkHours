@@ -244,8 +244,8 @@ namespace WorkHours.HomePage
             }
             var record = new Record
             {
-                EndTime = TimeFrom.Time,
-                StartTime = TimeTo.Time,
+                StartTime = TimeFrom.Time,
+                EndTime = TimeTo.Time,
                 LoggedDate = DateTime.Now,
                 Pause = inputPause.Text,
                 LønPeriodeID = globalVariables.ValgteLønPeriode.LønPeriodeID,
