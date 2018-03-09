@@ -82,6 +82,7 @@ namespace WorkHours.Arkiv
         public DateTime Date { get; set; }
         public TimeSpan From { get; set; }
         public TimeSpan To { get; set; }
+
         public Period(DateTime date, TimeSpan from, TimeSpan to)
         {
             this.Date = date;
