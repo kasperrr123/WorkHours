@@ -13,6 +13,7 @@ namespace WorkHours
         public LønPeriode ValgteLønPeriode { get; set; }
 
         public int LønPeriode_GårFraDag { get; set; }
+        
         public int LønPeriode_GårTilDag { get; set; }
 
         public GlobalVariables()
@@ -24,6 +25,10 @@ namespace WorkHours
 
 
         }
+       
+
+
+
 
         public static GlobalVariables Instance
         {

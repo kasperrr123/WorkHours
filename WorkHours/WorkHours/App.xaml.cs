@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using WorkHours.Data;
@@ -39,18 +41,34 @@ namespace WorkHours
 
         protected override void OnStart()
         {
+            
 
         }
-
+      
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            // Here i'm initializing the JsonSerializer.
+            JsonSerializer serializer = new JsonSerializer();
+            // Using a StreamWriter to create the txt file i want.
+            var sqliteFileName = "GlobalVariables.txt";
+            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var path = Path.Combine(documentsPath, sqliteFileName);
+            using (StreamWriter sw = new StreamWriter(path))
+            // Creating the JsonWriter and giving it the specificed textWriter i want, which here is the StreamWriter (sw). 
+            // Then i serialize my object and prints it to a txt file.
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                serializer.Serialize(writer, GlobalVariables.Instance);
+            }
+            
+            Console.WriteLine("JSON file created");
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
         }
+
 
 
 

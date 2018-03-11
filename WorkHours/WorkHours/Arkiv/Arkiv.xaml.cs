@@ -41,6 +41,7 @@ namespace WorkHours.Arkiv
         {
             BindingContext = this;
             FåPerioder();
+          
             InitializeComponent();
         }
 
@@ -83,11 +84,13 @@ namespace WorkHours.Arkiv
         public TimeSpan From { get; set; }
         public TimeSpan To { get; set; }
 
+
         public Period(DateTime date, TimeSpan from, TimeSpan to)
         {
             this.Date = date;
             this.From = from;
             this.To = to;
+         
         }
 
         public override string ToString()

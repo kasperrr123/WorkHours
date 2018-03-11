@@ -29,11 +29,11 @@ namespace WorkHours.Arkiv
         {
             BindingContext = this;
             this.SelectedListView = listview;
-            GetDataOnSpecificLog();
+            GetDataOnSpecificRecord();
             InitializeComponent();
         }
 
-        private void GetDataOnSpecificLog()
+        private void GetDataOnSpecificRecord()
         {
 
             Oprettet = SelectedListView.SelectedItem.ToString();

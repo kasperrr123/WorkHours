@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -88,8 +90,9 @@ namespace WorkHours.HomePage
             Thread myThread = new Thread(timer);
             myThread.Start();
             WelcomeUserLabel = GetUser();
-            HvilketPanelSkalVises();
             SetChooseWorkPlacePickerValues();
+            HvilketPanelSkalVises();
+   
             String h = DateTime.Now.Hour.ToString();
             String m = DateTime.Now.Minute.ToString();
             currentTimeSpan = TimeSpan.Parse(h + ":" + m);
@@ -97,6 +100,8 @@ namespace WorkHours.HomePage
 
             InitializeComponent();
         }
+
+     
 
         private void SetChooseWorkPlacePickerValues()
         {
@@ -116,7 +121,7 @@ namespace WorkHours.HomePage
             if (FindesDerArbejdsplads())
             {
                 // Sætter label til arbejdsplads.
-                WhatCompanyLabel = globalVariables.ChosenCompany;
+                WhatCompanyLabel = GlobalVariables.Instance.ChosenCompany;
                 // Tjek om der er oprettet en løn periode.
                 if (FindesDerEnAktivLønPeriodeForArbejdsplads())
                 {
@@ -142,7 +147,7 @@ namespace WorkHours.HomePage
 
             if (database.GetLønPerioder().Count > 0)
             {
-                foreach (var item in database.GetLønPerioder().Where(n => n.Year == System.DateTime.Now.Year).Where(n => n.CompanyName == globalVariables.ChosenCompany))
+                foreach (var item in database.GetLønPerioder().Where(n => n.Year == System.DateTime.Now.Year).Where(n => n.CompanyName == GlobalVariables.Instance.ChosenCompany))
                 {
                     DateTime date = DateTime.Today;
                     DateTime lønPeriodeFra = item.From;
@@ -254,6 +259,8 @@ namespace WorkHours.HomePage
             try
             {
                 App.Database.AddRecord(record);
+                App.Database.Commit();
+
                 DisplayAlert("Success", "Din arbejdsdag er blevet gemt under " + globalVariables.ChosenCompany, "Ok");
 
             }

@@ -18,11 +18,11 @@ namespace WorkHours.Data
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
             // Dropping the tables.
-            database.DropTable<Tillæg>();
-            database.DropTable<User>();
-            database.DropTable<Record>();
-            database.DropTable<Company>();
-            database.DropTable<LønPeriode>();
+            //database.DropTable<Tillæg>();
+            //database.DropTable<User>();
+            //database.DropTable<Record>();
+            //database.DropTable<Company>();
+            //database.DropTable<LønPeriode>();
             // Creating tables.
             database.CreateTable<Tillæg>();
             database.CreateTable<User>();
