@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,13 @@ namespace WorkHours.HomePage
             {
                 try
                 {
+                    // Deleting json file.
+                    var sqliteFileName = "GlobalVariables.txt";
+                    string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                    var path = Path.Combine(documentsPath, sqliteFileName);
+                    File.Delete(path);
+                    Console.WriteLine("JSON File deleted");
+                    // Deleting database
                     App.Database.DeleteDatabase();
                     await DisplayAlert("Succes", "Database has been deleted", "Return to home");
                     await Navigation.PushAsync(new FirstTimeUse());

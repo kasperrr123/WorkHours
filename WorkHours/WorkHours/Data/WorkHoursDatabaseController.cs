@@ -24,6 +24,10 @@ namespace WorkHours.Data
             //database.DropTable<Company>();
             //database.DropTable<LønPeriode>();
             // Creating tables.
+            //var sqliteFileName = "GlobalVariables.txt";
+            //string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            //var path = Path.Combine(documentsPath, sqliteFileName);
+            //File.Delete(path);
             database.CreateTable<Tillæg>();
             database.CreateTable<User>();
             database.CreateTable<Record>();
@@ -155,6 +159,27 @@ namespace WorkHours.Data
         public void DeleteMonth(LønPeriode month)
         {
             database.Delete(month);
+        }
+
+        internal List<Record> FåRecordsByPeriode(String selectedItem, int year)
+        {
+            try
+            {
+                int lønPeriodeId = database.Table<LønPeriode>().Where(n => n.Periode == selectedItem).Where(n=>n.Year==year).Select(n=>n.LønPeriodeID).First();
+                var records = database.Table<Record>().Where(n => n.LønPeriodeID == lønPeriodeId);
+                List<Record> list = new List<Record>();
+                foreach (var item in records)
+                {
+                    list.Add(item);
+                }
+
+                return list;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         // Controllers for TABLE: Company.

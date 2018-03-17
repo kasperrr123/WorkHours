@@ -18,16 +18,29 @@ namespace WorkHours.CreateNewWorkPlace
         CreateNewWorkPlaceObj createNewWorkPlace = CreateNewWorkPlaceObj.Instance;
 
 
-        public List<String> Days { get; set; } = new List<String> { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32" };
+        public List<String> Days { get; set; } 
 
 
         public FåLønPeriode()
         {
             BindingContext = this;
+            Days = GetMonthDays();
             InitializeComponent();
         }
 
+        private List<string> GetMonthDays()
+        {
+            var counter = 1;
+            List<String> list = new List<string>();
+            var daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            while (counter<=daysInMonth)
+            {
+                list.Add(counter.ToString());
+                counter++;
+            }
 
+            return list;
+        }
 
         private void GåTilTillægBtn_Clicked(object sender, EventArgs e)
         {

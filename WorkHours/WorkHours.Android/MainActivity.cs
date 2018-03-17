@@ -30,40 +30,9 @@ namespace WorkHours.Droid
         protected override void OnResume()
         {
             base.OnResume();
-            DeserializeGlobalVariablesJson();
         }
 
-        // WTF
-        private void DeserializeGlobalVariablesJson()
-        {
-            GlobalVariables variables = GlobalVariables.Instance;
-            try
-            {
-                var sqliteFileName = "GlobalVariables.txt";
-                string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                var path = Path.Combine(documentsPath, sqliteFileName);
-                using (StreamReader sr = new StreamReader(path))
-                {
-
-
-                
-
-                    var obj = JsonConvert.DeserializeObject<GlobalVariables>(sr.ReadLine());
-
-                    variables.ChosenCompany = obj.ChosenCompany;
-                    variables.LønPeriode_GårFraDag = obj.LønPeriode_GårFraDag;
-                    variables.LønPeriode_GårTilDag = obj.LønPeriode_GårTilDag;
-                    variables.ValgteLønPeriode = obj.ValgteLønPeriode;
-
-                    Console.WriteLine("JSON FILE deserialized");
-                }
-            }
-            catch (Exception)
-            {
-
-                Console.WriteLine("No file found");
-            }
-        }
+      
     }
 }
 

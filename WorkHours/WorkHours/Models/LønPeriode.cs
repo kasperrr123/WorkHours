@@ -13,7 +13,7 @@ namespace WorkHours.Models
     {
         [PrimaryKey, AutoIncrement]
         public int LønPeriodeID { get; set; }
-        public String WhenToGetSalary { get; set; }
+        public String Periode { get; set; }
         public DateTime From { get; set; }
         public DateTime To { get; set; }
         public int Year { get; set; }

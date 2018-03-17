@@ -21,7 +21,7 @@
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
                 <Label HorizontalOptions="Center" Text="Pause"></Label>
-                <Entry x:Name="PauseField" Text="{Binding Pause, Mode=OneWay}"  HorizontalOptions="Center"></Entry>
+                <Entry x:Name="PauseField" Keyboard="Numeric"  Text="{Binding Pause, Mode=OneWay}"  HorizontalOptions="Center"></Entry>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button x:Name="ÆndreBtn" Clicked="ÆndreBtn_Clicked" Text="Ændre" BackgroundColor="LightBlue"></Button>

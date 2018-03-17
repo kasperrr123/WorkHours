@@ -85,6 +85,10 @@ namespace WorkHours.HomePage
         // CONSTRUCTOR
         public Home()
         {
+            if (globalVariables.ChosenCompany==null)
+            {
+                DeserializeGlobalVariablesJson();
+            }
             BindingContext = this;
             ThreadStart timer = new ThreadStart(TimerFunction);
             Thread myThread = new Thread(timer);
@@ -92,7 +96,6 @@ namespace WorkHours.HomePage
             WelcomeUserLabel = GetUser();
             SetChooseWorkPlacePickerValues();
             HvilketPanelSkalVises();
-   
             String h = DateTime.Now.Hour.ToString();
             String m = DateTime.Now.Minute.ToString();
             currentTimeSpan = TimeSpan.Parse(h + ":" + m);
@@ -125,7 +128,8 @@ namespace WorkHours.HomePage
                 // Tjek om der er oprettet en løn periode.
                 if (FindesDerEnAktivLønPeriodeForArbejdsplads())
                 {
-                    LønPeriodeLabel = "Fra d. " + globalVariables.ValgteLønPeriode.From.ToString("dd/MM/yyyy") + " til d. " + globalVariables.ValgteLønPeriode.To.ToString("dd/MM/yyyy");
+                    var a = database.FåLønPeriodeForArbejdsplads(globalVariables.ChosenCompany).Where(n => n.To > DateTime.Now).First();
+                    LønPeriodeLabel = "Fra d. " + a.From.ToString("dd/MM/yyyy") + " til d. " + a.To.ToString("dd/MM/yyyy");
                     IngenLønPeriodeForNuværendeMånedFundet = false;
                     LønPeriodeForNuværendeMånedFundet = true;
 
@@ -156,10 +160,7 @@ namespace WorkHours.HomePage
                     {
                         return true;
                     }
-                    else
-                    {
-                        return false;
-                    }
+                   
                 }
             }
             else
@@ -295,6 +296,35 @@ namespace WorkHours.HomePage
         {
 
             Navigation.PushAsync(new OpretNyLønPeriode());
+        }
+
+        // Getting JSON
+        private void DeserializeGlobalVariablesJson()
+        {
+            GlobalVariables variables = GlobalVariables.Instance;
+            try
+            {
+                var sqliteFileName = "GlobalVariables.txt";
+                string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                var path = Path.Combine(documentsPath, sqliteFileName);
+                using (StreamReader sr = new StreamReader(path))
+                {
+
+                    var obj = JsonConvert.DeserializeObject<GlobalVariables>(sr.ReadLine());
+
+                    variables.ChosenCompany = obj.ChosenCompany;
+                    variables.LønPeriode_GårFraDag = obj.LønPeriode_GårFraDag;
+                    variables.LønPeriode_GårTilDag = obj.LønPeriode_GårTilDag;
+                    variables.ValgteLønPeriode = obj.ValgteLønPeriode;
+
+                    Console.WriteLine("JSON FILE deserialized");
+                }
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("No file found");
+            }
         }
     }
 

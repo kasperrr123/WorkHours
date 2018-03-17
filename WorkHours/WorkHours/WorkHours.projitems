@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\Calculations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Arkiv\ViewLogModal.xaml.cs">
       <DependentUpon>ViewLogModal.xaml</DependentUpon>
       <SubType>Code</SubType>

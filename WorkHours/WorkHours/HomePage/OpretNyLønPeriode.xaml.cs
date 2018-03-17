@@ -41,8 +41,9 @@ namespace WorkHours.HomePage
                     To = new DateTime(current.Year, (current.Month), globalVariables.LønPeriode_GårTilDag),
                     Year = current.Year,
                     CompanyName = globalVariables.ChosenCompany,
-                    WhenToGetSalary = System.DateTime.DaysInMonth(current.Year, (current.Month + 1)).ToString() + "/" + (current.Month + 1) + "/" + current.Year,
+                    Periode = new DateTime(current.Year,(DateTime.Now.Month-1), current.Day).ToString("MMMM") + " - " + current.ToString("MMMM"),
                 };
+               
             }
             else
             {
@@ -52,8 +53,9 @@ namespace WorkHours.HomePage
                     To = new DateTime(current.Year, (current.Month + 1), globalVariables.LønPeriode_GårTilDag),
                     Year = current.Year,
                     CompanyName = globalVariables.ChosenCompany,
-                    WhenToGetSalary = System.DateTime.DaysInMonth(current.Year, (current.Month + 1)).ToString() + "/" + (current.Month + 1) + "/" + current.Year,
+                    Periode = current.ToString("MMMM") + " - " + current.AddMonths(1).ToString("MMMM"),
                 };
+       ;
             }
             // Tilføjer lønperiode
 
