@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.Arkiv.SeeOldRecords">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label HorizontalOptions="Center" Grid.Row="0" Text="{Binding LønPeriode}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            <StackLayout Grid.Row="1" Grid.RowSpan="9">
+                <ScrollView>
+                    <ListView x:Name="ListOfRecords" ItemSelected="ListOfRecords_ItemSelected"  SeparatorColor="Black"  ItemsSource="{Binding Records}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

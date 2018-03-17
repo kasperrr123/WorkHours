@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.Arkiv.SeeOldPeriod">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label HorizontalOptions="Center" Grid.Row="0" Text="Vælg en periode" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            <StackLayout Grid.Row="1" Grid.RowSpan="9">
+                <ScrollView>
+                    <ListView x:Name="ListOfPeriods" ItemSelected="ListOfPeriods_ItemSelected" SeparatorColor="Black"  ItemsSource="{Binding Perioder}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

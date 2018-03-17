@@ -165,8 +165,9 @@ namespace WorkHours.Data
         {
             try
             {
-                int lønPeriodeId = database.Table<LønPeriode>().Where(n => n.Periode == selectedItem).Where(n=>n.Year==year).Select(n=>n.LønPeriodeID).First();
-                var records = database.Table<Record>().Where(n => n.LønPeriodeID == lønPeriodeId);
+                var lønPeriode = database.Table<LønPeriode>().Where(n => n.Periode == selectedItem).Where(n=>n.Year==year).First();
+
+                var records = database.Table<Record>().Where(n => n.LønPeriodeID == lønPeriode.LønPeriodeID);
                 List<Record> list = new List<Record>();
                 foreach (var item in records)
                 {
@@ -208,7 +209,7 @@ namespace WorkHours.Data
             return database.Insert(company);
         }
 
-        public List<LønPeriode> FåLønPeriodeForArbejdsplads(String arbejdsplads)
+        public List<LønPeriode> FåLønPerioderForArbejdsplads(String arbejdsplads)
         {
             if (database.Table<LønPeriode>()!=null)
             {

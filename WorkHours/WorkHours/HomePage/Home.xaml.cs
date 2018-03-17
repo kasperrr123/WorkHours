@@ -85,9 +85,11 @@ namespace WorkHours.HomePage
         // CONSTRUCTOR
         public Home()
         {
-            if (globalVariables.ChosenCompany==null)
+            if (globalVariables.ChosenCompany == null)
             {
-                DeserializeGlobalVariablesJson();
+           
+                    DeserializeGlobalVariablesJson();
+              
             }
             BindingContext = this;
             ThreadStart timer = new ThreadStart(TimerFunction);
@@ -128,8 +130,9 @@ namespace WorkHours.HomePage
                 // Tjek om der er oprettet en løn periode.
                 if (FindesDerEnAktivLønPeriodeForArbejdsplads())
                 {
-                    var a = database.FåLønPeriodeForArbejdsplads(globalVariables.ChosenCompany).Where(n => n.To > DateTime.Now).First();
-                    LønPeriodeLabel = "Fra d. " + a.From.ToString("dd/MM/yyyy") + " til d. " + a.To.ToString("dd/MM/yyyy");
+                    var lønPerioder = database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany);
+                    var currentLønPeriode = lønPerioder.Where(n => n.To.Ticks > DateTime.Now.Ticks).First();
+                    LønPeriodeLabel = "Fra d. " + currentLønPeriode.From.ToString("dd/MM/yyyy") + " til d. " + currentLønPeriode.To.ToString("dd/MM/yyyy");
                     IngenLønPeriodeForNuværendeMånedFundet = false;
                     LønPeriodeForNuværendeMånedFundet = true;
 
@@ -175,7 +178,7 @@ namespace WorkHours.HomePage
         {
             try
             {
-                return database.FåLønPeriodeForArbejdsplads(globalVariables.ChosenCompany).First();
+                return database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany).First();
 
             }
             catch (Exception)

@@ -66,20 +66,10 @@ namespace WorkHours.Arkiv
             BindingContext = this;
             FåRecords();
             SetTotalHoursAndBreaks();
-            Perioder = GetPerioder();
             InitializeComponent();
         }
 
-        private List<string> GetPerioder()
-        {
-            List<string> list = new List<string>();
-            var perioder = database.FåLønPeriodeForArbejdsplads(globalVariables.ChosenCompany);
-            foreach (var item in perioder)
-            {
-                list.Add(item.Periode);
-            }
-            return list;
-        }
+      
 
         private void SetTotalHoursAndBreaks()
         {
@@ -98,7 +88,7 @@ namespace WorkHours.Arkiv
             {
                 try
                 {
-                    var a = database.FåLønPeriodeForArbejdsplads(globalVariables.ChosenCompany).Where(n => n.To > DateTime.Now).First();
+                    var a = database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany).Where(n => n.To > DateTime.Now).First();
                     foreach (var item in App.Database.FåRecords(GlobalVariables.Instance.ChosenCompany, a))
                     {
                         list.Add(new Period(item.LoggedDate, item.StartTime, item.EndTime));
@@ -109,9 +99,9 @@ namespace WorkHours.Arkiv
                 catch (Exception)
                 {
 
-                    
+
                 }
-              
+
             }
 
         }
@@ -132,17 +122,11 @@ namespace WorkHours.Arkiv
 
         }
 
-        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        private void SeeAllPeriodsBtn_Clicked(object sender, EventArgs e)
         {
-            Picker picker = sender as Picker;
-            var records = database.FåRecordsByPeriode(picker.SelectedItem.ToString(), DateTime.Now.Year);
-            List<Period> list = new List<Period>();
-            foreach (var item in records)
-            {
-                list.Add(new Period(item.LoggedDate, item.StartTime, item.EndTime));
-            }
+            
 
-            ListOfRecords = list;
+            Navigation.PushAsync(new SeeOldPeriod());
         }
     }
 

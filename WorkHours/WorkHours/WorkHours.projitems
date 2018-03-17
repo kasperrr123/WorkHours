@@ -37,6 +37,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Arkiv\Calculations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldPeriod.xaml.cs">
+      <DependentUpon>SeeOldPeriod.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldRecords.xaml.cs">
+      <DependentUpon>SeeOldRecords.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Arkiv\ViewLogModal.xaml.cs">
       <DependentUpon>ViewLogModal.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -187,6 +195,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\ViewLogModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldPeriod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldRecords.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
