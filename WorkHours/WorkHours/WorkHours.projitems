@@ -53,6 +53,10 @@
       <DependentUpon>GetWorkPlaceName.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg.xaml.cs">
+      <DependentUpon>SetTillæg.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)GlobalVariables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FåLønPeriode.xaml.cs">
       <DependentUpon>FåLønPeriode.xaml</DependentUpon>
@@ -207,6 +211,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldRecords.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

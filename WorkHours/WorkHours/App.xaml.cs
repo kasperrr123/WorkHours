@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using WorkHours.CreateNewWorkPlace;
 using WorkHours.Data;
 using WorkHours.HomePage;
 using Xamarin.Forms;
@@ -21,18 +22,18 @@ namespace WorkHours
         {
             InitializeComponent();
 
+            MainPage = new NavigationPage(new SetTillæg());
 
+            //if (Database.GetUser() == null)
+            //{
+            //    MainPage = new NavigationPage(new FirstTimeUse());
 
-            if (Database.GetUser() == null)
-            {
-                MainPage = new NavigationPage(new FirstTimeUse());
+            //}
+            //else
+            //{
+            //    MainPage = new NavigationPage(new TabbedPage1());
 
-            }
-            else
-            {
-                MainPage = new NavigationPage(new TabbedPage1());
-
-            }
+            //}
 
 
 

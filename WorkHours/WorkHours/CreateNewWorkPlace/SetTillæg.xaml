@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.CreateNewWorkPlace.SetTillæg">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Picker x:Name="TillægPicker" Title="Vælg et tillæg" HorizontalOptions="CenterAndExpand"></Picker>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Fra hvornår gælder dit tillæg?" VerticalOptions="Center"></Label>
+                    <TimePicker x:Name="TillægTimePicker" VerticalOptions="Center"  Time="12:00" ></TimePicker>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Får du tillæg hele dagen?"></Label>
+                    <Label Text="Nej"></Label>
+                    <Switch x:Name="AllDaySwitch"></Switch>
+                    <Label Text="Ja"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <ScrollView>
+                    <ListView ItemsSource="{Binding ListOfTillæg}"></ListView>
+                </ScrollView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -25,7 +25,9 @@
                     <TimePicker x:Name="SøndagTimePicker" ></TimePicker>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Får du tillæg hele dagen?"></Label>
+                        <Label Text="Nej"></Label>
                         <Switch x:Name="AllDaySwitch"></Switch>
+                        <Label Text="Ja"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout>

@@ -18,6 +18,9 @@ namespace WorkHours.iOS
 
             UIApplication.Main(args, null, "AppDelegate");
 
+      
+
+
         }
     }
 }
