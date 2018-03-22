@@ -64,7 +64,7 @@ namespace WorkHours.CreateNewWorkPlace
             {
                 CompanyName = obj.CompanyName,
                 TypeOfTillæg = obj.AftenTillæg.Day,
-                From = obj.AftenTillæg.Time.ToString(),
+                From = obj.AftenTillæg.Time,
                 TillægKr = obj.AftenTillæg.Løn,
 
             });
@@ -73,7 +73,7 @@ namespace WorkHours.CreateNewWorkPlace
             {
                 CompanyName = obj.CompanyName,
                 TypeOfTillæg = obj.LørdagsTillæg.Day,
-                From = obj.LørdagsTillæg.Time.ToString(),
+                From = obj.LørdagsTillæg.Time,
                 TillægKr = obj.LørdagsTillæg.Løn,
             });
             // Tilføjer tredje tillæg
@@ -81,7 +81,7 @@ namespace WorkHours.CreateNewWorkPlace
             {
                 CompanyName = obj.CompanyName,
                 TypeOfTillæg = obj.SøndagsTillæg.Day,
-                From = obj.SøndagsTillæg.Time.ToString(),
+                From = obj.SøndagsTillæg.Time,
                 TillægKr = obj.SøndagsTillæg.Løn,
             });
 

@@ -42,7 +42,7 @@ namespace WorkHours.UpdateWorkPlace
             database.AddTillæg(new Tillæg
             {
                 TypeOfTillæg = obj.AftenTillæg.Day,
-                From = obj.AftenTillæg.Time.ToString(),
+                From = obj.AftenTillæg.Time,
                 TillægKr = obj.AftenTillæg.Løn,
             });
 
