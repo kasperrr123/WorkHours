@@ -12,34 +12,52 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0">
-                <Label FontSize="Large" HorizontalTextAlignment="Center"  TextColor="Black" Text="Er alt som det skal være med tillægene og din timeløn?"></Label>
-            </StackLayout>
-            <StackLayout Grid.Row="1">
-                <Label Text="Basis timeløn" ></Label>
-                <Label Text="{Binding BasisLøn}" HorizontalOptions="Start"></Label>
-                <Label Text="Løn periode" FontSize="Large"></Label>
-                <Label Text="{Binding LønPeriode}" HorizontalOptions="Start"></Label>
-                <Label Text="Tillæg"></Label>
-                <Label Text="{Binding AftenTillæg}" HorizontalOptions="Start"></Label>
-                <Label Text="{Binding LørdagTillæg}" HorizontalOptions="Start"></Label>
-                <Label Text="{Binding SøndagTillæg}" HorizontalOptions="Start"></Label>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Grid.Row="3">
-                <Button x:Name="YesBtn" Text="Ja" Clicked="YesBtn_Clicked"></Button>
-                <Button x:Name="NoBtn" Text="Nej" Clicked="NoBtn_Clicked"></Button>
-            </StackLayout>
-        </Grid>
-    </ScrollView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" Grid.RowSpan="1">
+            <Label FontSize="Large" HorizontalTextAlignment="Center"  TextColor="Black" Text="Er alt som det skal være med tillægene og din timeløn?"></Label>
+        </StackLayout>
+        <StackLayout Grid.Row="2" Grid.RowSpan="3">
+            <Label Text="{Binding BasisLøn}" HorizontalOptions="Start"></Label>
+            <Label Text="Løn periode" FontSize="Large"></Label>
+            <Label Text="{Binding LønPeriode}" HorizontalOptions="Start"></Label>
+        </StackLayout>
+        <StackLayout Grid.Row="6" HorizontalOptions="CenterAndExpand">
+            <Label Text="Tillæg"></Label>
+        </StackLayout>
+        <StackLayout Grid.Row="7" Grid.RowSpan="3">
+            <ScrollView>
+                <ListView IsEnabled="False" HasUnevenRows="True" ItemsSource="{Binding ListOfTillæg}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Label Text="{Binding GetToString}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Grid.Row="10" HorizontalOptions="CenterAndExpand">
+            <Button x:Name="YesBtn" Text="Ja"  Clicked="YesBtn_Clicked"></Button>
+            <Button x:Name="NoBtn" Text="Nej"  Clicked="NoBtn_Clicked"></Button>
+        </StackLayout>
+    </Grid>
+
 
 </ContentPage>
     

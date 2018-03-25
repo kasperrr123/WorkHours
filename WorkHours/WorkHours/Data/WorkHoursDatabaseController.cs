@@ -18,11 +18,11 @@ namespace WorkHours.Data
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
             // Dropping the tables.
-            database.DropTable<Tillæg>();
-            database.DropTable<User>();
-            database.DropTable<Record>();
-            database.DropTable<Company>();
-            database.DropTable<LønPeriode>();
+            //database.DropTable<Tillæg>();
+            //database.DropTable<User>();
+            //database.DropTable<Record>();
+            //database.DropTable<Company>();
+            //database.DropTable<LønPeriode>();
             // Creating tables.
             //var sqliteFileName = "GlobalVariables.txt";
             //string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -34,7 +34,7 @@ namespace WorkHours.Data
             database.CreateTable<Company>();
             database.CreateTable<LønPeriode>();
 
-            
+
         }
 
         public List<Record> FåRecords(string chosenCompany, LønPeriode valgteLønPeriode)
@@ -54,7 +54,7 @@ namespace WorkHours.Data
 
                 return null;
             }
-           
+
 
         }
 
@@ -115,7 +115,7 @@ namespace WorkHours.Data
         public int TilføjLønPeriode(LønPeriode lønPeriode)
         {
             return database.Insert(lønPeriode);
-           
+
         }
 
         public int AddUser(User user)
@@ -165,7 +165,7 @@ namespace WorkHours.Data
         {
             try
             {
-                var lønPeriode = database.Table<LønPeriode>().Where(n => n.Periode == selectedItem).Where(n=>n.Year==year).First();
+                var lønPeriode = database.Table<LønPeriode>().Where(n => n.Periode == selectedItem).Where(n => n.Year == year).First();
 
                 var records = database.Table<Record>().Where(n => n.LønPeriodeID == lønPeriode.LønPeriodeID);
                 List<Record> list = new List<Record>();
@@ -211,7 +211,7 @@ namespace WorkHours.Data
 
         public List<LønPeriode> FåLønPerioderForArbejdsplads(String arbejdsplads)
         {
-            if (database.Table<LønPeriode>()!=null)
+            if (database.Table<LønPeriode>() != null)
             {
                 List<LønPeriode> list = new List<LønPeriode>();
                 foreach (var item in database.Table<LønPeriode>().Where(n => n.CompanyName == arbejdsplads))

@@ -22,18 +22,17 @@ namespace WorkHours
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SetTillæg());
 
-            //if (Database.GetUser() == null)
-            //{
-            //    MainPage = new NavigationPage(new FirstTimeUse());
+            if (Database.GetUser() == null)
+            {
+                MainPage = new NavigationPage(new FirstTimeUse());
 
-            //}
-            //else
-            //{
-            //    MainPage = new NavigationPage(new TabbedPage1());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new TabbedPage1());
 
-            //}
+            }
 
 
 

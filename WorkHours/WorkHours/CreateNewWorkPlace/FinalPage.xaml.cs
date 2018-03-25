@@ -24,9 +24,13 @@ namespace WorkHours.CreateNewWorkPlace
         public String SøndagTillæg { get; set; } = obj.SøndagsTillæg.ToString();
         public String LønPeriode { get; set; }
 
-        public FinalPage()
+        public List<Tillæg> ListOfTillæg { get; set; }
+
+        public FinalPage(List<Tillæg> listoftillæg)
         {
             BindingContext = this;
+            this.ListOfTillæg = listoftillæg;
+           
             LønPeriode = "Løn perioden løber fra d. " + obj.LønPeriode_FraDato + " til og med d. " + obj.LønPeriode_TilDato + " den efterfølgende måned.";
             InitializeComponent();
         }
@@ -59,32 +63,12 @@ namespace WorkHours.CreateNewWorkPlace
                 LønPeriode_TilDato = obj.LønPeriode_TilDato,
 
             });
-            // Tilføjer første tillæg
-            database.AddTillæg(new Tillæg
+            // Tilføjer alle tillæg
+            foreach (var tillæg in ListOfTillæg)
             {
-                CompanyName = obj.CompanyName,
-                TypeOfTillæg = obj.AftenTillæg.Day,
-                From = obj.AftenTillæg.Time,
-                TillægKr = obj.AftenTillæg.Løn,
-
-            });
-            // Tilføjer andet tillæg
-            database.AddTillæg(new Tillæg
-            {
-                CompanyName = obj.CompanyName,
-                TypeOfTillæg = obj.LørdagsTillæg.Day,
-                From = obj.LørdagsTillæg.Time,
-                TillægKr = obj.LørdagsTillæg.Løn,
-            });
-            // Tilføjer tredje tillæg
-            database.AddTillæg(new Tillæg
-            {
-                CompanyName = obj.CompanyName,
-                TypeOfTillæg = obj.SøndagsTillæg.Day,
-                From = obj.SøndagsTillæg.Time,
-                TillægKr = obj.SøndagsTillæg.Løn,
-            });
-
+                database.AddTillæg(tillæg);
+            }
+           
             database.Commit();
 
 
@@ -97,7 +81,7 @@ namespace WorkHours.CreateNewWorkPlace
 
         private void NoBtn_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PopAsync();
         }
     }
 }

@@ -8,11 +8,11 @@ using SQLiteNetExtensions.Attributes;
 
 namespace WorkHours.Models
 {
-    
+
     [Table("Tillæg")]
     public class Tillæg
     {
-        
+
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public String TypeOfTillæg { get; set; }
@@ -20,17 +20,27 @@ namespace WorkHours.Models
         public TimeSpan From { get; set; }
         public String TillægKr { get; set; }
 
-        [ForeignKey (typeof(Company))]
-        public string CompanyName { get; set; }
+        public bool AllDay { get; set; }
 
-        private String getToString;
+        [ForeignKey(typeof(Company))]
+        public string CompanyName { get; set; }
 
         public String GetToString
         {
-            get { return TypeOfTillæg + ", " + From + ", " + TillægKr; }
-            //set { getToString = value; }
+            get { return "Type: " + TypeOfTillæg + ", Fra: " + From + ", Kr: " + TillægKr + ", Hele dagen: " + getAllDay(); }
         }
 
+        private string getAllDay()
+        {
+            if (AllDay)
+            {
+                return "Ja";
+            }
+            else
+            {
+                return "Nej";
+            }
+        }
 
         public Tillæg()
         {
@@ -39,7 +49,7 @@ namespace WorkHours.Models
 
         public override string ToString()
         {
-            return TypeOfTillæg + ", " + From + ", " + TillægKr;
+            return "Type: " + TypeOfTillæg + ", Fra: " + From + ", Kr: " + TillægKr + ", Hele dagen: " + getAllDay();
         }
     }
 }

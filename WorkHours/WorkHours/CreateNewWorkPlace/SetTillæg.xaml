@@ -3,25 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkHours.CreateNewWorkPlace.SetTillæg">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout HorizontalOptions="CenterAndExpand">
+        <StackLayout >
+            <StackLayout HorizontalOptions="Center">
                 <Picker x:Name="TillægPicker" ItemsSource="{Binding PickerTillæg}" Title="Vælg et tillæg" HorizontalOptions="CenterAndExpand"></Picker>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <Label Text="Fra hvornår gælder dit tillæg?" VerticalOptions="Center"></Label>
                     <TimePicker x:Name="TillægTimePicker" VerticalOptions="Center"  Time="12:00" ></TimePicker>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <Label Text="Hvad får du ekstra i kroner: " VerticalOptions="Center"></Label>
                     <Entry x:Name="KrField" Keyboard="Numeric" Placeholder="Beløb i kr" VerticalOptions="Center"></Entry>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <Label Text="Får du tillæg hele dagen?"></Label>
                     <Label Text="Nej"></Label>
                     <Switch x:Name="AllDaySwitch"></Switch>
                     <Label Text="Ja"></Label>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <Button x:Name="TilføjTillæg" Clicked="TilføjTillæg_Clicked" Text="Tilføj tillæg"></Button>
+                    <Button x:Name="SletTillæg" Clicked="SletTillæg_Clicked" Text="Slet"></Button>
                     <Button x:Name="GåVidereBtn" Clicked="GåVidereBtn_Clicked" Text="Gå videre"></Button>
                 </StackLayout>
             </StackLayout>
@@ -30,13 +31,12 @@
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
                 <ScrollView>
-                    <ListView x:Name="ListView1" ItemsSource="{Binding ListOfTillæg}">
+                    <ListView x:Name="ListView1"  ItemsSource="{Binding ListOfTillæg}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                                         <Label Text="{Binding GetToString}" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" ></Label>
-                                        <Button x:Name="DeleteTillægFromList" Clicked="DeleteTillægFromList_Clicked" Text="Slet" TextColor="Red" HorizontalOptions="EndAndExpand" Margin="0,0,5,0"></Button>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>

@@ -18,7 +18,7 @@ namespace WorkHours.CreateNewWorkPlace
         CreateNewWorkPlaceObj createNewWorkPlace = CreateNewWorkPlaceObj.Instance;
 
 
-        public List<String> Days { get; set; } 
+        public List<String> Days { get; set; }
 
 
         public FåLønPeriode()
@@ -33,7 +33,7 @@ namespace WorkHours.CreateNewWorkPlace
             var counter = 1;
             List<String> list = new List<string>();
             var daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            while (counter<=daysInMonth)
+            while (counter <= daysInMonth)
             {
                 list.Add(counter.ToString());
                 counter++;
@@ -51,7 +51,7 @@ namespace WorkHours.CreateNewWorkPlace
                 createNewWorkPlace.LønPeriode_TilDato = int.Parse(TimeTo.SelectedItem.ToString());
                 // Sætter den valgte periode ind til global variabler.
 
-                Navigation.PushAsync(new SetTillæg1());
+                Navigation.PushAsync(new SetTillæg());
 
 
 

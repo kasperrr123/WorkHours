@@ -62,31 +62,63 @@ namespace WorkHours.CreateNewWorkPlace
 
         private void TilføjTillæg_Clicked(object sender, EventArgs e)
         {
+            if (TillægPicker.SelectedItem != null && KrField.Text!=null)
+            {
+
+            String Type = "";
+            switch (TillægPicker.SelectedItem.ToString())
+            {
+                case "Aften tillæg":
+                    Type = "Aften";
+                    break;
+                case "Syge tillæg":
+                    Type = "Syge";
+                    break;
+                case "Nat tillæg":
+                    Type = "Nat";
+                    break;
+                case "Søndags tillæg":
+                    Type = "Søndag";
+                    break;
+                case "Lørdags tillæg":
+                    Type = "Lørdag";
+                    break;
+
+                default:
+                    Type = "Fejæ";
+                    break;
+            }
             Tillæg tillæg = new Tillæg
             {
                 CompanyName = globalVariables.ChosenCompany,
-                TypeOfTillæg = TillægPicker.SelectedItem.ToString(),
+                TypeOfTillæg = Type,
                 TillægKr = KrField.Text,
                 From = TillægTimePicker.Time
             };
 
-            // Tilføj tillæg til database.
-            //database.AddTillæg(tillæg);
-            //database.Commit();
-
             ListOfTillæg.Add(tillæg);
 
+            }
+            else
+            {
+                DisplayAlert("Hov!", "Du skal vælge et tillæg samt fortælle, hvor mange kr du får extra de timer", "Ok");
+            }
         }
 
         private void GåVidereBtn_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new FinalPage(ListOfTillæg.ToList()));
         }
 
-        private void DeleteTillægFromList_Clicked(object sender, EventArgs e)
+        private void SletTillæg_Clicked(object sender, EventArgs e)
         {
-            var selectedItem = ListView1.SelectedItem;
-            ListOfTillæg.Remove(ListOfTillæg.Where(n => n.TypeOfTillæg == selectedItem));
+            if (ListOfTillæg.Count > 0)
+            {
+                ListOfTillæg.Remove(ListOfTillæg.Last());
+            }
+
         }
+
+
     }
 }

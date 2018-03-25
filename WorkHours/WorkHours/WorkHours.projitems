@@ -11,10 +11,6 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FirstTimeUse.xaml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateFinalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -100,14 +96,6 @@
       <DependentUpon>FinalPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg2.xaml.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>SetTillæg2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg1.xaml.cs">
-      <DependentUpon>SetTillæg1.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\CreateNewWorkPlaceObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTimeLøn.xaml.cs">
       <DependentUpon>SetTimeLøn.xaml</DependentUpon>
@@ -145,12 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTimeLøn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
