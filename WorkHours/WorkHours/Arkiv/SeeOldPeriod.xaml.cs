@@ -21,13 +21,7 @@ namespace WorkHours.Arkiv
         public SeeOldPeriod()
         {
             BindingContext = this;
-            //List<Period> list = new List<Period>();
-            //foreach (var item in listOfData)
-            //{
-            //    list.Add(new Period(item.LoggedDate, item.StartTime, item.EndTime));
-            //}
             this.Perioder = GetPerioder();
-            //this.Lønperiode = "Løn periode fra: " + lønPeriode.From.ToString("DD/MMMM/YYYY") + " til d. " + lønPeriode.To.ToString("DD/MMMM/YYYY");
             InitializeComponent();
         }
 

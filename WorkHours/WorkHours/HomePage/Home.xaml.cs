@@ -101,8 +101,7 @@ namespace WorkHours.HomePage
             String h = DateTime.Now.Hour.ToString();
             String m = DateTime.Now.Minute.ToString();
             currentTimeSpan = TimeSpan.Parse(h + ":" + m);
-
-
+            
             InitializeComponent();
         }
 
@@ -132,6 +131,7 @@ namespace WorkHours.HomePage
                 {
                     var lønPerioder = database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany);
                     var currentLønPeriode = lønPerioder.Where(n => n.To.Ticks > DateTime.Now.Ticks).First();
+                    globalVariables.ValgteLønPeriode = currentLønPeriode;
                     LønPeriodeLabel = "Fra d. " + currentLønPeriode.From.ToString("dd/MM/yyyy") + " til d. " + currentLønPeriode.To.ToString("dd/MM/yyyy");
                     IngenLønPeriodeForNuværendeMånedFundet = false;
                     LønPeriodeForNuværendeMånedFundet = true;

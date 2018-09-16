@@ -26,8 +26,9 @@ namespace WorkHours.Arkiv
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        private List<Period> listOfRecords;
+        private List<RecordView> listOfRecords;
         private String totalTimer;
+        public string labelText { get; set; }
         private GlobalVariables globalVariables = GlobalVariables.Instance;
         public String TotalTimer
         {
@@ -50,7 +51,7 @@ namespace WorkHours.Arkiv
                 INotifyPropertyChanged();
             }
         }
-        public List<Period> ListOfRecords
+        public List<RecordView> ListOfRecords
         {
             get { return listOfRecords; }
             set
@@ -64,12 +65,19 @@ namespace WorkHours.Arkiv
         public ArkivPage()
         {
             BindingContext = this;
-            FåRecords();
+            if (globalVariables.ValgteLønPeriode != null)
+            {
+                labelText = globalVariables.ValgteLønPeriode.Periode;
+            }
+            else
+            {
+                labelText = "Ingen periode oprettet endnu";
+            }
+        
+            SetRecords();
             SetTotalHoursAndBreaks();
             InitializeComponent();
         }
-
-      
 
         private void SetTotalHoursAndBreaks()
         {
@@ -81,37 +89,32 @@ namespace WorkHours.Arkiv
 
         }
 
-        public void FåRecords()
+        public void SetRecords()
         {
-            List<Period> list = new List<Period>();
+            ListOfRecords = new List<RecordView>();
             if (GlobalVariables.Instance.ValgteLønPeriode != null)
             {
                 try
                 {
-                    var a = database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany).Where(n => n.To > DateTime.Now).First();
-                    foreach (var item in App.Database.FåRecords(GlobalVariables.Instance.ChosenCompany, a))
+                    var NuværendeLønPeriode = database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany).Where(n => n.To > DateTime.Now).First();
+                    foreach (var record in App.Database.FåRecords(GlobalVariables.Instance.ChosenCompany, NuværendeLønPeriode))
                     {
-                        list.Add(new Period(item.LoggedDate, item.StartTime, item.EndTime));
+                      
+                        ListOfRecords.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime));
                     }
-
-                    ListOfRecords = list;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-
+                    Console.WriteLine(ex.Message);
                 }
-
             }
-
         }
 
         protected override void OnAppearing()
         {
-            FåRecords();
+            SetRecords();
         }
-
-
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -130,18 +133,23 @@ namespace WorkHours.Arkiv
         }
     }
 
-    public struct Period
+    public struct RecordView
     {
         public DateTime Date { get; set; }
+
+        public String OnlyDate { get; set; }
         public TimeSpan From { get; set; }
         public TimeSpan To { get; set; }
 
+        public string FromToString { get; set; }
 
-        public Period(DateTime date, TimeSpan from, TimeSpan to)
+        public RecordView(DateTime date, TimeSpan from, TimeSpan to)
         {
             this.Date = date;
             this.From = from;
             this.To = to;
+            this.OnlyDate = date.ToString("dd/MM/yy");
+            this.FromToString = From.Hours + "." + From.Minutes + "-" + To.Hours + "." + To.Minutes;
 
         }
 

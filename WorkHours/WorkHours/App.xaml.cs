@@ -1,15 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using WorkHours.CreateNewWorkPlace;
 using WorkHours.Data;
 using WorkHours.HomePage;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
-
 
 namespace WorkHours
 {
@@ -31,7 +26,6 @@ namespace WorkHours
             else
             {
                 MainPage = new NavigationPage(new TabbedPage1());
-
             }
 
 

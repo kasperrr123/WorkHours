@@ -28,7 +28,7 @@
 
             <Frame HasShadow="True"  Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" OutlineColor="CadetBlue" >
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Nuværende løn periode"></Label>
+                    <Label Text="{Binding labelText}"></Label>
                   
                 </StackLayout>
 
@@ -39,11 +39,11 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout BackgroundColor="LightBlue"
-                        Orientation="Vertical">
+                                    <StackLayout BackgroundColor="LightBlue" Orientation="Vertical">
                                         <StackLayout Orientation="Horizontal" BackgroundColor="LightBlue" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                                             <Label Text="{Binding Date.DayOfWeek}" TextColor="Black"></Label>
-                                            <Label Text="{Binding Date}" TextColor="Black"></Label>
+                                            <Label Text="{Binding OnlyDate}" TextColor="Black"></Label>
+                                            <Label Text="{Binding FromToString}" TextColor="Black"></Label>
                                         </StackLayout>
                                     </StackLayout>
                                 </ViewCell>
@@ -56,10 +56,10 @@
 
             <Frame HasShadow="True"  Grid.Row="10" Grid.RowSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" OutlineColor="CadetBlue" >
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Pause: "></Label>
-                    <Label Text="{Binding TotalPause}"></Label>
                     <Label Text="Timer: "></Label>
                     <Label Text="{Binding TotalTimer}"></Label>
+                    <Label Text="Pause: "></Label>
+                    <Label Text="{Binding TotalPause}"></Label>
                 </StackLayout>
 
             </Frame>

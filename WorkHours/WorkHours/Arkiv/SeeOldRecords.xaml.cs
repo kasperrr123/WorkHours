@@ -16,9 +16,11 @@ namespace WorkHours.Arkiv
         private GlobalVariables globalVariables = GlobalVariables.Instance;
         public WorkHoursDatabaseController database = App.Database;
 
-        public List<Period> Records { get; set; }
+        public List<RecordView> Records { get; set; }
 
         public String LønPeriode { get; set; }
+
+
         public SeeOldRecords(String selectedItem)
         {
             BindingContext = this;
@@ -27,13 +29,13 @@ namespace WorkHours.Arkiv
             InitializeComponent();
         }
 
-        private List<Period> GetRecords()
+        private List<RecordView> GetRecords()
         {
-            List<Period> list = new List<Period>();
+            List<RecordView> list = new List<RecordView>();
             var a = database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany).Where(n=>n.Periode==LønPeriode).First();
             foreach (var item in App.Database.FåRecords(GlobalVariables.Instance.ChosenCompany, a))
             {
-                list.Add(new Period(item.LoggedDate, item.StartTime, item.EndTime));
+                list.Add(new RecordView(item.LoggedDate, item.StartTime, item.EndTime));
             }
 
             return list;
@@ -48,18 +50,23 @@ namespace WorkHours.Arkiv
            
         }
 
-        public struct Period
+        public struct RecordView
         {
             public DateTime Date { get; set; }
+
+            public String OnlyDate { get; set; }
             public TimeSpan From { get; set; }
             public TimeSpan To { get; set; }
 
+            public string FromToString { get; set; }
 
-            public Period(DateTime date, TimeSpan from, TimeSpan to)
+            public RecordView(DateTime date, TimeSpan from, TimeSpan to)
             {
                 this.Date = date;
                 this.From = from;
                 this.To = to;
+                this.OnlyDate = date.ToString("dd/MM/yy");
+                this.FromToString = From.Hours + "." + From.Minutes + "-" + To.Hours + "." + To.Minutes;
 
             }
 

@@ -24,7 +24,19 @@
             <StackLayout Grid.Row="1" Grid.RowSpan="9">
                 <ScrollView>
                     <ListView x:Name="ListOfRecords" ItemSelected="ListOfRecords_ItemSelected"  SeparatorColor="Black"  ItemsSource="{Binding Records}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout BackgroundColor="LightBlue" Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="LightBlue" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Date.DayOfWeek}" TextColor="Black"></Label>
+                                            <Label Text="{Binding OnlyDate}" TextColor="Black"></Label>
+                                            <Label Text="{Binding FromToString}" TextColor="Black"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </ScrollView>
             </StackLayout>

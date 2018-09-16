@@ -18,22 +18,36 @@ namespace WorkHours.Data
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
             // Dropping the tables.
-            //database.DropTable<Tillæg>();
-            //database.DropTable<User>();
-            //database.DropTable<Record>();
-            //database.DropTable<Company>();
-            //database.DropTable<LønPeriode>();
-            // Creating tables.
-            //var sqliteFileName = "GlobalVariables.txt";
-            //string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            //var path = Path.Combine(documentsPath, sqliteFileName);
-            //File.Delete(path);
-            database.CreateTable<Tillæg>();
-            database.CreateTable<User>();
-            database.CreateTable<Record>();
-            database.CreateTable<Company>();
-            database.CreateTable<LønPeriode>();
+            try
+            {
+                //database.DropTable<Tillæg>();
+                //database.DropTable<User>();
+                //database.DropTable<Record>();
+                //database.DropTable<Company>();
+                //database.DropTable<LønPeriode>();
 
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            // Creating tables.
+            try
+            {
+                database.CreateTable<Tillæg>();
+                database.CreateTable<User>();
+                database.CreateTable<Record>();
+                database.CreateTable<Company>();
+                database.CreateTable<LønPeriode>();
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+ 
 
         }
 

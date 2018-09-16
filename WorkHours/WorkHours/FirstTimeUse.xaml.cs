@@ -33,7 +33,17 @@ namespace WorkHours
                 {
                     FullName = FuldeNavn.Text,
                 };
-                database.AddUser(newUser);
+                try
+                {
+                    database.AddUser(newUser);
+
+
+                }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Error", ex.Message, "ok");
+                    
+                }
 
                 Navigation.PushAsync(new TabbedPage1());
             }
