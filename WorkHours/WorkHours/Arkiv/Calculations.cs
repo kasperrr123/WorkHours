@@ -29,8 +29,17 @@ namespace WorkHours.Arkiv
                 foreach (var item in records)
                 {
                     WorkHours += item.EndTime.Subtract(item.StartTime).Hours;
+                   
                     WorkMinutes += item.EndTime.Subtract(item.StartTime).Minutes;
+                    if (WorkMinutes > 60)
+                    {
+                        double a = (WorkMinutes / 60.0);
+                        int hoursToAdd = (int)a;
+                        WorkMinutes = WorkMinutes - (hoursToAdd * 60);
+                        WorkHours += hoursToAdd;
+                    }
                 }
+               
                 return new List<int> { WorkHours, WorkMinutes };
             }
             else

@@ -25,6 +25,8 @@ namespace WorkHours.Models
         public int LønPeriode_FraDato { get; set; }
         public int LønPeriode_TilDato { get; set; }
 
+        public string Color { get; set; }
+
         [ForeignKey(typeof(User))]
         public String User { get; set; }
 

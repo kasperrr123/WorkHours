@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WorkHours;
 using WorkHours.CreateNewWorkPlace;
+using WorkHours.Data;
 using WorkHours.Models;
 using WorkHours.UpdateWorkPlace;
 using Xamarin.Forms;
@@ -28,7 +29,7 @@ namespace WorkHours.HomePage
             ArbejdsPladser = new List<String>();
             ArbejdsPladser = GetCompanies();
             InitializeComponent();
-                 
+
 
         }
 
@@ -36,7 +37,7 @@ namespace WorkHours.HomePage
         {
 
             List<String> listOfCompanies = new List<String>();
-            if (App.Database.GetCompanies().Count>0)
+            if (App.Database.GetCompanies().Count > 0)
             {
 
                 foreach (var item in App.Database.GetCompanies())
@@ -66,8 +67,8 @@ namespace WorkHours.HomePage
 
         private async Task ResetAppBtn_ClickedAsync(object sender, EventArgs e)
         {
-          var alert = await DisplayAlert("Vigtigt!", "Hvis du trykker ok vil din app blive nulstillet og du mister ALT dit data", "Ok", "Gå tilbage");
-            if (alert==true)
+            var alert = await DisplayAlert("Vigtigt!", "Hvis du trykker ok vil din app blive nulstillet og du mister ALT dit data", "Ok", "Gå tilbage");
+            if (alert == true)
             {
                 try
                 {
@@ -88,7 +89,35 @@ namespace WorkHours.HomePage
 
                 }
             }
-           
+
+
+        }
+
+        private void ExportToPdfBtn_Clicked(object sender, EventArgs e)
+        {
+          
+            var sqliteFileName = "Backup.html";
+            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var path = Path.Combine(documentsPath, sqliteFileName);
+            using (var tw = new StreamWriter(path, true))
+            {
+                tw.WriteLine("HellooooO");
+                tw.Flush();
+            }
+            try
+            {
+             
+                Device.OpenUri(new Uri(path));
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.Source);
+            }
+
 
         }
     }

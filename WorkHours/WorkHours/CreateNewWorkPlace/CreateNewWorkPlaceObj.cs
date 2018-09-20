@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WorkHours.CreateNewWorkPlace
 {
     public sealed class CreateNewWorkPlaceObj
     {
         private static CreateNewWorkPlaceObj instance;
-
-
+  
+        public string color { get; set; }
         public String BasisTimeLøn { get; set; }
         public int LønPeriode_FraDato { get; set; }
         public int LønPeriode_TilDato { get; set; }

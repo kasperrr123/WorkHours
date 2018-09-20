@@ -29,6 +29,15 @@ namespace WorkHours.HomePage
             }
         }
 
+        private Color labelColor;
+
+        public Color LabelColor
+        {
+            get { return labelColor; }
+            set { labelColor = value;
+                INotifyPropertyChanged();
+            }
+        }
 
         private String todaysDate;
         public String TodaysDate
@@ -91,7 +100,9 @@ namespace WorkHours.HomePage
                     DeserializeGlobalVariablesJson();
               
             }
+
             BindingContext = this;
+            LabelColor = GetColor();
             ThreadStart timer = new ThreadStart(TimerFunction);
             Thread myThread = new Thread(timer);
             myThread.Start();
@@ -105,7 +116,25 @@ namespace WorkHours.HomePage
             InitializeComponent();
         }
 
-     
+        private Color GetColor()
+        {
+            switch (database.GetCompany(globalVariables.ChosenCompany).Color)
+            {
+                case "Red":
+                    return Color.FromRgb(255, 0, 0);
+                 
+                case "Green":
+                    return Color.FromRgb(0, 255, 0);
+                    
+                case "Blue":
+                    return Color.FromRgb(0, 0, 255);
+                case "Standard":
+                    return Color.CadetBlue;
+                default:
+                    break;
+            }
+            return Color.White;
+        }
 
         private void SetChooseWorkPlacePickerValues()
         {
@@ -189,7 +218,6 @@ namespace WorkHours.HomePage
 
         }
 
-
         private bool FindesDerArbejdsplads()
         {
             if (database.GetCompanies().Count > 0)
@@ -266,12 +294,12 @@ namespace WorkHours.HomePage
                 App.Database.Commit();
 
                 DisplayAlert("Success", "Din arbejdsdag er blevet gemt under " + globalVariables.ChosenCompany, "Ok");
+                
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                DisplayAlert("ERROR", "Der var en fejl ved gemning af din arbejdsdag", "Ok");
+                DisplayAlert("ERROR", "Der var en fejl ved gemning af din arbejdsdag: Fejlkode: " + ex.Message, "Ok");
             }
 
 

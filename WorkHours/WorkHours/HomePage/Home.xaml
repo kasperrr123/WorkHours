@@ -10,22 +10,15 @@
 
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="25*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="25*"></RowDefinition>
 
             </Grid.RowDefinitions>
 
             <!-- Top panelllet der viser en velkomst samt hvilken arbejdsplads man har valgt -->
-            <StackLayout Grid.Row="0" Grid.RowSpan="2">
-                <Frame HasShadow="True" OutlineColor="CadetBlue"  Margin="0,10,0,0">
+            <StackLayout Grid.Row="0">
+                <Frame HasShadow="True" OutlineColor="CadetBlue" BackgroundColor="{Binding LabelColor}" Margin="0,10,0,0">
                     <StackLayout HorizontalOptions="FillAndExpand">
                         <Label x:Name="Welcome" HorizontalTextAlignment="Center" TextColor="Black"  Text="{Binding WelcomeUserLabel}"></Label>
                         <Label x:Name="Company" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="Black" Text="{Binding WhatCompanyLabel}"></Label>
@@ -35,19 +28,19 @@
             </StackLayout>
 
             <!-- Panel der vises når der ikke er nogen arbejdsplads oprettet endnu -->
-            <StackLayout x:Name="IngenArbejdsPladsOprettetStackLayout" IsVisible="{Binding IngenArbejdsPladsOprettet}" Grid.Row="2" Grid.RowSpan="6" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
+            <StackLayout x:Name="IngenArbejdsPladsOprettetStackLayout" IsVisible="{Binding IngenArbejdsPladsOprettet}" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
                 <Label Text="Ingen arbejdsplads oprettet endnu" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Label>
                 <Button x:Name="OpretArbejdsPladsBtn" Clicked="OpretArbejdsPlads_Clicked" Text="Opret arbejdsplads nu" HorizontalOptions="CenterAndExpand"></Button>
             </StackLayout>
 
             <!-- Panel der vises når der ikke er nogen løn periode for den gældende måned -->
-            <StackLayout x:Name="IngenLønPeriodeOprettetStackLayout" IsVisible="{Binding IngenLønPeriodeForNuværendeMånedFundet}" Grid.Row="1" Grid.RowSpan="7" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+            <StackLayout x:Name="IngenLønPeriodeOprettetStackLayout" IsVisible="{Binding IngenLønPeriodeForNuværendeMånedFundet}" Grid.Row="1"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                 <Label Text="Ingen time seddel er oprettet for denne periode" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></Label>
                 <Button x:Name="OpretLønPeriodeBtn" Clicked="OpretLønPeriodeBtn_Clicked" Text="Opret løn periode nu" HorizontalOptions="CenterAndExpand"></Button>
             </StackLayout>
 
             <!-- Panel der vises når der er oprettet en løn periode -->
-            <StackLayout x:Name="LønPeriodeOprettet" IsVisible="{Binding LønPeriodeForNuværendeMånedFundet}" Grid.Row="2" Grid.RowSpan="7" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <StackLayout x:Name="LønPeriodeOprettet" IsVisible="{Binding LønPeriodeForNuværendeMånedFundet}" Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                 <StackLayout HorizontalOptions="CenterAndExpand">
                     <Label Text="Du har arbejdet i dag" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Large"></Label>
                     <Label Text="{Binding TodaysDate}" HorizontalTextAlignment="Center" FontSize="Medium"></Label>
@@ -64,12 +57,12 @@
                     <Label Text="min" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
                 </StackLayout >
                 <StackLayout HorizontalOptions="FillAndExpand">
-                    <Button x:Name="GemBtn" Text="Gem" BackgroundColor="CadetBlue" Clicked="GemBtn_Clicked"></Button>
+                    <Button x:Name="GemBtn" Text="Gem" BackgroundColor="{Binding LabelColor}" Clicked="GemBtn_Clicked"></Button>
                 </StackLayout>
             </StackLayout>
 
             <!-- Nederste panel hvor indstillinger knappen og vælg en arbejdsplads ligger -->
-            <StackLayout Grid.Row="8" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.RowSpan="2" VerticalOptions="End" >
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="2"  VerticalOptions="End" Margin="0,0,0,10" >
 
                 <Button x:Name="SettingsBtn" BorderRadius="8" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Clicked="SettingsBtn_Clicked" Text="Indstillinger" 
                         BackgroundColor="LightBlue"></Button>

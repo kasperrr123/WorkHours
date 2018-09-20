@@ -28,6 +28,7 @@ namespace WorkHours.Arkiv
         }
         private List<RecordView> listOfRecords;
         private String totalTimer;
+        public Color ThemeColor { get; set; }
         public string labelText { get; set; }
         private GlobalVariables globalVariables = GlobalVariables.Instance;
         public String TotalTimer
@@ -73,10 +74,30 @@ namespace WorkHours.Arkiv
             {
                 labelText = "Ingen periode oprettet endnu";
             }
+            ThemeColor = GetColor();
         
             SetRecords();
             SetTotalHoursAndBreaks();
             InitializeComponent();
+        }
+        private Color GetColor()
+        {
+            switch (database.GetCompany(globalVariables.ChosenCompany).Color)
+            {
+                case "Red":
+                    return Color.FromRgb(255, 0, 0);
+
+                case "Green":
+                    return Color.FromRgb(0, 255, 0);
+
+                case "Blue":
+                    return Color.FromRgb(0, 0, 255);
+                case "Standard":
+                    return Color.CadetBlue;
+                default:
+                    break;
+            }
+            return Color.White;
         }
 
         private void SetTotalHoursAndBreaks()

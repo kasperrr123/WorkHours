@@ -61,6 +61,8 @@ namespace WorkHours.CreateNewWorkPlace
                 User = "Kasper Jørgensen",
                 LønPeriode_FraDato = obj.LønPeriode_FraDato,
                 LønPeriode_TilDato = obj.LønPeriode_TilDato,
+                Color = obj.color,
+                
 
             });
             // Tilføjer alle tillæg

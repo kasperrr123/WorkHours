@@ -9,31 +9,18 @@
 
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Frame HasShadow="True"  Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" OutlineColor="CadetBlue" >
+            <Frame HasShadow="True"  Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" OutlineColor="CadetBlue" Margin="0,10,0,0" BackgroundColor="{Binding ThemeColor}" >
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{Binding labelText}"></Label>
-                  
                 </StackLayout>
-
             </Frame>
-            <StackLayout Grid.Row="2" Grid.RowSpan="7">
+            <StackLayout Grid.Row="1" >
                 <ScrollView>
                     <ListView x:Name="ListViewRecords" SeparatorColor="Black"  ItemsSource="{Binding ListOfRecords}" ItemSelected="ListView_ItemSelected"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <ListView.ItemTemplate>
@@ -54,7 +41,7 @@
             </StackLayout>
 
 
-            <Frame HasShadow="True"  Grid.Row="10" Grid.RowSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" OutlineColor="CadetBlue" >
+            <Frame HasShadow="True"  Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" OutlineColor="CadetBlue" >
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Timer: "></Label>
                     <Label Text="{Binding TotalTimer}"></Label>
@@ -64,7 +51,7 @@
 
             </Frame>
 
-            <StackLayout  Grid.Row="13" Grid.RowSpan="2" VerticalOptions="CenterAndExpand">
+            <StackLayout  Grid.Row="3"  VerticalOptions="CenterAndExpand" Margin="0,0,0,10">
                 <Button x:Name="SeeAllPeriodsBtn" HorizontalOptions="Center"  Text="Se alle perioder" Clicked="SeeAllPeriodsBtn_Clicked"  BackgroundColor="LightBlue"></Button>
             </StackLayout>
 
