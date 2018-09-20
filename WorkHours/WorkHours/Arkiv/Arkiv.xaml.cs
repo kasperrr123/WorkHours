@@ -82,22 +82,26 @@ namespace WorkHours.Arkiv
         }
         private Color GetColor()
         {
-            switch (database.GetCompany(globalVariables.ChosenCompany).Color)
+            if (database.GetCompany(globalVariables.ChosenCompany) != null)
             {
-                case "Red":
-                    return Color.FromRgb(255, 0, 0);
+                switch (database.GetCompany(globalVariables.ChosenCompany).Color)
+                {
+                    case "Red":
+                        return Color.FromRgb(255, 0, 0);
 
-                case "Green":
-                    return Color.FromRgb(0, 255, 0);
+                    case "Green":
+                        return Color.FromRgb(0, 255, 0);
 
-                case "Blue":
-                    return Color.FromRgb(0, 0, 255);
-                case "Standard":
-                    return Color.CadetBlue;
-                default:
-                    break;
+                    case "Blue":
+                        return Color.FromRgb(0, 0, 255);
+                    case "Standard":
+                        return Color.CadetBlue;
+                    default:
+                        break;
+                }
+
             }
-            return Color.White;
+            return Color.CadetBlue;
         }
 
         private void SetTotalHoursAndBreaks()

@@ -13,11 +13,13 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackLayout x:Name="AftenTillæg" Grid.Row="1" HorizontalOptions="CenterAndExpand">
+            <StackLayout x:Name="AftenTillæg" Grid.Row="0" HorizontalOptions="CenterAndExpand">
                 <Label Text="Hvad er din basis timeløn?"></Label>
                 <Entry x:Name="TimeLøn" Keyboard="Numeric" Text="114.5" Placeholder="Timeløn"></Entry>
+          
+             
             </StackLayout>
-            <StackLayout>
+            <StackLayout Grid.Row="1">
                 <Label Text="Vælg en farve til din arbejdsplads"></Label>
                 <Picker x:Name="ColorPicker" SelectedIndex="0" ItemsSource="{Binding ListOfColors}"></Picker>
             </StackLayout>

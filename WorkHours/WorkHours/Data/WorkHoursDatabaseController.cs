@@ -215,7 +215,16 @@ namespace WorkHours.Data
 
         public Company GetCompany(string company)
         {
-            return database.Table<Company>().Where(t => t.CompanyName == company).First();
+            try
+            {
+                return database.Table<Company>().Where(t => t.CompanyName == company).First();
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         public int AddCompany(Company company)
