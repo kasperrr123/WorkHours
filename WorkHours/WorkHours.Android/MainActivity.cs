@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using System.IO;
 using Newtonsoft.Json;
+using Android;
 
 namespace WorkHours.Droid
 {
@@ -32,7 +33,25 @@ namespace WorkHours.Droid
             base.OnResume();
         }
 
-      
+        protected override void OnStart()
+        {
+            if ((int)Build.VERSION.SdkInt < 23)
+            {
+                return;
+            }
+            else
+            {
+                if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
+                    && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
+                {
+                    var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+                    RequestPermissions(permissions, 1);
+                }
+            }
+            base.OnStart();
+        }
+
+
     }
 }
 

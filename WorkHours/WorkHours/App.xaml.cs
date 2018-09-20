@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Android;
+using Android.Content.PM;
+using Android.OS;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using WorkHours.CreateNewWorkPlace;
@@ -33,9 +36,11 @@ namespace WorkHours
 
         }
 
+  
+
         protected override void OnStart()
         {
-            
+      
 
         }
       

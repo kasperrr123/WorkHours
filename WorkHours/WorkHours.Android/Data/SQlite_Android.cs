@@ -15,6 +15,7 @@ using WorkHours.Data;
 using WorkHours.Droid.Data;
 using Xamarin.Forms;
 
+
 [assembly: Dependency(typeof(SQlite_Android))]
 
 

@@ -75,7 +75,6 @@ namespace WorkHours.Arkiv
                 labelText = "Ingen periode oprettet endnu";
             }
             ThemeColor = GetColor();
-        
             SetRecords();
             SetTotalHoursAndBreaks();
             InitializeComponent();
