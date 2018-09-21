@@ -30,5 +30,10 @@ namespace WorkHours.Models
 
         }
 
+        public override string ToString()
+        {
+            return LoggedDate + " " + LoggedDate.DayOfWeek + " " + StartTime + " " + EndTime + " " + Pause; 
+        }
+
     }
 }

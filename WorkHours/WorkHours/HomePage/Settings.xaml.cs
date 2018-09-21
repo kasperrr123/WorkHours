@@ -1,6 +1,7 @@
 ﻿using Android;
 using Android.Content;
 using Android.Support.V4.Content;
+using Android.Widget;
 using Plugin.FilePicker.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -98,86 +99,6 @@ namespace WorkHours.HomePage
 
         }
 
-        private void ExportToPdfBtn_Clicked(object sender, EventArgs e)
-        {
-#if __ANDROID__
-
-
-           
-            string documentsPath = global::Android.OS.Environment.ExternalStorageDirectory.Path + "/" + global::Android.OS.Environment.DirectoryDownloads +"/" + "Backup.txt";
-            using (var tw = new StreamWriter(documentsPath, true))
-            {
-                tw.WriteLine("HellooooO");
-                tw.Flush();
-            };
-            
-
-
-            Java.IO.File file = new Java.IO.File(documentsPath);
-            file.SetReadable(true);
-            string application = "";
-            string extension = Path.GetExtension(documentsPath);
-
-   
-            switch (extension.ToLower())
-            {
-                case ".txt":
-                    application = "text/plain";
-                    break;
-                case ".doc":
-                case ".docx":
-                    application = "application/msword";
-                    break;
-                case ".pdf":
-                    application = "application/pdf";
-                    break;
-                case ".xls":
-                case ".xlsx":
-                    application = "application/vnd.ms-excel";
-                    break;
-                case ".jpg":
-                case ".jpeg":
-                case ".png":
-                    application = "image/jpeg";
-                    break;
-                default:
-                    application = "*/*";
-                    break;
-            }
-            try
-            {
-                Intent intent = new Intent(Intent.ActionView);
-               
-                Android.Net.Uri uri = FileProvider.GetUriForFile(Android.App.Application.Context, "", file);
-                intent.SetDataAndType(uri, application);
-                Android.App.Application.Context.StartActivity(intent);
-            }
-            catch (ActivityNotFoundException ex)
-            {
-                Console.WriteLine(ex.Message);
-                // no Activity to handle this kind of files
-            }
-            //Android.Net.Uri uri = Android.Net.Uri.FromFile(file);
-            //Intent intent = new Intent(Intent.ActionView);
-            //intent.SetDataAndType(uri, application);
-            //intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
-            //try
-            //{
-            //    Android.App.Application.Context.StartActivity(intent);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    Console.WriteLine(ex.Source);
-            //}
-
-#endif
-
-
-
-
-        }
 
     }
 }

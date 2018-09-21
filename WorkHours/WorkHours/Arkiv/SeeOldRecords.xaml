@@ -6,22 +6,15 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+
             </Grid.RowDefinitions>
             <Label HorizontalOptions="Center" Grid.Row="0" Text="{Binding LønPeriode}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-            <StackLayout Grid.Row="1" Grid.RowSpan="9">
+            <StackLayout Grid.Row="1">
                 <ScrollView>
                     <ListView x:Name="ListOfRecords" ItemSelected="ListOfRecords_ItemSelected"  SeparatorColor="Black"  ItemsSource="{Binding Records}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <ListView.ItemTemplate>
@@ -39,6 +32,10 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </ScrollView>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Export"></Label>
+                <Button x:Name="ExportToPdfBtn" Text="Export to PDF" Clicked="ExportToPdfBtn_Clicked"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
