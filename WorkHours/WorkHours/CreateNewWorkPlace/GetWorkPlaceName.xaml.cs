@@ -33,7 +33,7 @@ namespace WorkHours.CreateNewWorkPlace
             }
             else
             {
-                obj.CompanyName = NameInput.Text;
+                obj.CompanyName = NameInput.Text.Trim();
                 await Navigation.PushAsync(new SetTimeLøn());
             }
         }

@@ -86,9 +86,8 @@ namespace WorkHours.Arkiv
 #if __ANDROID__
 
 
-            string filename = "Backup.txt";
             FileHandling file = new FileHandling();
-            file.WriteSpecifikLønPeriode(filename, LønPeriode);
+            file.WriteSpecifikLønPeriode(globalVariables.ValgteLønPeriode, globalVariables.ChosenCompany);
 
 
 

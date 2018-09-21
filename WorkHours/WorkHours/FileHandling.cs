@@ -9,6 +9,7 @@ namespace WorkHours
 {
     class FileHandling
     {
+        GlobalVariables variables = GlobalVariables.Instance;
         private string Path { get; set; }
         private string FileName { get; set; }
         private WorkHours.Data.WorkHoursDatabaseController Database;
@@ -23,20 +24,24 @@ namespace WorkHours
         /// <param name="fileName">The name you want to give the file</param>
         /// <param name="lønPeriode">The lønperiode on which you want to have records writed</param>
         /// <returns>Returns a full document path to the file</returns>
-        public string WriteSpecifikLønPeriode(string fileName, string lønPeriode)
+        public string WriteSpecifikLønPeriode(WorkHours.Models.LønPeriode lønPeriode, string company)
         {
 #if __ANDROID__
 
 
-            string documentPath = global::Android.OS.Environment.ExternalStorageDirectory.Path + "/" + global::Android.OS.Environment.DirectoryDownloads + "/" + fileName;
+            string lønperiodeStr = variables.ValgteLønPeriode.From.Date.ToString("MMddyyyy") + "-" + variables.ValgteLønPeriode.To.Date.ToString("MMddyyyy");
+            string filename = company + " - " + lønperiodeStr + ".txt";
+            string documentPath = global::Android.OS.Environment.ExternalStorageDirectory.Path + "/" + global::Android.OS.Environment.DirectoryDownloads + "/" + filename;
             int currentWeek = 0;
             try
             {
                 using (var tw = new StreamWriter(documentPath))
                 {
-                    foreach (var item in Database.FåRecordsByPeriode(lønPeriode, DateTime.Now.Year))
+                    tw.WriteLine("Arbejdsplads: " + company);
+                    tw.WriteLine("Periode: " + lønperiodeStr);
+                    foreach (var item in Database.FåRecords(company, lønPeriode))
                     {
-                        if (currentWeek == 0 )
+                        if (currentWeek == 0)
                         {
                             currentWeek = GetIso8601WeekOfYear(new DateTime(item.LoggedDate.Ticks));
                             tw.WriteLine("Uge " + currentWeek);
@@ -52,11 +57,11 @@ namespace WorkHours
 
                     }
                 };
-                Toast.MakeText(Xamarin.Forms.Forms.Context, "File has been created and save under your download folder", ToastLength.Long).Show();
+                Toast.MakeText(Xamarin.Forms.Forms.Context, filename + " has been created and save under your download folder", ToastLength.Long).Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Toast.MakeText(Xamarin.Forms.Forms.Context, ex.Message, ToastLength.Long).Show();
             }
 
             return documentPath;
