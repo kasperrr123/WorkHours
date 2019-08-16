@@ -1,6 +1,4 @@
-﻿using Android.Content;
-using Android.Widget;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -80,88 +78,89 @@ namespace WorkHours.Arkiv
 
         }
 
-        private void ExportToPdfBtn_Clicked(object sender, EventArgs e)
-        {
+//        private void ExportToPdfBtn_Clicked(object sender, EventArgs e)
+//        {
 
-#if __ANDROID__
-
-
-            FileHandling file = new FileHandling();
-            file.WriteSpecifikLønPeriode(globalVariables.ValgteLønPeriode, globalVariables.ChosenCompany);
+//#if __ANDROID__
 
 
+//            FileHandling file = new FileHandling();
+//            file.WriteSpecifikLønPeriode(globalVariables.ValgteLønPeriode, globalVariables.ChosenCompany);
 
-            // Trying to open the created txt file, but android seems to have bunch of errors.
-            /*
+
+
+//            // Trying to open the created txt file, but android seems to have bunch of errors.
+//            /*
              
-            OpenFile(filePath);
+//            OpenFile(filePath);
 
-            */
-#endif
-
-
-        }
+//            */
+//#endif
 
 
+//        }
 
 
 
-        private void OpenFile(string filePath)
-        {
+ 
 
-            var bytes = File.ReadAllBytes(filePath);
+        //private void OpenFile(string filePath)
+        //{
 
-            //Copy the private file's data to the EXTERNAL PUBLIC location
-            string externalStorageState = global::Android.OS.Environment.ExternalStorageState;
-            string application = "";
+        //    var bytes = File.ReadAllBytes(filePath);
 
-            string extension = System.IO.Path.GetExtension(filePath);
+        //    //Copy the private file's data to the EXTERNAL PUBLIC location
+        //    string externalStorageState = global::Android.OS.Environment.ExternalStorageState;
+        //    string application = "";
 
-            switch (extension.ToLower())
-            {
-                case ".doc":
-                case ".docx":
-                    application = "application/msword";
-                    break;
-                case ".pdf":
-                    application = "application/pdf";
-                    break;
-                case ".xls":
-                case ".xlsx":
-                    application = "application/vnd.ms-excel";
-                    break;
-                case ".jpg":
-                case ".jpeg":
-                case ".png":
-                    application = "image/jpeg";
-                    break;
-                case ".txt":
-                    application = "text/plain";
-                    break;
-                default:
-                    application = "*/*";
-                    break;
-            }
-            var externalPath = filePath;
-            File.WriteAllBytes(externalPath, bytes);
+        //    string extension = System.IO.Path.GetExtension(filePath);
 
-            Java.IO.File file = new Java.IO.File(externalPath);
-            file.SetReadable(true);
-            //Android.Net.Uri uri = Android.Net.Uri.Parse("file://" + filePath);
-            Android.Net.Uri uri = Android.Net.Uri.FromFile(file);
-            Intent intent = new Intent(Intent.ActionView);
-            intent.SetDataAndType(uri, application);
-            intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
+        //    switch (extension.ToLower())
+        //    {
+        //        case ".doc":
+        //        case ".docx":
+        //            application = "application/msword";
+        //            break;
+        //        case ".pdf":
+        //            application = "application/pdf";
+        //            break;
+        //        case ".xls":
+        //        case ".xlsx":
+        //            application = "application/vnd.ms-excel";
+        //            break;
+        //        case ".jpg":
+        //        case ".jpeg":
+        //        case ".png":
+        //            application = "image/jpeg";
+        //            break;
+        //        case ".txt":
+        //            application = "text/plain";
+        //            break;
+        //        default:
+        //            application = "*/*";
+        //            break;
+        //    }
+        //    var externalPath = filePath;
+        //    File.WriteAllBytes(externalPath, bytes);
 
-            try
-            {
-                Xamarin.Forms.Forms.Context.StartActivity(intent);
-            }
-            catch (Exception ex)
-            {
-                Toast.MakeText(Xamarin.Forms.Forms.Context, ex.Message, ToastLength.Short).Show();
-            }
-        }
+        //    Java.IO.File file = new Java.IO.File(externalPath);
+        //    file.SetReadable(true);
+        //    //Android.Net.Uri uri = Android.Net.Uri.Parse("file://" + filePath);
+        //    Android.Net.Uri uri = Android.Net.Uri.FromFile(file);
+        //    Intent intent = new Intent(Intent.ActionView);
+        //    intent.SetDataAndType(uri, application);
+        //    intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
+
+        //    try
+        //    {
+        //        Xamarin.Forms.Forms.Context.StartActivity(intent);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Toast.MakeText(Xamarin.Forms.Forms.Context, ex.Message, ToastLength.Short).Show();
+        //    }
+        //}
+
 
 
 

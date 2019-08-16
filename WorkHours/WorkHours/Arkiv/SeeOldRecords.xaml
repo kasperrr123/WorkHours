@@ -35,7 +35,7 @@
             </StackLayout>
             <StackLayout>
                 <Label Text="Export"></Label>
-                <Button x:Name="ExportToPdfBtn" Text="Export to PDF" Clicked="ExportToPdfBtn_Clicked"></Button>
+                <Button x:Name="ExportToPdfBtn" Text="Export to PDF"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
