@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Widget;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -60,7 +61,7 @@ namespace WorkHours.HomePage
             }
         }
 
-        private async Task ResetAppBtn_ClickedAsync(object sender, EventArgs e)
+        private async void ResetAppBtn_ClickedAsync(object sender, EventArgs e)
         {
             var alert = await DisplayAlert("Vigtigt!", "Hvis du trykker ok vil din app blive nulstillet og du mister ALT dit data", "Ok", "Gå tilbage");
             if (alert == true)
@@ -84,10 +85,11 @@ namespace WorkHours.HomePage
 
                 }
             }
-
-
         }
 
-
+        private void BackUpGoogleDrive_Clicked(object sender, EventArgs e)
+        {
+            Toast.MakeText(Xamarin.Forms.Forms.Context, "Ikke lavet endnu", ToastLength.Long).Show();
+        }
     }
 }

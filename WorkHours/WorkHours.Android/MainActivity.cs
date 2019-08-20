@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 
 using Android.App;
 using Android.Content.PM;
@@ -40,6 +40,7 @@ namespace WorkHours.Droid
                 return;
             }
             else
+
             {
                 if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
                     && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)

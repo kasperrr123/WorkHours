@@ -32,7 +32,7 @@ namespace WorkHours.Models
 
         public override string ToString()
         {
-            return LoggedDate + " " + LoggedDate.DayOfWeek + " " + StartTime + " " + EndTime + " " + Pause; 
+            return LoggedDate + " " + FormatToDA.GetDayOfWeekInDA(LoggedDate.DayOfWeek.ToString()) + " " + StartTime + " " + EndTime + " " + Pause; 
         }
 
     }

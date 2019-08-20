@@ -18,17 +18,8 @@ namespace WorkHours
 
         public GlobalVariables()
         {
-           
-
-
-
-
-
         }
        
-
-
-
 
         public static GlobalVariables Instance
         {

@@ -16,7 +16,8 @@
         </StackLayout>
         <StackLayout>
             <Label Text="Advanceret indstillinger" HorizontalTextAlignment="Center" TextColor="IndianRed"></Label>
-            <Button x:Name="ResetAppBtn" BackgroundColor="Red" TextColor="Black" Clicked="ResetAppBtn_ClickedAsync" Text="Reset app"></Button>
+            <Button x:Name="BackUpGoogleDrive" Text="Backup to Google Drive" BackgroundColor="LightBlue" Clicked="BackUpGoogleDrive_Clicked"></Button>
+            <Button x:Name="ResetAppBtn" BackgroundColor="Red" TextColor="Black" Clicked="ResetAppBtn_ClickedAsync"  Text="Reset app"></Button>
         </StackLayout>
        
 

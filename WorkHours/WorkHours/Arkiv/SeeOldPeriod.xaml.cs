@@ -63,7 +63,8 @@ namespace WorkHours.Arkiv
         private void ListOfPeriods_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             ListView view = sender as ListView;
-            Navigation.PushAsync(new SeeOldRecords(view.SelectedItem.ToString()));
+            Models.LønPeriode lønPeriode = database.GetLønPeriode(view.SelectedItem.ToString(), DateTime.Now.Year);
+            Navigation.PushAsync(new SeeOldRecords(lønPeriode));
 
         }
     }

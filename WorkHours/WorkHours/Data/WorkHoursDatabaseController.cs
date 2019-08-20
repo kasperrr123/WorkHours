@@ -262,6 +262,18 @@ namespace WorkHours.Data
             return list;
         }
 
+        public LønPeriode GetLønPeriode(string LønPeriodeName, int year)
+        {
+            if (database.Table<LønPeriode>() != null)
+            {
+                return database.Table<LønPeriode>().Where(n => n.Periode == LønPeriodeName && n.Year == year).First();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public int UpdateCompany(Company company)
         {
             return database.Update(company);

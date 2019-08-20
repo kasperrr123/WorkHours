@@ -123,8 +123,8 @@ namespace WorkHours.Arkiv
                     var NuværendeLønPeriode = database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany).Where(n => n.To > DateTime.Now).First();
                     foreach (var record in App.Database.FåRecords(GlobalVariables.Instance.ChosenCompany, NuværendeLønPeriode))
                     {
-                      
-                        ListOfRecords.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime));
+
+                        ListOfRecords.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate));
                     }
                 }
                 catch (Exception ex)
@@ -140,48 +140,23 @@ namespace WorkHours.Arkiv
             SetRecords();
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ListOfRecords_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var cell = (ListView)sender;
+            ListView view = (ListView)sender;
+            RecordView record = (RecordView)view.SelectedItem;
             ListViewRecords.Unfocus();
-            Navigation.PushModalAsync(new ViewLogModal(cell));
+            Navigation.PushModalAsync(new ViewLogModal(record));
 
 
         }
 
         private void SeeAllPeriodsBtn_Clicked(object sender, EventArgs e)
         {
-            
+
 
             Navigation.PushAsync(new SeeOldPeriod());
         }
     }
 
-    public struct RecordView
-    {
-        public DateTime Date { get; set; }
-
-        public String OnlyDate { get; set; }
-        public TimeSpan From { get; set; }
-        public TimeSpan To { get; set; }
-
-        public string FromToString { get; set; }
-
-        public RecordView(DateTime date, TimeSpan from, TimeSpan to)
-        {
-            this.Date = date;
-            this.From = from;
-            this.To = to;
-            this.OnlyDate = date.ToString("dd/MM/yy");
-            this.FromToString = From.Hours + "." + From.Minutes + "-" + To.Hours + "." + To.Minutes;
-
-        }
-
-        public override string ToString()
-        {
-            return Date.DayOfWeek + " " + Date;
-        }
-
-    }
 
 }

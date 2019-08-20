@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Android.Icu.Text;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -98,7 +99,7 @@ namespace WorkHours.HomePage
         {
             if (globalVariables.ChosenCompany == null)
             {
-                    DeserializeGlobalVariablesJson();
+                DeserializeGlobalVariablesJson();
             }
 
             BindingContext = this;
@@ -118,7 +119,8 @@ namespace WorkHours.HomePage
 
         private Color GetColor()
         {
-            if (database.GetCompany(globalVariables.ChosenCompany) != null ){
+            if (database.GetCompany(globalVariables.ChosenCompany) != null)
+            {
                 switch (database.GetCompany(globalVariables.ChosenCompany).Color)
                 {
                     case "Red":
@@ -239,8 +241,8 @@ namespace WorkHours.HomePage
         {
             while (true)
             {
-                DateTime d = System.DateTime.Now;
-                String dag = System.DateTime.Now.DayOfWeek.ToString();
+
+                String dag = FormatToDA.GetDayOfWeekInDA(System.DateTime.Now.DayOfWeek.ToString());
                 String date = System.DateTime.Now.Day.ToString();
                 String måned = System.DateTime.Now.Month.ToString();
                 String år = System.DateTime.Now.Year.ToString();
@@ -332,6 +334,8 @@ namespace WorkHours.HomePage
 
             Navigation.PushAsync(new OpretNyLønPeriode());
         }
+
+       
 
         // Getting JSON
         private void DeserializeGlobalVariablesJson()

@@ -54,6 +54,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)FileHandling.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FormatToDA.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GlobalVariables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FåLønPeriode.xaml.cs">
       <DependentUpon>FåLønPeriode.xaml</DependentUpon>
@@ -119,6 +120,7 @@
       <SubType>Code</SubType>
       <DependentUpon>UpdateWorkPlaceNameAndTimeLøn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)RecordView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\Settings.xaml">

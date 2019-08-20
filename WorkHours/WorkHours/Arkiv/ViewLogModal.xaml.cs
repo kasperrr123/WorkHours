@@ -19,36 +19,28 @@ namespace WorkHours.Arkiv
         public TimeSpan Fra { get; set; }
         public TimeSpan Til { get; set; }
         public String Pause { get; set; }
-        public ListView SelectedListView { get; set; }
+        public RecordView record { get; set; }
         private GlobalVariables global = GlobalVariables.Instance;
 
         private Record SelectedRecord;
 
 
-        public ViewLogModal(ListView listview)
+        public ViewLogModal(RecordView record)
         {
             BindingContext = this;
-            this.SelectedListView = listview;
+            this.record = record; 
             GetDataOnSpecificRecord();
             InitializeComponent();
         }
 
         private void GetDataOnSpecificRecord()
         {
-
-            Oprettet = SelectedListView.SelectedItem.ToString();
-
-
-            DateTime a = DateTime.Parse(Oprettet);
-            Console.WriteLine(global.ValgteLønPeriode.From);
-            Console.WriteLine(global.ValgteLønPeriode.To);
-            Console.WriteLine(global.ValgteLønPeriode.CompanyName);
-
-            // WTF is going on here!!! Should be so fucking simple. jesus fuck.
-            SelectedRecord = database.FåRecordByLoggedDate(a, global.ValgteLønPeriode);
+                  // WTF is going on here!!! Should be so fucking simple. jesus fuck.
+            SelectedRecord = database.FåRecordByLoggedDate(record.LoggedDate, global.ValgteLønPeriode);
             Fra = SelectedRecord.StartTime;
             Til = SelectedRecord.EndTime;
             Pause = SelectedRecord.Pause;
+            Oprettet = SelectedRecord.LoggedDate.ToString();
         }
 
         async void OnDismissButtonClicked(object sender, EventArgs args)

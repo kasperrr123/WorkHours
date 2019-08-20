@@ -21,12 +21,15 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Label HorizontalOptions="Center" Grid.Row="0" Text="Vælg en periode" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-            <StackLayout Grid.Row="1" Grid.RowSpan="9">
+            <StackLayout Grid.Row="1" Grid.RowSpan="6">
                 <ScrollView>
                     <ListView x:Name="ListOfPeriods" ItemSelected="ListOfPeriods_ItemSelected" SeparatorColor="Black"  ItemsSource="{Binding Perioder}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-
                     </ListView>
                 </ScrollView>
+            </StackLayout>
+            <Label Text="Her har du mulighed for at vælge et andet år" HorizontalOptions="CenterAndExpand" Grid.Row="8"></Label>
+            <StackLayout Grid.Row="9" HorizontalOptions="CenterAndExpand">
+                <Picker x:Name="VælgAndetÅrPicker" Title="Vælg andet år" ></Picker>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
