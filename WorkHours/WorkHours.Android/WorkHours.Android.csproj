@@ -104,6 +104,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\CheckMark.png" />
+    <AndroidResource Include="Resources\drawable\CheckMark.png" />
+  </ItemGroup>
   <Import Project="..\WorkHours\WorkHours.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

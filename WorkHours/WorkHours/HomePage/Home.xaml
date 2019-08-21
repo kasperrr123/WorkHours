@@ -11,8 +11,8 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25*"></RowDefinition>
-                <RowDefinition Height="50*"></RowDefinition>
-                <RowDefinition Height="25*"></RowDefinition>
+                <RowDefinition Height="57*"></RowDefinition>
+                <RowDefinition Height="18*"></RowDefinition>
 
             </Grid.RowDefinitions>
 
@@ -40,7 +40,7 @@
             </StackLayout>
 
             <!-- Panel der vises når der er oprettet en løn periode -->
-            <StackLayout x:Name="LønPeriodeOprettet" IsVisible="{Binding LønPeriodeForNuværendeMånedFundet}" Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <StackLayout x:Name="LønPeriodeOprettetStackLayout" IsVisible="{Binding LønPeriodeForNuværendeMånedFundet}" Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                 <StackLayout HorizontalOptions="CenterAndExpand">
                     <Label Text="Du har arbejdet i dag" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Large"></Label>
                     <Label Text="{Binding TodaysDate}" HorizontalTextAlignment="Center" FontSize="Medium"></Label>
@@ -59,6 +59,16 @@
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Button x:Name="GemBtn" Text="Gem" BackgroundColor="{Binding LabelColor}" Clicked="GemBtn_Clicked"></Button>
                 </StackLayout>
+            </StackLayout>
+            <!-- Panel der vises når der er blevet oprettet en record -->
+            <StackLayout x:Name="RecordAlleredeOprettetStackLayout" IsVisible="{Binding RecordAlleredeOprettet}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1">
+                <Grid>
+                    <Image x:Name="CheckMarkPhoto" Source="CheckMark.jpg"></Image>
+                </Grid>
+                <Label Text="Du har allerede registreret din arbejdsdag!" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+                <Label Text="Gå til Arkiv for at ændre din registrering eller for at slette den." FontAttributes="Bold" HorizontalOptions="Center"></Label>
+
+
             </StackLayout>
 
             <!-- Nederste panel hvor indstillinger knappen og vælg en arbejdsplads ligger -->

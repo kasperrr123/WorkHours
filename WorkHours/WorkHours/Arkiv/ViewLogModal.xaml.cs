@@ -82,7 +82,6 @@ namespace WorkHours.Arkiv
                 App.Database.SletRecord(SelectedRecord);
                 await DisplayAlert("Success", "Din vagt er blevet slettet", "Ok");
                 OnDismissButtonClicked(sender, e);
-
             }
             catch (Exception)
             {

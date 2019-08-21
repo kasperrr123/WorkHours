@@ -47,7 +47,7 @@ namespace WorkHours.Data
 
                 Console.WriteLine(ex.Message);
             }
- 
+
 
         }
 
@@ -104,7 +104,17 @@ namespace WorkHours.Data
             database.Delete(selectedRecord);
         }
 
-
+        public LønPeriode GetLønPeriode(string LønPeriodeName, int year)
+        {
+            if (database.Table<LønPeriode>() != null)
+            {
+                return database.Table<LønPeriode>().Where(n => n.Periode == LønPeriodeName && n.Year == year).First();
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         // Controllers for TABLE: User.
 
@@ -250,6 +260,36 @@ namespace WorkHours.Data
             }
         }
 
+        public Record FindesDerRecordForDagsDato(LønPeriode lønperiode, DateTime TodaysDate)
+        {
+            try
+            {
+
+                if (database.Table<Record>() != null)
+                {
+                    var records = database.Table<Record>().Where(n => n.LønPeriodeID == lønperiode.LønPeriodeID);
+                    foreach (var item in records)
+                    {
+                        if (item.LoggedDate.Day == TodaysDate.Day && item.LoggedDate.Month == TodaysDate.Month && item.LoggedDate.Year == TodaysDate.Year)
+                        {
+                            return item;
+                        }
+                    }
+                    return null;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+               
+            }
+        }
+
         public List<LønPeriode> GetLønPerioder()
         {
 
@@ -260,18 +300,6 @@ namespace WorkHours.Data
             }
 
             return list;
-        }
-
-        public LønPeriode GetLønPeriode(string LønPeriodeName, int year)
-        {
-            if (database.Table<LønPeriode>() != null)
-            {
-                return database.Table<LønPeriode>().Where(n => n.Periode == LønPeriodeName && n.Year == year).First();
-            }
-            else
-            {
-                return null;
-            }
         }
 
         public int UpdateCompany(Company company)

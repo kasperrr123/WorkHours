@@ -31,7 +31,6 @@ namespace WorkHours.HomePage
         }
 
         private Color labelColor;
-
         public Color LabelColor
         {
             get { return labelColor; }
@@ -52,6 +51,7 @@ namespace WorkHours.HomePage
                 INotifyPropertyChanged();
             }
         }
+
         private String whatCompanyLabel;
         public String WhatCompanyLabel
         {
@@ -62,11 +62,14 @@ namespace WorkHours.HomePage
                 INotifyPropertyChanged();
             }
         }
-        public List<String> Companies { get; set; }
-        public String WelcomeUserLabel { get; set; }
-        public bool IngenArbejdsPladsOprettet { get; set; }
-        private bool lønPeriodeForNuværendeMånedFundet;
 
+        public List<String> Companies { get; set; }
+
+        public String WelcomeUserLabel { get; set; }
+
+        public bool IngenArbejdsPladsOprettet { get; set; }
+
+        private bool lønPeriodeForNuværendeMånedFundet;
         public bool LønPeriodeForNuværendeMånedFundet
         {
             get { return lønPeriodeForNuværendeMånedFundet; }
@@ -87,7 +90,28 @@ namespace WorkHours.HomePage
                 INotifyPropertyChanged();
             }
         }
-        public bool IngenLønPeriodeForNuværendeMånedFundet { get; set; }
+
+        public bool recordAlleredeOprettet { get; set; }
+        public bool RecordAlleredeOprettet
+        {
+            get { return recordAlleredeOprettet; }
+            set
+            {
+                recordAlleredeOprettet = value;
+                INotifyPropertyChanged();
+            }
+        }
+
+        public bool ingenLønPeriodeForNuværendeMånedFundet { get; set; }
+        public bool IngenLønPeriodeForNuværendeMånedFundet
+        {
+            get { return ingenLønPeriodeForNuværendeMånedFundet; }
+            set
+            {
+                ingenLønPeriodeForNuværendeMånedFundet = value;
+                INotifyPropertyChanged();
+            }
+        }
         // Database instance
         private WorkHoursDatabaseController database = App.Database;
         // Global Variable instance
@@ -97,6 +121,8 @@ namespace WorkHours.HomePage
         // CONSTRUCTOR
         public Home()
         {
+
+
             if (globalVariables.ChosenCompany == null)
             {
                 DeserializeGlobalVariablesJson();
@@ -159,7 +185,6 @@ namespace WorkHours.HomePage
             // Tjek om der er blevet oprettet en arbejdsplads.
             if (FindesDerArbejdsplads())
             {
-                // Sætter label til arbejdsplads.
                 WhatCompanyLabel = GlobalVariables.Instance.ChosenCompany;
                 // Tjek om der er oprettet en løn periode.
                 if (FindesDerEnAktivLønPeriodeForArbejdsplads())
@@ -168,9 +193,17 @@ namespace WorkHours.HomePage
                     var currentLønPeriode = lønPerioder.Where(n => n.To.Ticks > DateTime.Now.Ticks).First();
                     globalVariables.ValgteLønPeriode = currentLønPeriode;
                     LønPeriodeLabel = "Fra d. " + currentLønPeriode.From.ToString("dd/MM/yyyy") + " til d. " + currentLønPeriode.To.ToString("dd/MM/yyyy");
-                    IngenLønPeriodeForNuværendeMånedFundet = false;
                     LønPeriodeForNuværendeMånedFundet = true;
-
+                    // Tjekker om der er allerede er blevet registreret en vagt
+                    if (FindesDerAlleredeEnRecordForIDag())
+                    {
+                        LønPeriodeForNuværendeMånedFundet = false;
+                        RecordAlleredeOprettet = true;
+                    }
+                    else
+                    {
+                        RecordAlleredeOprettet = false;
+                    }
                 }
                 else
                 {
@@ -181,6 +214,18 @@ namespace WorkHours.HomePage
             else
             {
                 IngenArbejdsPladsOprettet = true;
+            }
+        }
+
+        private bool FindesDerAlleredeEnRecordForIDag()
+        {
+            if (database.FindesDerRecordForDagsDato(globalVariables.ValgteLønPeriode, DateTime.Now) == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -335,8 +380,6 @@ namespace WorkHours.HomePage
             Navigation.PushAsync(new OpretNyLønPeriode());
         }
 
-       
-
         // Getting JSON
         private void DeserializeGlobalVariablesJson()
         {
@@ -364,6 +407,12 @@ namespace WorkHours.HomePage
                 Console.WriteLine("No file found");
             }
         }
+
+        protected override void OnAppearing()
+        {
+            HvilketPanelSkalVises();
+        }
+
     }
 
 }

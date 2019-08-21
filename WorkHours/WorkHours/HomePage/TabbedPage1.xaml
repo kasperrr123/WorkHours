@@ -5,11 +5,7 @@
             xmlns:arkiv="clr-namespace:WorkHours.Arkiv"
              x:Class="WorkHours.HomePage.TabbedPage1">
 
-
     <local:Home/>
     <arkiv:ArkivPage />
-
-
-
 
 </TabbedPage>
