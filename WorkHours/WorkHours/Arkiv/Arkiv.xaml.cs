@@ -29,7 +29,8 @@ namespace WorkHours.Arkiv
         private List<RecordView> listOfRecords;
         private String totalTimer;
         public Color ThemeColor { get; set; }
-        public string labelText { get; set; }
+        public string periode { get; set; }
+        public string antalVagter { get; set; }
         private GlobalVariables globalVariables = GlobalVariables.Instance;
         public String TotalTimer
         {
@@ -41,7 +42,8 @@ namespace WorkHours.Arkiv
             }
         }
         private String totalPause;
-        public List<String> Perioder { get; set; }
+
+
         private WorkHoursDatabaseController database = App.Database;
         public String TotalPause
         {
@@ -66,42 +68,21 @@ namespace WorkHours.Arkiv
         public ArkivPage()
         {
             BindingContext = this;
-            if (globalVariables.ValgteLønPeriode != null)
+            try
             {
-                labelText = globalVariables.ValgteLønPeriode.Periode + " " + globalVariables.ValgteLønPeriode.Year;
+                periode = globalVariables.ValgteLønPeriode.Periode;
             }
-            else
+            catch (Exception)
             {
-                labelText = "Ingen periode oprettet endnu";
+
+                periode = "Ingen periode oprettet endnu";
             }
-            ThemeColor = GetColor();
+          
             SetRecords();
             SetTotalHoursAndBreaks();
             InitializeComponent();
         }
-        private Color GetColor()
-        {
-            if (database.GetCompany(globalVariables.ChosenCompany) != null)
-            {
-                switch (database.GetCompany(globalVariables.ChosenCompany).Color)
-                {
-                    case "Red":
-                        return Color.FromRgb(255, 0, 0);
 
-                    case "Green":
-                        return Color.FromRgb(0, 255, 0);
-
-                    case "Blue":
-                        return Color.FromRgb(0, 0, 255);
-                    case "Standard":
-                        return Color.CadetBlue;
-                    default:
-                        break;
-                }
-
-            }
-            return Color.CadetBlue;
-        }
 
         private void SetTotalHoursAndBreaks()
         {
@@ -155,6 +136,11 @@ namespace WorkHours.Arkiv
 
 
             Navigation.PushAsync(new SeeOldPeriod());
+        }
+
+        private void SeLønSeddelBtn_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 

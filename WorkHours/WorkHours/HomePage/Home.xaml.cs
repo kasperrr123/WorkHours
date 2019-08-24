@@ -121,8 +121,6 @@ namespace WorkHours.HomePage
         // CONSTRUCTOR
         public Home()
         {
-
-
             if (globalVariables.ChosenCompany == null)
             {
                 DeserializeGlobalVariablesJson();

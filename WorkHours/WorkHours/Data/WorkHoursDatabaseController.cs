@@ -94,6 +94,20 @@ namespace WorkHours.Data
 
         }
 
+        internal List<int> FåÅrstalForFirma(string chosenCompany)
+        {
+            List<int> år = new List<int>();
+            var lønperioder = database.Table<LønPeriode>();
+            foreach (var periode in lønperioder)
+            {
+                if (!år.Contains(periode.Year)){
+                    år.Add(periode.Year);
+                }
+            }
+
+            return år;
+        }
+
         internal void ÆndreRecord(Record selectedRecord)
         {
             database.Update(selectedRecord);
