@@ -27,7 +27,20 @@ namespace WorkHours.Models
 
         public String GetToString
         {
-            get { return "Type: " + TypeOfTillæg + ", Fra: " + From + ", Kr: " + TillægKr + ", Hele dagen: " + getAllDay(); }
+
+            get {
+
+                if (AllDay == true)
+                {
+                    return "Type: " + TypeOfTillæg + ", Fra: " + "Hele dagen" + ", Tillæg: " + TillægKr;
+                }
+                else
+                {
+                    return "Type: " + TypeOfTillæg + ", Fra: " + From.ToString("hh':'mm") +  ", " + "Tillæg: " + TillægKr;
+                }
+                
+
+            }
         }
 
         private string getAllDay()

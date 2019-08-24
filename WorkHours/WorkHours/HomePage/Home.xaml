@@ -61,7 +61,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- Panel der vises når der er blevet oprettet en record -->
-            <StackLayout x:Name="RecordAlleredeOprettetStackLayout" IsVisible="{Binding RecordAlleredeOprettet}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1">
+            <StackLayout x:Name="RecordAlleredeOprettetStackLayout" IsVisible="{Binding RecordAlleredeOprettet}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1">
                 <Grid>
                     <Image x:Name="CheckMarkPhoto" Source="CheckMark.jpg"></Image>
                 </Grid>

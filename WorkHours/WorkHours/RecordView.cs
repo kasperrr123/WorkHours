@@ -17,9 +17,9 @@ namespace WorkHours
 
         public RecordView(DateTime date, TimeSpan from, TimeSpan to, DateTime loggedDate)
         {
-            this.OnlyDate = date.Day + "-" + date.Month + "-" + date.Year;
+            this.OnlyDate = date.ToString("dd/MM/yyyy");
             this.DayOfWeekInDA = FormatToDA.GetDayOfWeekInDA(date.DayOfWeek.ToString()) + " d.";
-            this.FromToString = from.Hours + "." + from.Minutes + "-" + to.Hours + "." + to.Minutes;
+            this.FromToString = from.ToString("hh':'mm") + "-" + to.ToString("hh':'mm");
             this.LoggedDate = loggedDate;
         }
 

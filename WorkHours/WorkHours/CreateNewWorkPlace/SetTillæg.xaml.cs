@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Android.Widget;
 using System.Threading.Tasks;
 using WorkHours.Data;
 using Xamarin.Forms;
@@ -56,47 +57,63 @@ namespace WorkHours.CreateNewWorkPlace
         {
             return new List<string>
             {
-                "Aften tillæg", "Syge tillæg", "Nat tillæg", "Søndags tillæg", "Lørsdags Tillæg"
+                "Aften tillæg", "Syge tillæg", "Nat tillæg", "Søndags tillæg", "Lørsdags tillæg"
             };
         }
 
         private void TilføjTillæg_Clicked(object sender, EventArgs e)
         {
-            if (TillægPicker.SelectedItem != null && KrField.Text!=null)
+
+            if (TillægPicker.SelectedItem != null && KrField.Text != null)
             {
 
-            String Type = "";
-            switch (TillægPicker.SelectedItem.ToString())
-            {
-                case "Aften tillæg":
-                    Type = "Aften";
-                    break;
-                case "Syge tillæg":
-                    Type = "Syge";
-                    break;
-                case "Nat tillæg":
-                    Type = "Nat";
-                    break;
-                case "Søndags tillæg":
-                    Type = "Søndag";
-                    break;
-                case "Lørdags tillæg":
-                    Type = "Lørdag";
-                    break;
+                String Type = "";
+                switch (TillægPicker.SelectedItem.ToString())
+                {
+                    case "Aften tillæg":
+                        Type = "Aften";
+                        break;
+                    case "Syge tillæg":
+                        Type = "Syge";
+                        break;
+                    case "Nat tillæg":
+                        Type = "Nat";
+                        break;
+                    case "Søndags tillæg":
+                        Type = "Søndag";
+                        break;
+                    case "Lørdags tillæg":
+                        Type = "Lørdag";
+                        break;
 
-                default:
-                    Type = "Fejæ";
-                    break;
-            }
-            Tillæg tillæg = new Tillæg
-            {
-                CompanyName = globalVariables.ChosenCompany,
-                TypeOfTillæg = Type,
-                TillægKr = KrField.Text,
-                From = TillægTimePicker.Time
-            };
+                    default:
+                        Type = "Fejl";
+                        break;
+                }
+                Tillæg tillæg = new Tillæg
+                {
+                    CompanyName = CreateNewWorkPlaceObj.Instance.CompanyName,
+                    TypeOfTillæg = Type,
+                    TillægKr = KrField.Text,
+                    From = TillægTimePicker.Time,
+                    AllDay = AllDaySwitch.IsToggled
 
-            ListOfTillæg.Add(tillæg);
+                };
+
+                foreach (var item in ListOfTillæg)
+                {
+                    if (item.TypeOfTillæg == tillæg.TypeOfTillæg)
+                    {
+#if __ANDROID__
+                        Toast.MakeText(Forms.Context, "Tillæg allerede tilføjet", ToastLength.Short).Show();
+                        return;
+#endif
+                        DisplayAlert("Hov!", "Tillæg allerede tilføjet", "Ok");
+                    }
+                }
+
+
+                ListOfTillæg.Add(tillæg);
 
             }
             else

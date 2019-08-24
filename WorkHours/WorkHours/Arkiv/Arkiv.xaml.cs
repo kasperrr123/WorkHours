@@ -68,7 +68,7 @@ namespace WorkHours.Arkiv
             BindingContext = this;
             if (globalVariables.ValgteLønPeriode != null)
             {
-                labelText = globalVariables.ValgteLønPeriode.Periode;
+                labelText = globalVariables.ValgteLønPeriode.Periode + " " + globalVariables.ValgteLønPeriode.Year;
             }
             else
             {

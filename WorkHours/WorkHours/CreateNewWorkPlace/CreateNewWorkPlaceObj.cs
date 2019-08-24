@@ -8,7 +8,7 @@ namespace WorkHours.CreateNewWorkPlace
     public sealed class CreateNewWorkPlaceObj
     {
         private static CreateNewWorkPlaceObj instance;
-  
+
         public string color { get; set; }
         public String BasisTimeLøn { get; set; }
         public int LønPeriode_FraDato { get; set; }
@@ -17,6 +17,7 @@ namespace WorkHours.CreateNewWorkPlace
         public LørdagsTillægObj LørdagsTillæg { get; set; }
         public SøndagsTillægObj SøndagsTillæg { get; set; }
         public Object[] AndreTillægs { get; set; }
+        public string CompanyName { get; internal set; }
 
 
         private CreateNewWorkPlaceObj()
@@ -36,7 +37,7 @@ namespace WorkHours.CreateNewWorkPlace
             }
         }
 
-        public string CompanyName { get; internal set; }
+
 
         public static CreateNewWorkPlaceObj NewMonthObj()
         {
