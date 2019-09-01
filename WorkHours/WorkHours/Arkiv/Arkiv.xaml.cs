@@ -80,6 +80,7 @@ namespace WorkHours.Arkiv
                 CurrentPeriode = database.GetCompany(CurrentCompany).HasCurrentPeriode();
                 PeriodeFraLabel = CurrentPeriode.From.Day;
                 PeriodeTilLabel = CurrentPeriode.To.Day;
+                PeriodeLabel = CurrentPeriode.Periode;
                 SetRecords();
                 SetTotalHoursAndBreaks();
             }

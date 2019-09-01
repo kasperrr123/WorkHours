@@ -138,7 +138,6 @@ namespace WorkHours.HomePage
             SetChooseWorkPlacePickerValues();
             HvilketPanelSkalVises();
             SetTimePickersToNow();
-
             InitializeComponent();
         }
 
@@ -391,7 +390,7 @@ namespace WorkHours.HomePage
                 EndTime = TimeTo.Time,
                 LoggedDate = DateTime.Now,
                 Pause = inputPause.Text,
-                LønPeriodeID = globalVariables.ValgteLønPeriode.LønPeriodeID,
+                LønPeriodeID = CurrentLønPeriode.LønPeriodeID,
 
             };
             try
@@ -399,7 +398,7 @@ namespace WorkHours.HomePage
                 App.Database.AddRecord(record);
                 App.Database.Commit();
 
-                DisplayAlert("Success", "Din arbejdsdag er blevet gemt under " + globalVariables.ChosenCompany, "Ok");
+                DisplayAlert("Success", "Din arbejdsdag er blevet gemt under " + CurrentCompany, "Ok");
 
 
             }

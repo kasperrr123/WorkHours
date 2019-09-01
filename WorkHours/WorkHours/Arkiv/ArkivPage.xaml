@@ -11,13 +11,13 @@
                 <RowDefinition Height="8*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="72*"></RowDefinition>
-                <RowDefinition Height="8*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
                 <RowDefinition Height="8*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" >
-                <Label Text="{Binding periode}"></Label>
+                <Label Text="{Binding PeriodeLabel}"></Label>
             </StackLayout>
             <StackLayout Grid.Row="1">
                 <Label Text="{Binding PeriodeFraLabel}"></Label>

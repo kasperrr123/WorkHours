@@ -29,7 +29,7 @@ namespace WorkHours
                     {
                         ID = 1,
                         CurrentCompany = App.Database.GetCompanies()[0].CompanyName,
-                        
+
                     });
                 }
                 catch (Exception ex)
@@ -41,58 +41,63 @@ namespace WorkHours
 
         private void OpretRecordsElgiganten()
         {
-            int min = 10;
-            DateTime now = DateTime.Now;
+            int min = 1;
+
             for (int i = 0; i < 20; i++)
             {
                 var record = new Record
                 {
                     StartTime = new TimeSpan(09, min, 00),
                     EndTime = new TimeSpan(17, 15, 00),
-                    LoggedDate = new DateTime(2019, 09, 02, 00, min, 00),
+                    LoggedDate = new DateTime(2019, 09, 02, 12, min, 00),
                     Pause = "15",
                     LønPeriodeID = 1,
 
                 };
                 database.AddRecord(record);
                 App.Database.Commit();
-                min += 2;
-                now.AddSeconds(1);
+                min += 1;
+
             }
         }
 
         private void OpretRecordsTHansen()
         {
-            for (int i = 0; i < 20; i++)
+            int min = 1;
+            for (int i = 0; i < 15; i++)
             {
                 var record = new Record
                 {
-                    StartTime = new TimeSpan(08, 45, 00),
+                    StartTime = new TimeSpan(08, min, 00),
                     EndTime = new TimeSpan(18, 20, 00),
-                    LoggedDate = DateTime.Now.AddMinutes(1),
+                    LoggedDate = new DateTime(2019, 09, 02, 13, min, 00),
                     Pause = "35",
                     LønPeriodeID = 2,
                 };
                 database.AddRecord(record);
                 App.Database.Commit();
+
+                min += 2;
             }
         }
 
         private void OpretRecordsKinorama()
         {
-            for (int i = 0; i < 25; i++)
+            int min = 3;
+            for (int i = 0; i < 8; i++)
             {
                 var record = new Record
                 {
-                    StartTime = new TimeSpan(12, 00, 00),
+                    StartTime = new TimeSpan(12, min, 00),
                     EndTime = new TimeSpan(23, 30, 00),
-                    LoggedDate = DateTime.Now.AddMinutes(1),
+                    LoggedDate = new DateTime(2019, 09, 02, 14, min, 00),
                     Pause = "120",
                     LønPeriodeID = 3,
 
                 };
                 database.AddRecord(record);
                 App.Database.Commit();
+                min += 2;
             }
         }
 
