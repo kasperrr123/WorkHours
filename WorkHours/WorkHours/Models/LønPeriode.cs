@@ -24,5 +24,23 @@ namespace WorkHours.Models
         [OneToMany]
         public List<Record> Records { get; set; }
 
+
+        public LønPeriode()
+        {
+
+        }
+
+        public bool HasRecordsForToday(LønPeriode lønPeriode)
+        {
+            if (App.Database.FåRecordsByPeriode(lønPeriode) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

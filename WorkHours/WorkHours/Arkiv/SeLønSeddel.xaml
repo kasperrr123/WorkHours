@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.SeLønSeddel">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="{Binding arbejdsplads}"></Label>
+            <Label Text="{Binding periode}"></Label>
+            <Label Text="{Binding antalVagter}"></Label>
+            <Label Text="{Binding antalTimer}"></Label>
+            <Label Text="{Binding pauseIMinutter}"></Label>
+            <StackLayout Orientation="Horizontal" >
+                <Button x:Name="ExportToFile" Text="Export" BackgroundColor="LightGray"></Button>
+                <Button x:Name="TilbageBtn" BackgroundColor="CadetBlue" Text="Tilbage" Clicked="TilbageBtn_Clicked" ></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

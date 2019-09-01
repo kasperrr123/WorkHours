@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using WorkHours.CreateNewWorkPlace;
+using WorkHours.Data;
 using WorkHours.UpdateWorkPlace;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -75,7 +76,8 @@ namespace WorkHours.HomePage
                     File.Delete(path);
                     Console.WriteLine("JSON File deleted");
                     // Deleting database
-                    App.Database.DeleteDatabase();
+                    DatabaseTools DBTools = new DatabaseTools();
+                    DBTools.ResetDatabase();
                     await DisplayAlert("Succes", "Database has been deleted", "Return to home");
                     await Navigation.PushAsync(new FirstTimeUse());
                 }

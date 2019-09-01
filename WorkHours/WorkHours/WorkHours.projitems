@@ -11,19 +11,15 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)FirstTimeUse.xaml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\UpdateFinalPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateFinalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\UpdateTillæg1.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateTillæg1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\UpdateTillæg2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\UpdateWorkPlaceNameAndTimeLøn.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateWorkPlaceNameAndTimeLøn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -53,6 +49,7 @@
       <DependentUpon>SetTillæg.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileHandling.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormatToDA.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GlobalVariables.cs" />
@@ -103,24 +100,26 @@
       <DependentUpon>SetTimeLøn.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\CreateNewWorkPlaceObj.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\UpdateFinalPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Data\TestData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Variables.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\CreateNewWorkPlaceObj.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateFinalPage.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>UpdateFinalPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\UpdateTillæg1.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateTillæg1.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>UpdateTillæg1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\UpdateTillæg2.xaml.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>UpdateTillæg2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\UpdateWorkPlace\UpdateWorkPlaceNameAndTimeLøn.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)UpdateWorkPlace\UpdateWorkPlaceNameAndTimeLøn.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>UpdateWorkPlaceNameAndTimeLøn.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)RecordView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\SeLønSeddel.xaml.cs">
+      <DependentUpon>SeLønSeddel.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)HomePage\Settings.xaml">
@@ -204,6 +203,12 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\SetTillæg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\SeLønSeddel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

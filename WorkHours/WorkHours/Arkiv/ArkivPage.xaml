@@ -8,16 +8,22 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="72*"></RowDefinition>
                 <RowDefinition Height="8*"></RowDefinition>
-                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" >
                 <Label Text="{Binding periode}"></Label>
             </StackLayout>
-            <StackLayout Grid.Row="1" >
+            <StackLayout Grid.Row="1">
+                <Label Text="{Binding PeriodeFraLabel}"></Label>
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" >
                 <ScrollView>
                     <ListView x:Name="ListViewRecords" SeparatorColor="Black"  ItemsSource="{Binding ListOfRecords}"  ItemSelected="ListOfRecords_ItemSelected"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <ListView.ItemTemplate>
@@ -36,7 +42,10 @@
                     </ListView>
                 </ScrollView>
             </StackLayout>
-            <StackLayout   Grid.Row="2" HorizontalOptions="CenterAndExpand" >
+            <StackLayout Grid.Row="3">
+                <Label Text="{Binding PeriodeTilLabel}"></Label>
+            </StackLayout>
+            <StackLayout   Grid.Row="4" HorizontalOptions="CenterAndExpand" >
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Timer: "></Label>
                     <Label Text="{Binding TotalTimer}"></Label>
@@ -46,7 +55,7 @@
                     <Label Text="{Binding TotalPause}"></Label>
                 </StackLayout>
             </StackLayout>
-            <StackLayout Grid.Row="3" Orientation="Horizontal"  VerticalOptions="CenterAndExpand" Margin="0,0,0,10">
+            <StackLayout Grid.Row="5" Orientation="Horizontal"  VerticalOptions="CenterAndExpand" Margin="0,0,0,10">
                 <Button x:Name="SeLønSeddelBtn" HorizontalOptions="CenterAndExpand" Margin="10,0,0,0" Clicked="SeLønSeddelBtn_Clicked"  Text="Se lønseddel" BackgroundColor="LightBlue"></Button>
                 <Button x:Name="SeAllePerioderForDetteÅrBtn" Margin="0,0,10,0" Clicked="SeeAllPeriodsBtn_Clicked" HorizontalOptions="CenterAndExpand"  Text="Se alle perioder for dette år" BackgroundColor="LightBlue"></Button>
             </StackLayout>

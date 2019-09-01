@@ -60,9 +60,7 @@ namespace WorkHours.UpdateWorkPlace
 
             }
 
-
-
-            Navigation.PushAsync(new UpdateTillæg2());
+            Navigation.PushAsync(new UpdateFinalPage());
         }
     }
 }

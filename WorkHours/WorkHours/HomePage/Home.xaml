@@ -47,7 +47,7 @@
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label HorizontalTextAlignment="Center" Text="Fra" VerticalTextAlignment="Center"></Label>
-                    <TimePicker x:Name="TimeFrom" Time="{Binding currentTimeSpan}" HorizontalOptions="CenterAndExpand"></TimePicker>
+                    <TimePicker x:Name="TimeFrom" Time="{Binding CurrentTimeSpan}" HorizontalOptions="CenterAndExpand"></TimePicker>
                     <Label HorizontalTextAlignment="Center" Text="Til" VerticalTextAlignment="Center"></Label>
                     <TimePicker x:Name="TimeTo" HorizontalOptions="CenterAndExpand"></TimePicker>
                 </StackLayout>

@@ -30,7 +30,6 @@ namespace WorkHours.Models
         [ForeignKey(typeof(User))]
         public String User { get; set; }
 
-
         [OneToMany]
         public List<LønPeriode> LønPerioder { get; set; }
 
@@ -39,6 +38,30 @@ namespace WorkHours.Models
 
         public Company()
         {
+
+        }
+
+        /// <summary>
+        /// If there is a periode for this month it will be returned, otherwise null.
+        /// </summary>
+        /// <returns>
+        /// Lønperiode eller null
+        /// </returns>
+        public LønPeriode HasCurrentPeriode()
+        {
+            
+            if (App.Database.GetLønPerioder().Find(n => n.Year == System.DateTime.Now.Year && n.CompanyName == CompanyName && n.To.Ticks > DateTime.Now.Ticks) != null)
+            {
+                return App.Database.GetLønPerioder().Find(n => n.Year == System.DateTime.Now.Year && n.CompanyName == CompanyName && n.To.Ticks > DateTime.Now.Ticks);
+
+            }
+            else
+            {
+                return null;
+            }
+
+
+
 
         }
 

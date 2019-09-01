@@ -26,6 +26,8 @@ namespace WorkHours.CreateNewWorkPlace
 
         public List<Tillæg> ListOfTillæg { get; set; }
 
+        public WorkHoursDatabaseController database = App.Database;
+
         public FinalPage(List<Tillæg> listoftillæg)
         {
             BindingContext = this;
@@ -39,19 +41,13 @@ namespace WorkHours.CreateNewWorkPlace
         {
             // inserting data into database.
             InsertIntoDatabase();
-
-
-
-
             // Go to homePage
             Navigation.PushAsync(new TabbedPage1());
-
-
         }
 
         private void InsertIntoDatabase()
         {
-            var database = App.Database;
+          
             var user = database.GetUser();
             // Tilføjer Arbejdsplads.
             database.AddCompany(new Company
@@ -70,15 +66,16 @@ namespace WorkHours.CreateNewWorkPlace
             {
                 database.AddTillæg(tillæg);
             }
-           
             database.Commit();
 
+            if (database.GetVariables() == null)
+            {
+                database.AddVariable(new Variables
+                {
+                    CurrentCompany = obj.CompanyName
+                });
+            }
 
-            // Sætter globale Variabler.
-            var variable = GlobalVariables.Instance;
-            variable.ChosenCompany = obj.CompanyName;
-            variable.LønPeriode_GårFraDag = obj.LønPeriode_FraDato;
-            variable.LønPeriode_GårTilDag = obj.LønPeriode_TilDato;
         }
 
         private void NoBtn_Clicked(object sender, EventArgs e)

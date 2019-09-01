@@ -17,40 +17,34 @@ namespace WorkHours.Data
         public WorkHoursDatabaseController()
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
-            // Dropping the tables.
-            try
-            {
-                //database.DropTable<Tillæg>();
-                //database.DropTable<User>();
-                //database.DropTable<Record>();
-                //database.DropTable<Company>();
-                //database.DropTable<LønPeriode>();
 
-            }
-            catch (Exception ex)
-            {
 
-                Console.WriteLine(ex.Message);
-            }
             // Creating tables.
             try
             {
-                database.CreateTable<Tillæg>();
-                database.CreateTable<User>();
-                database.CreateTable<Record>();
-                database.CreateTable<Company>();
-                database.CreateTable<LønPeriode>();
 
+                database.DropTable<Company>();
+                database.DropTable<LønPeriode>();
+                database.DropTable<Tillæg>();
+                database.DropTable<Record>();
+                database.DropTable<User>();
+
+                database.CreateTable<User>();
+                database.CreateTable<Company>();
+                database.CreateTable<Tillæg>();
+                database.CreateTable<LønPeriode>();
+                database.CreateTable<Record>();
+                database.CreateTable<Variables>();
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex.Message);
             }
-
-
         }
 
+
+
+        // Controllers for TABLE: Records
         public List<Record> FåRecords(string chosenCompany, LønPeriode valgteLønPeriode)
         {
             try
@@ -100,7 +94,8 @@ namespace WorkHours.Data
             var lønperioder = database.Table<LønPeriode>();
             foreach (var periode in lønperioder)
             {
-                if (!år.Contains(periode.Year)){
+                if (!år.Contains(periode.Year))
+                {
                     år.Add(periode.Year);
                 }
             }
@@ -192,24 +187,20 @@ namespace WorkHours.Data
             return database.Update(month);
         }
 
-
-
         public void DeleteMonth(LønPeriode month)
         {
             database.Delete(month);
         }
 
-        internal List<Record> FåRecordsByPeriode(String selectedItem, int year)
+        internal List<Record> FåRecordsByPeriode(LønPeriode item)
         {
             try
             {
-                var lønPeriode = database.Table<LønPeriode>().Where(n => n.Periode == selectedItem).Where(n => n.Year == year).First();
-
-                var records = database.Table<Record>().Where(n => n.LønPeriodeID == lønPeriode.LønPeriodeID);
+                var records = database.Table<Record>().Where(n => n.LønPeriodeID == item.LønPeriodeID);
                 List<Record> list = new List<Record>();
-                foreach (var item in records)
+                foreach (var record in records)
                 {
-                    list.Add(item);
+                    list.Add(record);
                 }
 
                 return list;
@@ -300,7 +291,7 @@ namespace WorkHours.Data
             {
                 Console.WriteLine(e.Message);
                 return null;
-               
+
             }
         }
 
@@ -340,30 +331,56 @@ namespace WorkHours.Data
             return list;
         }
 
+        // Controller for TABLE: Variables.
+        public Variables GetVariables()
+        {
+            try
+            {
+                if (database.Table<Variables>().First() == null)
+                {
+                    return null;
+                }
+                return database.Table<Variables>().First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Source);
+                return null;
+            }
+
+        }
+
+        public int UpdateVariables(Variables variables)
+        {
+
+            try
+            {
+                database.Update(variables);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            return 1;
+        }
+
+        public void AddVariable(Variables variables)
+        {
+            try
+            {
+                database.Insert(variables);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         // Other methods
         public void Commit()
         {
             database.Commit();
-        }
-
-        internal void DeleteDatabase()
-        {
-            try
-            {
-                database.DeleteAll<Company>();
-                database.DeleteAll<LønPeriode>();
-                database.DeleteAll<Tillæg>();
-                database.DeleteAll<Record>();
-                database.DeleteAll<User>();
-
-            }
-            catch (Exception x)
-            {
-                Console.WriteLine("ERROR: " + x.Message);
-
-            }
-
-
         }
 
         internal void AddRecord(Record record)

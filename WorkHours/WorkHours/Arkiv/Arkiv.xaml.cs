@@ -42,7 +42,8 @@ namespace WorkHours.Arkiv
             }
         }
         private String totalPause;
-
+        public int PeriodeFraLabel { get; set; } 
+        public int PeriodeTilLabel { get; set; }
 
         private WorkHoursDatabaseController database = App.Database;
         public String TotalPause
@@ -77,10 +78,13 @@ namespace WorkHours.Arkiv
 
                 periode = "Ingen periode oprettet endnu";
             }
-          
+            PeriodeFraLabel = globalVariables.LønPeriode_GårFraDag;
+            PeriodeTilLabel = globalVariables.LønPeriode_GårTilDag;
             SetRecords();
             SetTotalHoursAndBreaks();
             InitializeComponent();
+         
+           
         }
 
 
@@ -127,20 +131,16 @@ namespace WorkHours.Arkiv
             RecordView record = (RecordView)view.SelectedItem;
             ListViewRecords.Unfocus();
             Navigation.PushModalAsync(new ViewLogModal(record));
-
-
         }
 
         private void SeeAllPeriodsBtn_Clicked(object sender, EventArgs e)
         {
-
-
             Navigation.PushAsync(new SeeOldPeriod());
         }
 
         private void SeLønSeddelBtn_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushModalAsync(new SeLønSeddel(database.GetLønPeriode(periode, DateTime.Now.Year)));
         }
     }
 
