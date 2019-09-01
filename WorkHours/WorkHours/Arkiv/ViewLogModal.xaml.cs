@@ -15,28 +15,30 @@ namespace WorkHours.Arkiv
     {
         // Database instance
         private WorkHoursDatabaseController database = App.Database;
+        private LønPeriode CurrentPeriode;
+        private string CurrentCompany;
         public String Oprettet { get; set; }
         public TimeSpan Fra { get; set; }
         public TimeSpan Til { get; set; }
         public String Pause { get; set; }
-        public RecordView record { get; set; }
-        private GlobalVariables global = GlobalVariables.Instance;
+        public RecordView Record { get; set; }
 
         private Record SelectedRecord;
 
 
         public ViewLogModal(RecordView record)
         {
+            CurrentCompany = database.GetVariables().CurrentCompany;
+            CurrentPeriode = database.GetCompany(CurrentCompany).HasCurrentPeriode();
             BindingContext = this;
-            this.record = record; 
+            this.Record = record; 
             GetDataOnSpecificRecord();
             InitializeComponent();
         }
 
         private void GetDataOnSpecificRecord()
         {
-                  // WTF is going on here!!! Should be so fucking simple. jesus fuck.
-            SelectedRecord = database.FåRecordByLoggedDate(record.LoggedDate, global.ValgteLønPeriode);
+            SelectedRecord = database.FåRecordByLoggedDate(Record.LoggedDate, CurrentPeriode);
             Fra = SelectedRecord.StartTime;
             Til = SelectedRecord.EndTime;
             Pause = SelectedRecord.Pause;

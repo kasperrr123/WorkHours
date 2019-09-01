@@ -27,34 +27,6 @@ namespace WorkHours.Arkiv
             }
         }
         private List<RecordView> listOfRecords;
-        private String totalTimer;
-        public Color ThemeColor { get; set; }
-        public string periode { get; set; }
-        public string antalVagter { get; set; }
-        private GlobalVariables globalVariables = GlobalVariables.Instance;
-        public String TotalTimer
-        {
-            get { return totalTimer; }
-            set
-            {
-                totalTimer = value;
-                INotifyPropertyChanged();
-            }
-        }
-        private String totalPause;
-        public int PeriodeFraLabel { get; set; } 
-        public int PeriodeTilLabel { get; set; }
-
-        private WorkHoursDatabaseController database = App.Database;
-        public String TotalPause
-        {
-            get { return totalPause; }
-            set
-            {
-                totalPause = value;
-                INotifyPropertyChanged();
-            }
-        }
         public List<RecordView> ListOfRecords
         {
             get { return listOfRecords; }
@@ -65,34 +37,62 @@ namespace WorkHours.Arkiv
                 INotifyPropertyChanged();
             }
         }
+        public string CurrentCompany { get; set; }
+        public LønPeriode CurrentPeriode { get; set; }
+        public string PeriodeLabel { get; set; }
+        private String totalTimer;
+        public String TotalTimer
+        {
+            get { return totalTimer; }
+            set
+            {
+                totalTimer = value;
+                INotifyPropertyChanged();
+            }
+        }
+        private String totalPause;
+        public String TotalPause
+        {
+            get { return totalPause; }
+            set
+            {
+                totalPause = value;
+                INotifyPropertyChanged();
+            }
+        }
+        public int PeriodeFraLabel { get; set; }
+        public int PeriodeTilLabel { get; set; }
+
+        private WorkHoursDatabaseController database = App.Database;
+
 
         public ArkivPage()
         {
+            CurrentCompany = database.GetVariables().CurrentCompany;
             BindingContext = this;
-            try
-            {
-                periode = globalVariables.ValgteLønPeriode.Periode;
-            }
-            catch (Exception)
-            {
 
-                periode = "Ingen periode oprettet endnu";
+            if (database.GetCompany(CurrentCompany).HasCurrentPeriode() == null)
+            {
+                PeriodeLabel = "Ingen periode oprettet endnu";
             }
-            PeriodeFraLabel = globalVariables.LønPeriode_GårFraDag;
-            PeriodeTilLabel = globalVariables.LønPeriode_GårTilDag;
-            SetRecords();
-            SetTotalHoursAndBreaks();
+            else
+            {
+                CurrentPeriode = database.GetCompany(CurrentCompany).HasCurrentPeriode();
+                PeriodeFraLabel = CurrentPeriode.From.Day;
+                PeriodeTilLabel = CurrentPeriode.To.Day;
+                SetRecords();
+                SetTotalHoursAndBreaks();
+            }
+
             InitializeComponent();
-         
-           
         }
 
 
         private void SetTotalHoursAndBreaks()
         {
             Calculations cal = new Calculations();
-            var hours = cal.GetTotalHours(globalVariables.ChosenCompany, globalVariables.ValgteLønPeriode);
-            var minutes = cal.GetTotalBreak(globalVariables.ChosenCompany, globalVariables.ValgteLønPeriode);
+            var hours = cal.GetTotalHours(CurrentCompany, CurrentPeriode);
+            var minutes = cal.GetTotalBreak(CurrentCompany, CurrentPeriode);
             TotalTimer = hours[0].ToString() + "t " + hours[1].ToString() + "m";
             TotalPause = minutes[0].ToString() + "t " + minutes[1].ToString() + "m";
 
@@ -101,22 +101,16 @@ namespace WorkHours.Arkiv
         public void SetRecords()
         {
             ListOfRecords = new List<RecordView>();
-            if (GlobalVariables.Instance.ValgteLønPeriode != null)
+            try
             {
-                try
+                foreach (var record in App.Database.FåRecordsByPeriode(CurrentPeriode))
                 {
-                    var NuværendeLønPeriode = database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany).Where(n => n.To > DateTime.Now).First();
-                    foreach (var record in App.Database.FåRecords(GlobalVariables.Instance.ChosenCompany, NuværendeLønPeriode))
-                    {
-
-                        ListOfRecords.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate));
-                    }
+                    ListOfRecords.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate));
                 }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -140,7 +134,7 @@ namespace WorkHours.Arkiv
 
         private void SeLønSeddelBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new SeLønSeddel(database.GetLønPeriode(periode, DateTime.Now.Year)));
+            Navigation.PushModalAsync(new SeLønSeddel(database.GetLønPeriode(CurrentPeriode)));
         }
     }
 

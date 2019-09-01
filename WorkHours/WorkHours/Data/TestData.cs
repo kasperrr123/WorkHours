@@ -41,20 +41,23 @@ namespace WorkHours
 
         private void OpretRecordsElgiganten()
         {
-
+            int min = 10;
+            DateTime now = DateTime.Now;
             for (int i = 0; i < 20; i++)
             {
                 var record = new Record
                 {
-                    StartTime = new TimeSpan(09, 45, 00),
+                    StartTime = new TimeSpan(09, min, 00),
                     EndTime = new TimeSpan(17, 15, 00),
-                    LoggedDate = DateTime.Now.AddMinutes(1),
+                    LoggedDate = new DateTime(2019, 09, 02, 00, min, 00),
                     Pause = "15",
                     LønPeriodeID = 1,
 
                 };
                 database.AddRecord(record);
                 App.Database.Commit();
+                min += 2;
+                now.AddSeconds(1);
             }
         }
 

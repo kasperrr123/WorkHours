@@ -66,7 +66,7 @@ namespace WorkHours.Data
 
         }
 
-        internal Record FåRecordByLoggedDate(DateTime loggedDate, LønPeriode valgteLønPeriode)
+        internal Record FåRecordByLoggedDate(DateTime SelectedRecordLoggedDate, LønPeriode valgteLønPeriode)
         {
 
             List<Record> list = new List<Record>();
@@ -74,13 +74,13 @@ namespace WorkHours.Data
             {
                 list.Add(item);
             }
-            foreach (var periode in list)
+            foreach (var record in list)
             {
-                String time1 = loggedDate.ToString("hh/mm/ss");
-                String time2 = periode.LoggedDate.ToString("hh/mm/ss");
+                String time1 = SelectedRecordLoggedDate.ToString("hh/mm/ss");
+                String time2 = record.LoggedDate.ToString("hh/mm/ss");
                 if (time1 == time2)
                 {
-                    return periode;
+                    return record;
                 }
             }
             return null;
@@ -113,11 +113,11 @@ namespace WorkHours.Data
             database.Delete(selectedRecord);
         }
 
-        public LønPeriode GetLønPeriode(string LønPeriodeName, int year)
+        public LønPeriode GetLønPeriode(LønPeriode item)
         {
             if (database.Table<LønPeriode>() != null)
             {
-                return database.Table<LønPeriode>().Where(n => n.Periode == LønPeriodeName && n.Year == year).First();
+                return database.Table<LønPeriode>().Where(n => n.LønPeriodeID == item.LønPeriodeID).First();
             }
             else
             {
