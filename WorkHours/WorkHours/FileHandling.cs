@@ -9,7 +9,6 @@ namespace WorkHours
 {
     class FileHandling
     {
-        GlobalVariables variables = GlobalVariables.Instance;
         private string Path { get; set; }
         private string FileName { get; set; }
         private WorkHours.Data.WorkHoursDatabaseController Database;
@@ -27,7 +26,7 @@ namespace WorkHours
         /// <returns>Returns a full document path to the file</returns>
         public string WriteSpecifikLønPeriode(Models.LønPeriode lønPeriode, string company)
         {
-            string lønperiodeStr = variables.ValgteLønPeriode.From.Date.ToString("MMddyyyy") + "-" + variables.ValgteLønPeriode.To.Date.ToString("MMddyyyy");
+            string lønperiodeStr = lønPeriode.From.Date.ToString("MMddyyyy") + "-" + lønPeriode.To.Date.ToString("MMddyyyy");
 
             string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/" + Android.OS.Environment.DirectoryDownloads.ToString() + "/" + company.Replace('/', '?') + ", " + lønPeriode.Periode 
                 + ", " + lønPeriode.Year + ".txt";

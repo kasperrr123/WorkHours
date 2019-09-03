@@ -14,10 +14,11 @@ namespace WorkHours.Arkiv
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SeeOldRecords : ContentPage
     {
-        private GlobalVariables globalVariables = GlobalVariables.Instance;
         public WorkHoursDatabaseController database = App.Database;
 
         public List<RecordView> Records { get; set; }
+
+        public string Company { get; set; }
 
         public Models.LønPeriode LønPeriode { get; set; }
 
@@ -35,9 +36,16 @@ namespace WorkHours.Arkiv
         private List<RecordView> GetRecords()
         {
             List<RecordView> list = new List<RecordView>();
-            foreach (var record in App.Database.FåRecords(globalVariables.ChosenCompany, LønPeriode))
+            foreach (var record in App.Database.FåRecordsByPeriode(LønPeriode))
             {
-                list.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate));
+                if (record.LoggedDate.DayOfWeek.Equals("Saturday") || record.LoggedDate.DayOfWeek.Equals("Sunday"))
+                {
+                    list.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate, "Red"));
+                }
+                else
+                {
+                    list.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate, "LightBlue"));
+                }
             }
 
             return list;
@@ -58,7 +66,7 @@ namespace WorkHours.Arkiv
         {
             string filename = "TEST.txt";
             FileHandling file = new FileHandling();
-            file.WriteSpecifikLønPeriode(LønPeriode, globalVariables.ChosenCompany);
+            file.WriteSpecifikLønPeriode(LønPeriode, App.Database.GetVariables().CurrentCompany);
         }
 
 

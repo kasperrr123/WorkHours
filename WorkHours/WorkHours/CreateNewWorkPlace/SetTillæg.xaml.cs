@@ -28,7 +28,6 @@ namespace WorkHours.CreateNewWorkPlace
         }
 
         private WorkHoursDatabaseController database = App.Database;
-        private GlobalVariables globalVariables = GlobalVariables.Instance;
         private ObservableCollection<Tillæg> listOfTillæg;
         private List<Tillæg> TempListOfTillæg;
 

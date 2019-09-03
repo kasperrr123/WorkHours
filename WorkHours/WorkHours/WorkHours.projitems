@@ -29,8 +29,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Arkiv\Calculations.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldPeriod.xaml.cs">
-      <DependentUpon>SeeOldPeriod.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldPeriods.xaml.cs">
+      <DependentUpon>SeeOldPeriods.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldRecords.xaml.cs">
@@ -52,7 +52,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileHandling.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormatToDA.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GlobalVariables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FåLønPeriode.xaml.cs">
       <DependentUpon>FåLønPeriode.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -115,7 +114,8 @@
       <SubType>Code</SubType>
       <DependentUpon>UpdateWorkPlaceNameAndTimeLøn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)RecordView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PeriodeView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RecordView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Arkiv\SeLønSeddel.xaml.cs">
       <DependentUpon>SeLønSeddel.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -188,7 +188,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldPeriod.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldPeriods.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

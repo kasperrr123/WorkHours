@@ -113,17 +113,18 @@ namespace WorkHours.Data
             database.Delete(selectedRecord);
         }
 
-        public LønPeriode GetLønPeriode(LønPeriode item)
+        public LønPeriode GetLønPeriode(int LønPeriodeID)
         {
             if (database.Table<LønPeriode>() != null)
             {
-                return database.Table<LønPeriode>().Where(n => n.LønPeriodeID == item.LønPeriodeID).First();
+                return database.Table<LønPeriode>().Where(n => n.LønPeriodeID == LønPeriodeID).First();
             }
             else
             {
                 return null;
             }
         }
+
 
         // Controllers for TABLE: User.
 
@@ -191,7 +192,11 @@ namespace WorkHours.Data
         {
             database.Delete(month);
         }
-
+        /// <summary>
+        /// Returner en list med alle records for den givende lønperiode.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         internal List<Record> FåRecordsByPeriode(LønPeriode item)
         {
             try
@@ -211,7 +216,33 @@ namespace WorkHours.Data
                 return null;
             }
         }
+        /// <summary>
+        /// Tjekker om det er oprettet en record for dags dato og returner record. Hvis ikke nogen record er fundet bliver null returned.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        internal bool FåRecordForIdag(LønPeriode item)
+        {
+            try
+            {
+                var recordsForPeriod = database.Table<Record>().Where(n => n.LønPeriodeID == item.LønPeriodeID).ToList();
+                foreach (var record in recordsForPeriod)
+                {
+                    if (record.LoggedDate.ToString("dd-MM-yyyy").Equals(DateTime.Now.Date.ToString("dd-MM-yyyy")))
+                    {
+                        return true;
+                    }
+                }
 
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            return false;
+        }
         // Controllers for TABLE: Company.
         public List<Company> GetCompanies()
         {
@@ -246,13 +277,40 @@ namespace WorkHours.Data
         {
             return database.Insert(company);
         }
-
+        /// <summary>
+        /// Finder alle lønperioder for den valgte arbejdsplads.
+        /// </summary>
+        /// <param name="arbejdsplads"></param>
+        /// <returns></returns>
         public List<LønPeriode> FåLønPerioderForArbejdsplads(String arbejdsplads)
         {
             if (database.Table<LønPeriode>() != null)
             {
                 List<LønPeriode> list = new List<LønPeriode>();
                 foreach (var item in database.Table<LønPeriode>().Where(n => n.CompanyName == arbejdsplads))
+                {
+                    list.Add(item);
+                }
+
+                return list;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Finder alle lønperioder for den valgte arbejdsplads for det valgte år.
+        /// </summary>
+        /// <param name="arbejdsplads"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public List<LønPeriode> FåLønPerioderForArbejdsplads(String arbejdsplads, int year)
+        {
+            if (database.Table<LønPeriode>() != null)
+            {
+                List<LønPeriode> list = new List<LønPeriode>();
+                foreach (var item in database.Table<LønPeriode>().Where(n => n.CompanyName == arbejdsplads && n.Year == year))
                 {
                     list.Add(item);
                 }

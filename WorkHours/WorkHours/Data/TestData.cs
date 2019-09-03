@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using WorkHours.Data;
 using WorkHours.Models;
 
@@ -79,6 +80,23 @@ namespace WorkHours
 
                 min += 2;
             }
+
+            database.AddRecord(new Record
+            {
+                StartTime = new TimeSpan(08, min, 00),
+                EndTime = new TimeSpan(18, 20, 00),
+                LoggedDate = new DateTime(2019, 08, 31, 13, min, 00),
+                Pause = "35",
+                LønPeriodeID = 2,
+            });
+            database.AddRecord(new Record
+            {
+                StartTime = new TimeSpan(08, min, 00),
+                EndTime = new TimeSpan(18, 20, 00),
+                LoggedDate = new DateTime(2019, 08, 30, 13, min, 00),
+                Pause = "35",
+                LønPeriodeID = 2,
+            });
         }
 
         private void OpretRecordsKinorama()
@@ -104,73 +122,110 @@ namespace WorkHours
         private void OpretLønPerioder()
         {
             DateTime current = System.DateTime.Now;
-            LønPeriode lønPeriode1;
-            LønPeriode lønPeriode2;
-            LønPeriode lønPeriode3;
+            LønPeriode lønPeriode_Elgiganten_1;
+            LønPeriode lønPeriode_Elgiganten_2;
+            LønPeriode lønPeriode_Elgiganten_3;
+            LønPeriode lønPeriode_THansen_2;
+            LønPeriode lønPeriode_Kinorama_3;
             // Hvis TestData ikke virker ændre denne. Det er pga. dagsdato.
             if (15 >= current.Day)
             {
-                lønPeriode1 = new LønPeriode
+                lønPeriode_Elgiganten_1 = new LønPeriode
                 {
                     CompanyName = "Elgiganten A/S",
                     From = new DateTime(current.Year, current.Month - 1, 15),
                     To = new DateTime(current.Year, (current.Month), 16),
                     Year = 2019,
-                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM") + " - " + current.ToString("MMMM"),
+                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM", new CultureInfo("da-DK")) + " - " + current.ToString("MMMM", new CultureInfo("da-DK")),
                 };
-                lønPeriode2 = new LønPeriode
+                lønPeriode_THansen_2 = new LønPeriode
                 {
                     CompanyName = "T-Hansen A/S",
                     From = new DateTime(current.Year, current.Month - 1, 8),
                     To = new DateTime(current.Year, (current.Month), 9),
                     Year = 2019,
-                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM") + " - " + current.ToString("MMMM"),
+                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM", new CultureInfo("da-DK")) + " - " + current.ToString("MMMM", new CultureInfo("da-DK")),
                 };
-                lønPeriode3 = new LønPeriode
+                lønPeriode_Kinorama_3 = new LønPeriode
                 {
                     CompanyName = "Kinorama A/S",
                     From = new DateTime(current.Year, current.Month - 1, 10),
                     To = new DateTime(current.Year, (current.Month), 11),
                     Year = 2019,
-                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM") + " - " + current.ToString("MMMM"),
+                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM", new CultureInfo("da-DK")) + " - " + current.ToString("MMMM", new CultureInfo("da-DK")),
+                };
+                lønPeriode_Elgiganten_2 = new LønPeriode
+                {
+                    CompanyName = "Elgiganten A/S",
+                    From = new DateTime(current.Year, 2, 15),
+                    To = new DateTime(current.Year, 3, 16),
+                    Year = 2019,
+                    Periode = new DateTime(2019, 2, 15).ToString("MMMM", new CultureInfo("da-DK")) + " - " + new DateTime(2019, 3, 16).ToString("MMMM", new CultureInfo("da-DK")),
+                };
+                lønPeriode_Elgiganten_3 = new LønPeriode
+                {
+                    CompanyName = "Elgiganten A/S",
+                    From = new DateTime(current.Year, 1, 15),
+                    To = new DateTime(current.Year, 2, 16),
+                    Year = 2018,
+                    Periode = new DateTime(2018, 1, 15).ToString("MMMM", new CultureInfo("da-DK")) + " - " + new DateTime(2018, 2, 16).ToString("MMMM", new CultureInfo("da-DK")),
                 };
             }
             else
             {
-                lønPeriode1 = new LønPeriode
+                lønPeriode_Elgiganten_1 = new LønPeriode
                 {
                     CompanyName = "Elgiganten A/S",
                     From = new DateTime(current.Year, current.Month, 15),
                     To = new DateTime(current.Year, (current.Month + 1), 16),
-                    Year = 2019,
-                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM") + " - " + current.ToString("MMMM"),
+                    Year = current.Year,
+                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM", new CultureInfo("da-DK")) + " - " + current.ToString("MMMM", new CultureInfo("da-DK")),
                 };
-                lønPeriode2 = new LønPeriode
+
+                lønPeriode_THansen_2 = new LønPeriode
                 {
                     CompanyName = "T-Hansen A/S",
                     From = new DateTime(current.Year, current.Month, 8),
                     To = new DateTime(current.Year, (current.Month + 1), 9),
                     Year = 2019,
-                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM") + " - " + current.ToString("MMMM"),
+                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM", new CultureInfo("da-DK")) + " - " + current.ToString("MMMM", new CultureInfo("da-DK")),
                 };
-                lønPeriode3 = new LønPeriode
+                lønPeriode_Kinorama_3 = new LønPeriode
                 {
                     CompanyName = "Kinorama A/S",
                     From = new DateTime(current.Year, current.Month, 10),
                     To = new DateTime(current.Year, (current.Month + 1), 11),
                     Year = 2019,
-                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM") + " - " + current.ToString("MMMM"),
+                    Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM", new CultureInfo("da-DK")) + " - " + current.ToString("MMMM", new CultureInfo("da-DK")),
+                };
+                lønPeriode_Elgiganten_2 = new LønPeriode
+                {
+                    CompanyName = "Elgiganten A/S",
+                    From = new DateTime(current.Year, 2, 15),
+                    To = new DateTime(current.Year, 3, 16),
+                    Year = current.Year,
+                    Periode = new DateTime(2019, 2, 15).ToString("MMMM", new CultureInfo("da-DK")) + " - " + new DateTime(2019, 3, 16).ToString("MMMM", new CultureInfo("da-DK")),
+                };
+                lønPeriode_Elgiganten_3 = new LønPeriode
+                {
+                    CompanyName = "Elgiganten A/S",
+                    From = new DateTime(current.Year, 2, 15),
+                    To = new DateTime(current.Year, 3, 16),
+                    Year = 2018,
+                    Periode = new DateTime(2018, 2, 15).ToString("MMMM", new CultureInfo("da-DK")) + " - " + new DateTime(2018, 3, 16).ToString("MMMM", new CultureInfo("da-DK")),
                 };
             }
 
-            database.TilføjLønPeriode(lønPeriode1);
+            database.TilføjLønPeriode(lønPeriode_Elgiganten_1);
             App.Database.Commit();
-            database.TilføjLønPeriode(lønPeriode2);
             App.Database.Commit();
-            database.TilføjLønPeriode(lønPeriode3);
+            database.TilføjLønPeriode(lønPeriode_THansen_2);
             App.Database.Commit();
-
-
+            database.TilføjLønPeriode(lønPeriode_Kinorama_3);
+            App.Database.Commit();
+            database.TilføjLønPeriode(lønPeriode_Elgiganten_2);
+            App.Database.Commit();
+            database.TilføjLønPeriode(lønPeriode_Elgiganten_3);
 
         }
 

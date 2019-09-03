@@ -20,7 +20,7 @@
                 <Label Text="{Binding PeriodeLabel}"></Label>
             </StackLayout>
             <StackLayout Grid.Row="1">
-                <Label Text="{Binding PeriodeFraLabel}"></Label>
+                <Label HorizontalTextAlignment="Center" Text="{Binding PeriodeFraLabel}"></Label>
             </StackLayout>
 
             <StackLayout Grid.Row="2" >
@@ -29,8 +29,8 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout BackgroundColor="LightBlue" Orientation="Vertical">
-                                        <StackLayout Orientation="Horizontal" BackgroundColor="LightBlue" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                    <StackLayout BackgroundColor="{Binding Color}" Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                                             <Label Text="{Binding DayOfWeekInDA}" TextColor="Black"></Label>
                                             <Label Text="{Binding OnlyDate}" TextColor="Black"></Label>
                                             <Label Text="{Binding FromToString}" TextColor="Black"></Label>
@@ -43,9 +43,9 @@
                 </ScrollView>
             </StackLayout>
             <StackLayout Grid.Row="3">
-                <Label Text="{Binding PeriodeTilLabel}"></Label>
+                <Label HorizontalTextAlignment="Center" Text="{Binding PeriodeTilLabel}"></Label>
             </StackLayout>
-            <StackLayout   Grid.Row="4" HorizontalOptions="CenterAndExpand" >
+            <StackLayout   Grid.Row="4" HorizontalOptions="Start" Margin="5,0,0,0" >
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Timer: "></Label>
                     <Label Text="{Binding TotalTimer}"></Label>

@@ -15,12 +15,15 @@ namespace WorkHours
 
         public DateTime LoggedDate { get; set; }
 
-        public RecordView(DateTime date, TimeSpan from, TimeSpan to, DateTime loggedDate)
+        public string Color { get; set; }
+
+        public RecordView(DateTime date, TimeSpan from, TimeSpan to, DateTime loggedDate, string Color)
         {
             this.OnlyDate = date.ToString("dd/MM/yyyy");
             this.DayOfWeekInDA = FormatToDA.GetDayOfWeekInDA(date.DayOfWeek.ToString()) + " d.";
             this.FromToString = from.ToString("hh':'mm") + "-" + to.ToString("hh':'mm");
             this.LoggedDate = loggedDate;
+            this.Color = Color;
         }
 
     }

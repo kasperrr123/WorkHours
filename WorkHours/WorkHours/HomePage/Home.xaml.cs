@@ -118,13 +118,7 @@ namespace WorkHours.HomePage
         // Database instance
         private WorkHoursDatabaseController database = App.Database;
         // Global Variable instance
-        private GlobalVariables globalVariables = GlobalVariables.Instance;
         private TimeSpan CurrentTimeSpan { get; set; }
-
-
-
-
-
 
 
 
@@ -142,9 +136,40 @@ namespace WorkHours.HomePage
         }
 
 
+        private void HvilketPanelSkalVises()
+        {
 
+            if (database.GetVariables().CurrentCompany != null)
+            {
+                CurrentCompany = database.GetVariables().CurrentCompany;
+                WhatCompanyLabel = CurrentCompany;
+                if (database.GetCompany(CurrentCompany).HasCurrentPeriode() != null)
+                {
+                    CurrentLønPeriode = database.GetCompany(CurrentCompany).HasCurrentPeriode();
+                    LønPeriodeLabel = "Fra d. " + CurrentLønPeriode.From.ToString("dd/MM/yyyy") + " til d. " + CurrentLønPeriode.To.ToString("dd/MM/yyyy");
 
-
+                    if (CurrentLønPeriode.HasRecordForToday(CurrentLønPeriode))
+                    {
+                        LønPeriodeForNuværendeMånedFundet = false;
+                        RecordAlleredeOprettet = true;
+                    }
+                    else
+                    {
+                        RecordAlleredeOprettet = false;
+                        LønPeriodeForNuværendeMånedFundet = true;
+                    }
+                }
+                else
+                {
+                    LønPeriodeForNuværendeMånedFundet = false;
+                    IngenLønPeriodeForNuværendeMånedFundet = true;
+                }
+            }
+            else
+            {
+                IngenArbejdsPladsOprettet = true;
+            }
+        }
 
         private void SetTimePickersToNow()
         {
@@ -163,9 +188,9 @@ namespace WorkHours.HomePage
 
         private Color GetColor()
         {
-            if (database.GetCompany(globalVariables.ChosenCompany) != null)
+            if (database.GetCompany(database.GetVariables().CurrentCompany) != null)
             {
-                switch (database.GetCompany(globalVariables.ChosenCompany).Color)
+                switch (database.GetCompany(database.GetVariables().CurrentCompany).Color)
                 {
                     case "Red":
                         return Color.FromRgb(255, 0, 0);
@@ -197,130 +222,11 @@ namespace WorkHours.HomePage
             Companies = ListOfCompanyNames;
         }
 
-        private void HvilketPanelSkalVises()
-        {
-
-
-
-            if (database.GetVariables().CurrentCompany != null)
-            {
-                CurrentCompany = database.GetVariables().CurrentCompany;
-                WhatCompanyLabel = CurrentCompany;
-                if (database.GetCompany(CurrentCompany).HasCurrentPeriode() != null)
-                {
-                    CurrentLønPeriode = database.GetCompany(CurrentCompany).HasCurrentPeriode();
-                    LønPeriodeLabel = "Fra d. " + CurrentLønPeriode.From.ToString("dd/MM/yyyy") + " til d. " + CurrentLønPeriode.To.ToString("dd/MM/yyyy");
-
-                    if (CurrentLønPeriode.HasRecordsForToday(CurrentLønPeriode))
-                    {
-                        LønPeriodeForNuværendeMånedFundet = false;
-                        RecordAlleredeOprettet = true;
-                    }
-                    else
-                    {
-                        RecordAlleredeOprettet = false;
-                        LønPeriodeForNuværendeMånedFundet = true;
-                    }
-                }
-                else
-                {
-                    LønPeriodeForNuværendeMånedFundet = false;
-                    IngenLønPeriodeForNuværendeMånedFundet = true;
-                }
-
-            }
-            else
-            {
-                IngenArbejdsPladsOprettet = true;
-            }
-
-
-
-
-
-            //Tjek om der er blevet oprettet en arbejdsplads.
-            //if (FindesDerArbejdsplads())
-            //{
-            //    WhatCompanyLabel = database.GetVariables().CurrentCompany;
-            //    // Tjek om der er oprettet en løn periode.
-            //    if (FindesDerEnAktivLønPeriodeForArbejdsplads())
-            //    {
-            //        var lønPerioder = database.FåLønPerioderForArbejdsplads(CurrentCompany);
-            //        CurrentLønPeriode = lønPerioder.Where(n => n.To.Ticks > DateTime.Now.Ticks).First();
-            //        LønPeriodeLabel = "Fra d. " + CurrentLønPeriode.From.ToString("dd/MM/yyyy") + " til d. " + CurrentLønPeriode.To.ToString("dd/MM/yyyy");
-            //        database.UpdateVariables(new Variables
-            //        {
-            //            ID = 1,
-            //            CurrentCompany = CurrentCompany,
-
-            //        });
-
-            //        LønPeriodeForNuværendeMånedFundet = true;
-            //        // Tjekker om der er allerede er blevet registreret en vagt
-            //        if (FindesDerAlleredeEnRecordForIDag())
-            //        {
-            //            LønPeriodeForNuværendeMånedFundet = false;
-            //            RecordAlleredeOprettet = true;
-            //        }
-            //        else
-            //        {
-            //            RecordAlleredeOprettet = false;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        LønPeriodeForNuværendeMånedFundet = false;
-            //        IngenLønPeriodeForNuværendeMånedFundet = true;
-            //    }
-            //}
-            //else
-            //{
-            //    IngenArbejdsPladsOprettet = true;
-            //}
-
-
-        }
-
-        private bool FindesDerAlleredeEnRecordForIDag()
-        {
-            if (database.FindesDerRecordForDagsDato(globalVariables.ValgteLønPeriode, DateTime.Now) == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private bool FindesDerEnAktivLønPeriodeForArbejdsplads()
-        {
-
-            if (database.GetLønPerioder().Count > 0)
-            {
-                foreach (var item in database.GetLønPerioder().Where(n => n.Year == System.DateTime.Now.Year).Where(n => n.CompanyName == database.GetVariables().CurrentCompany))
-                {
-                    DateTime date = DateTime.Today;
-                    DateTime lønPeriodeFra = item.From;
-                    DateTime lønPeriodeTil = item.To;
-                    if (date >= lønPeriodeFra && date <= lønPeriodeTil)
-                    {
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                return false;
-            }
-            return false;
-        }
-
         private LønPeriode FåFatILønPeriodeForArbejdsplads()
         {
             try
             {
-                return database.FåLønPerioderForArbejdsplads(globalVariables.ChosenCompany).Last();
+                return database.FåLønPerioderForArbejdsplads(database.GetVariables().CurrentCompany).Last();
             }
             catch (Exception)
             {
@@ -328,19 +234,6 @@ namespace WorkHours.HomePage
                 return null;
             }
 
-        }
-
-        private bool FindesDerArbejdsplads()
-        {
-            if (database.GetCompanies().Count > 0)
-            {
-                return true;
-            }
-            else
-            {
-
-                return false;
-            }
         }
 
         public void TimerFunction()
@@ -418,7 +311,7 @@ namespace WorkHours.HomePage
 
             if (FåFatILønPeriodeForArbejdsplads() != null)
             {
-                LønPeriodeLabel = "Fra d. " + globalVariables.ValgteLønPeriode.From + " til d. " + globalVariables.ValgteLønPeriode.To;
+                LønPeriodeLabel = "Fra d. " + CurrentLønPeriode.From + " til d. " + CurrentLønPeriode.To;
                 LønPeriodeForNuværendeMånedFundet = false;
                 IngenLønPeriodeForNuværendeMånedFundet = true;
             }
@@ -438,35 +331,7 @@ namespace WorkHours.HomePage
         private void OpretLønPeriodeBtn_Clicked(object sender, EventArgs e)
         {
 
-            Navigation.PushAsync(new OpretNyLønPeriode());
-        }
-
-        // Getting JSON
-        private void DeserializeGlobalVariablesJson()
-        {
-            GlobalVariables variables = GlobalVariables.Instance;
-            try
-            {
-                var sqliteFileName = "GlobalVariables.txt";
-                string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                var path = Path.Combine(documentsPath, sqliteFileName);
-                using (StreamReader sr = new StreamReader(path))
-                {
-
-                    var obj = JsonConvert.DeserializeObject<GlobalVariables>(sr.ReadLine());
-
-                    variables.ChosenCompany = obj.ChosenCompany;
-                    variables.LønPeriode_GårFraDag = obj.LønPeriode_GårFraDag;
-                    variables.LønPeriode_GårTilDag = obj.LønPeriode_GårTilDag;
-                    variables.ValgteLønPeriode = obj.ValgteLønPeriode;
-
-                    Console.WriteLine("JSON FILE deserialized");
-                }
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("No file found");
-            }
+            Navigation.PushAsync(new OpretNyLønPeriode(CurrentCompany));
         }
 
         protected override void OnAppearing()

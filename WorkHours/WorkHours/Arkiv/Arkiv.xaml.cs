@@ -60,8 +60,8 @@ namespace WorkHours.Arkiv
                 INotifyPropertyChanged();
             }
         }
-        public int PeriodeFraLabel { get; set; }
-        public int PeriodeTilLabel { get; set; }
+        public string PeriodeFraLabel { get; set; }
+        public string PeriodeTilLabel { get; set; }
 
         private WorkHoursDatabaseController database = App.Database;
 
@@ -78,8 +78,8 @@ namespace WorkHours.Arkiv
             else
             {
                 CurrentPeriode = database.GetCompany(CurrentCompany).HasCurrentPeriode();
-                PeriodeFraLabel = CurrentPeriode.From.Day;
-                PeriodeTilLabel = CurrentPeriode.To.Day;
+                PeriodeFraLabel = CurrentPeriode.From.ToString("dd-MM-yyyy");
+                PeriodeTilLabel = CurrentPeriode.To.ToString("dd-MM-yyyy");
                 PeriodeLabel = CurrentPeriode.Periode;
                 SetRecords();
                 SetTotalHoursAndBreaks();
@@ -106,7 +106,14 @@ namespace WorkHours.Arkiv
             {
                 foreach (var record in App.Database.FåRecordsByPeriode(CurrentPeriode))
                 {
-                    ListOfRecords.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate));
+                    if(record.LoggedDate.DayOfWeek.Equals(DayOfWeek.Saturday) || record.LoggedDate.DayOfWeek.Equals(DayOfWeek.Sunday))
+                    {
+                        ListOfRecords.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate, "Red"));
+                    }
+                    else
+                    {
+                        ListOfRecords.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate, "LightBlue"));
+                    }
                 }
             }
             catch (Exception ex)
@@ -130,12 +137,12 @@ namespace WorkHours.Arkiv
 
         private void SeeAllPeriodsBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SeeOldPeriod());
+            Navigation.PushAsync(new SeeOldPeriods());
         }
 
         private void SeLønSeddelBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new SeLønSeddel(database.GetLønPeriode(CurrentPeriode)));
+            Navigation.PushModalAsync(new SeLønSeddel(database.GetLønPeriode(CurrentPeriode.LønPeriodeID)));
         }
     }
 

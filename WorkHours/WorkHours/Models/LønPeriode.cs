@@ -30,9 +30,9 @@ namespace WorkHours.Models
 
         }
 
-        public bool HasRecordsForToday(LønPeriode lønPeriode)
+        public bool HasRecordForToday(LønPeriode lønPeriode)
         {
-            if (App.Database.FåRecordsByPeriode(lønPeriode) != null)
+            if (App.Database.FåRecordForIdag(lønPeriode))
             {
                 return true;
             }
