@@ -17,6 +17,7 @@ namespace WorkHours.Arkiv
         public List<PeriodeView> Perioder { get; set; }
         public string Text { get; set; }
         public object ListOfRecords { get; private set; }
+        public List<int> ChooseYear { get; set; }
 
         public WorkHoursDatabaseController database = App.Database;
 
@@ -25,9 +26,9 @@ namespace WorkHours.Arkiv
             BindingContext = this;
             this.Text = "Vælg en periode for året " + DateTime.Now.Year;
             this.Perioder = GetPerioder();
+            this.ChooseYear = GetYearsForCompany();
             InitializeComponent();
         }
-
 
         private List<PeriodeView> GetPerioder()
         {
@@ -48,7 +49,29 @@ namespace WorkHours.Arkiv
             }
             return list;
         }
+        private List<int> GetYearsForCompany()
+        {
+            var LønPerioder = database.FåLønPerioderForArbejdsplads(database.GetVariables().CurrentCompany);
+            if (LønPerioder != null)
+            {
 
+
+                List<int> years = new List<int>();
+                foreach (var lønperiode in LønPerioder)
+                {
+                    if (!years.Contains(lønperiode.Year))
+                    {
+                        years.Add(lønperiode.Year);
+                    }
+                }
+
+                return years;
+            }
+            else
+            {
+                return new List<int> { DateTime.Now.Year };
+            }
+        }
 
         private void ListOfPeriods_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

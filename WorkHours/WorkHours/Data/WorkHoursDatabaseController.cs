@@ -23,11 +23,11 @@ namespace WorkHours.Data
             try
             {
 
-                database.DropTable<Company>();
-                database.DropTable<LønPeriode>();
-                database.DropTable<Tillæg>();
-                database.DropTable<Record>();
-                database.DropTable<User>();
+                //database.DropTable<Company>();
+                //database.DropTable<LønPeriode>();
+                //database.DropTable<Tillæg>();
+                //database.DropTable<Record>();
+                //database.DropTable<User>();
 
                 database.CreateTable<User>();
                 database.CreateTable<Company>();

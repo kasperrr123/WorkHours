@@ -38,7 +38,7 @@
             </StackLayout>
             <Label Text="Her har du mulighed for at vælge et andet år" HorizontalOptions="CenterAndExpand" Grid.Row="8"></Label>
             <StackLayout Grid.Row="9" HorizontalOptions="CenterAndExpand">
-                <Picker x:Name="VælgAndetÅrPicker" Title="Vælg andet år" ></Picker>
+                <Picker x:Name="VælgAndetÅrPicker" ItemsSource="{Binding ChooseYear}" Title="Vælg andet år" ></Picker>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
