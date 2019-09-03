@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,21 +17,21 @@ namespace WorkHours.Arkiv
         // Database instance
         private WorkHoursDatabaseController database = App.Database;
         private LønPeriode CurrentPeriode;
-        private string CurrentCompany;
+        public string CurrentCompany { get; set; }
         public String Oprettet { get; set; }
         public TimeSpan Fra { get; set; }
         public TimeSpan Til { get; set; }
         public String Pause { get; set; }
         public RecordView Record { get; set; }
-
+    
         private Record SelectedRecord;
 
 
         public ViewLogModal(RecordView record)
         {
+            BindingContext = this;
             CurrentCompany = database.GetVariables().CurrentCompany;
             CurrentPeriode = database.GetCompany(CurrentCompany).HasCurrentPeriode();
-            BindingContext = this;
             this.Record = record; 
             GetDataOnSpecificRecord();
             InitializeComponent();
@@ -42,7 +43,7 @@ namespace WorkHours.Arkiv
             Fra = SelectedRecord.StartTime;
             Til = SelectedRecord.EndTime;
             Pause = SelectedRecord.Pause;
-            Oprettet = SelectedRecord.LoggedDate.ToString();
+            Oprettet = SelectedRecord.LoggedDate.ToString("dd-MM-yyy HH:mm:ss", new CultureInfo("da-DK"));
         }
 
         async void OnDismissButtonClicked(object sender, EventArgs args)

@@ -2,5 +2,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="WorkHours.ByKJ" android:installLocation="auto" android:versionCode="1" android:versionName="1.0">
 	<uses-sdk android:minSdkVersion="22" android:targetSdkVersion="27" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<application android:label="Track your hours"></application>
+	<application android:label="Track your hours" android:icon="@drawable/CustomIcon"></application>
 </manifest>

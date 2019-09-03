@@ -21,6 +21,7 @@ namespace WorkHours
         public string antalTimer { get; set; }
         public string pauseIMinutter { get; set; }
 
+       private Calculations cal = new Calculations();
         public LønPeriode LønPeriodeObj { get; set; }
 
         private WorkHoursDatabaseController database = App.Database;
@@ -28,7 +29,6 @@ namespace WorkHours
         public SeLønSeddel(LønPeriode lønPeriode)
         {
             BindingContext = this;
-            Calculations cal = new Calculations();
             arbejdsplads = "Arbejdsplads: " + lønPeriode.CompanyName;
             periode = "Periode: " + lønPeriode.Periode;
             antalVagter = "Antal vagter: " + database.FåRecordsByPeriode(lønPeriode).Count.ToString();

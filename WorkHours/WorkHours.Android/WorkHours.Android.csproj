@@ -107,6 +107,9 @@
   <ItemGroup>
     <Content Include="Resources\CheckMark.png" />
     <AndroidResource Include="Resources\drawable\CheckMark.png" />
+    <AndroidResource Include="Resources\drawable\CustomIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="..\WorkHours\WorkHours.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

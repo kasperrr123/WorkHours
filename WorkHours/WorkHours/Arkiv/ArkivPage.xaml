@@ -56,8 +56,8 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout Grid.Row="5" Orientation="Horizontal"  VerticalOptions="CenterAndExpand" Margin="0,0,0,10">
-                <Button x:Name="SeLønSeddelBtn" HorizontalOptions="CenterAndExpand" Margin="10,0,0,0" Clicked="SeLønSeddelBtn_Clicked"  Text="Se lønseddel" BackgroundColor="LightBlue"></Button>
-                <Button x:Name="SeAllePerioderForDetteÅrBtn" Margin="0,0,10,0" Clicked="SeeAllPeriodsBtn_Clicked" HorizontalOptions="CenterAndExpand"  Text="Se alle perioder for dette år" BackgroundColor="LightBlue"></Button>
+                <Button x:Name="SeLønSeddelBtn" HorizontalOptions="CenterAndExpand" Clicked="SeLønSeddelBtn_Clicked"   Text="Se lønseddel" BackgroundColor="LightBlue"></Button>
+                <Button x:Name="SeAllePerioderForDetteÅrBtn" Clicked="SeeAllPeriodsBtn_Clicked" Text="Alle perioder for året" HorizontalOptions="CenterAndExpand" BackgroundColor="LightBlue"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

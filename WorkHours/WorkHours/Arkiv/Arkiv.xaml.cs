@@ -81,7 +81,7 @@ namespace WorkHours.Arkiv
                 PeriodeFraLabel = CurrentPeriode.From.ToString("dd-MM-yyyy");
                 PeriodeTilLabel = CurrentPeriode.To.ToString("dd-MM-yyyy");
                 PeriodeLabel = CurrentPeriode.Periode;
-                ListOfRecords = SetRecords();
+                SetRecords();
                 SetTotalHoursAndBreaks();
             }
 
@@ -99,14 +99,18 @@ namespace WorkHours.Arkiv
 
         }
 
-        public List<RecordView> SetRecords()
+        public void SetRecords()
         {
             List<RecordView> list = new List<RecordView>();
             try
             {
                 foreach (var record in App.Database.FåRecordsByPeriode(CurrentPeriode))
                 {
-                    if (record.LoggedDate.DayOfWeek.Equals(DayOfWeek.Saturday) || record.LoggedDate.DayOfWeek.Equals(DayOfWeek.Sunday))
+                    if (record.LoggedDate.DayOfWeek.Equals(DayOfWeek.Saturday))
+                    {
+                        list.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate, "Yellow"));
+                    }
+                    else if (record.LoggedDate.DayOfWeek.Equals(DayOfWeek.Sunday))
                     {
                         list.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate, "Red"));
                     }
@@ -115,12 +119,12 @@ namespace WorkHours.Arkiv
                         list.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate, "LightBlue"));
                     }
                 }
-                return list.OrderBy(n => n.LoggedDate).ToList();
+               ListOfRecords = list.OrderBy(n => n.LoggedDate).ToList();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return null;
+             
             }
 
 

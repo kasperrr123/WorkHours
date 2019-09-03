@@ -118,7 +118,7 @@ namespace WorkHours.HomePage
         // Database instance
         private WorkHoursDatabaseController database = App.Database;
         // Global Variable instance
-        private TimeSpan CurrentTimeSpan { get; set; }
+        public TimeSpan CurrentTimeSpan { get; set; }
 
 
 
@@ -134,7 +134,6 @@ namespace WorkHours.HomePage
             SetTimePickersToNow();
             InitializeComponent();
         }
-
 
         private void HvilketPanelSkalVises()
         {
@@ -173,10 +172,7 @@ namespace WorkHours.HomePage
 
         private void SetTimePickersToNow()
         {
-
-            String h = DateTime.Now.Hour.ToString();
-            String m = DateTime.Now.Minute.ToString();
-            CurrentTimeSpan = TimeSpan.Parse(h + ":" + m);
+            CurrentTimeSpan = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0);
         }
 
         private void UpdateAppTime()
@@ -240,17 +236,10 @@ namespace WorkHours.HomePage
         {
             while (true)
             {
-
-                String dag = FormatToDA.GetDayOfWeekInDA(System.DateTime.Now.DayOfWeek.ToString());
-                String date = System.DateTime.Now.Day.ToString();
-                String måned = System.DateTime.Now.Month.ToString();
-                String år = System.DateTime.Now.Year.ToString();
-                String dateString = dag + " d. " + date + "-" + måned + "-" + år;
-                TodaysDate = dateString;
+                string dag = FormatToDA.GetDayOfWeekInDA(System.DateTime.Now.DayOfWeek.ToString());
+                TodaysDate = dag + " d. " + DateTime.Now.Date.ToString("dd-MM-yyyy");
                 Thread.Sleep(100);
-
             }
-
         }
 
         // EVENT HANDLERS

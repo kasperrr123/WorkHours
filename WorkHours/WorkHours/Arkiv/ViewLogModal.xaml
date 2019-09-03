@@ -3,31 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkHours.Arkiv.ViewLogModal">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-                <Label Text="Oprettet: " FontSize="Medium" HorizontalOptions="CenterAndExpand" />
-                <Label Text="{Binding Oprettet}" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold" />
-
+        <Grid>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <StackLayout>
+                    <Label FontSize="Title" FontAttributes="Italic" HorizontalTextAlignment="Center" Text="{Binding CurrentCompany}"></Label>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                    <Label Text="Oprettet: " FontSize="Medium" HorizontalOptions="CenterAndExpand" />
+                    <Label Text="{Binding Oprettet}" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center">
+                    <Label Text="Arbejds timer: " FontSize="Medium" HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <TimePicker x:Name="FraPicker" Time="{Binding Fra,  Mode=OneWay}"  />
+                    <Label Text=" - " FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                    <TimePicker x:Name="TilPicker" Time="{Binding Til,  Mode=OneWay}"  />
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Label HorizontalOptions="Center" Text="Pause"></Label>
+                    <Entry x:Name="PauseField" Keyboard="Numeric"  Text="{Binding Pause, Mode=OneWay}"  HorizontalOptions="Center"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button x:Name="ÆndreBtn" Clicked="ÆndreBtn_Clicked" Text="Ændre" BackgroundColor="LightBlue"></Button>
+                    <Button x:Name="DeleteBtn" Clicked="DeleteBtn_Clicked" Text="Slet" BackgroundColor="Red"></Button>
+                </StackLayout>
+                <Button x:Name="GåTilbageBtn" Text="Gå tilbage" BackgroundColor="CadetBlue" HorizontalOptions="CenterAndExpand" Clicked="OnDismissButtonClicked" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-            </StackLayout>
-            <StackLayout HorizontalOptions="Center">
-                <Label Text="Arbejdes timer: " FontSize="Medium" HorizontalOptions="CenterAndExpand" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <TimePicker x:Name="FraPicker" Time="{Binding Fra,  Mode=OneWay}"  />
-                <Label Text=" - " FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold" />
-                <TimePicker x:Name="TilPicker" Time="{Binding Til,  Mode=OneWay}"  />
-            </StackLayout>
-            <StackLayout HorizontalOptions="CenterAndExpand">
-                <Label HorizontalOptions="Center" Text="Pause"></Label>
-                <Entry x:Name="PauseField" Keyboard="Numeric"  Text="{Binding Pause, Mode=OneWay}"  HorizontalOptions="Center"></Entry>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button x:Name="ÆndreBtn" Clicked="ÆndreBtn_Clicked" Text="Ændre" BackgroundColor="LightBlue"></Button>
-                <Button x:Name="DeleteBtn" Clicked="DeleteBtn_Clicked" Text="Slet" BackgroundColor="Red"></Button>
-            </StackLayout>
-            <Button x:Name="GåTilbageBtn" Text="Gå tilbage" BackgroundColor="CadetBlue" HorizontalOptions="CenterAndExpand" Clicked="OnDismissButtonClicked" />
-        </StackLayout>
+        </Grid>
+       
     </ContentPage.Content>
 </ContentPage>

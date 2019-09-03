@@ -47,9 +47,9 @@
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label HorizontalTextAlignment="Center" Text="Fra" VerticalTextAlignment="Center"></Label>
-                    <TimePicker x:Name="TimeFrom" Time="{Binding CurrentTimeSpan}" HorizontalOptions="CenterAndExpand"></TimePicker>
+                    <TimePicker x:Name="TimeFrom"  HorizontalOptions="CenterAndExpand"></TimePicker>
                     <Label HorizontalTextAlignment="Center" Text="Til" VerticalTextAlignment="Center"></Label>
-                    <TimePicker x:Name="TimeTo" HorizontalOptions="CenterAndExpand"></TimePicker>
+                    <TimePicker x:Name="TimeTo" Time="{Binding CurrentTimeSpan}" HorizontalOptions="CenterAndExpand"></TimePicker>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Text="Pause holdt:" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
