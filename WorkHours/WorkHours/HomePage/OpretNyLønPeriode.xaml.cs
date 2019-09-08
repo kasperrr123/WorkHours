@@ -14,58 +14,32 @@ namespace WorkHours.HomePage
     public partial class OpretNyLønPeriode : ContentPage
     {
         DateTime current = System.DateTime.Now;
+        public Company company;
+        public WorkHoursDatabaseController database { get; set; }
         public String FromDate { get; set; }
         public String ToDate { get; set; }
-        public LønPeriode Lønperiode { get; set; }
-        public WorkHoursDatabaseController Database { get; set; }
         public OpretNyLønPeriode(string company)
         {
             BindingContext = this;
+            this.database = App.Database;
+            this.company = database.GetCompany(company);
+            TilføjLønPeriode();
+            InitializeComponent();
+        }
 
-            if (Database.FåLønPerioderForArbejdsplads(company) != null)
-            {
-
-                if (Database.FåLønPerioderForArbejdsplads(company).Where(n => n.From.Day >= current.Day) != null)
-                {
-                    Lønperiode = Database.FåLønPerioderForArbejdsplads(company).Where(n => n.From.Day >= current.Day).First();
-                    FromDate = Lønperiode.From.Day + "/" + (current.Month - 1) + "/" + current.Year;
-                    ToDate = Lønperiode.To.Day + "/" + current.Month + "/" + current.Year;
-                }
-                else
-                {
-                    FromDate = Lønperiode.From.Day + "/" + current.Month + "/" + current.Year;
-                    ToDate = Lønperiode.To.Day + "/" + (current.Month + 1) + "/" + current.Year;
-                }
-            }
-            else
-            {
-                DisplayAlert("Hov!", "Fejl, ingen lønperiode fundet for arbejdsplads", "Ok");
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void TilføjLønPeriode()
+        {
             LønPeriode lønPeriode;
             // Hvis løn perioden starter på dagen eller først er om et par dage. 
             // Opret en løn periode bagud.
-            if (Lønperiode.From.Day >= current.Day)
+            if (company.LønPeriode_FraDato >= current.Day)
             {
                 lønPeriode = new LønPeriode
                 {
-                    From = new DateTime(current.Year, current.Month - 1, Lønperiode.From.Day),
-                    To = new DateTime(current.Year, (current.Month), Lønperiode.To.Day),
+                    From = new DateTime(current.Year, current.Month - 1, company.LønPeriode_FraDato),
+                    To = new DateTime(current.Year, (current.Month), company.LønPeriode_TilDato),
                     Year = current.Year,
-                    CompanyName = Lønperiode.CompanyName,
+                    CompanyName = company.CompanyName,
                     Periode = new DateTime(current.Year, (DateTime.Now.Month - 1), current.Day).ToString("MMMM") + " - " + current.ToString("MMMM"),
                 };
 
@@ -74,31 +48,26 @@ namespace WorkHours.HomePage
             {
                 lønPeriode = new LønPeriode
                 {
-                    From = new DateTime(current.Year, current.Month, Lønperiode.From.Day),
-                    To = new DateTime(current.Year, (current.Month + 1), Lønperiode.To.Day),
+                    From = new DateTime(current.Year, current.Month, company.LønPeriode_FraDato),
+                    To = new DateTime(current.Year, (current.Month + 1), company.LønPeriode_TilDato),
                     Year = current.Year,
-                    CompanyName = Lønperiode.CompanyName,
+                    CompanyName = company.CompanyName,
                     Periode = current.ToString("MMMM") + " - " + current.AddMonths(1).ToString("MMMM"),
                 };
                 ;
             }
             // Tilføjer lønperiode
-
             try
             {
-
+                FromDate = company.LønPeriode_FraDato + "/" + (current.Month - 1) + "/" + current.Year;
+                ToDate = company.LønPeriode_TilDato + "/" + current.Month + "/" + current.Year;
                 App.Database.TilføjLønPeriode(lønPeriode);
                 App.Database.Commit();
             }
             catch (Exception)
             {
-
                 DisplayAlert("ERROR", "Der er sket en fejl ved oprettelse af din lønperiode, prøv venligst igen", "Ok");
             }
-
-
-
-            InitializeComponent();
         }
 
         private void DismissButton_Clicked(object sender, EventArgs e)

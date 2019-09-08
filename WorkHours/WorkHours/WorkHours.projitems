@@ -28,7 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Arkiv\Calculations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Calculations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Arkiv\SeeOldPeriods.xaml.cs">
       <DependentUpon>SeeOldPeriods.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -49,7 +49,6 @@
       <DependentUpon>SetTillæg.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileHandling.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FormatToDA.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateNewWorkPlace\FåLønPeriode.xaml.cs">
@@ -57,6 +56,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Data\WorkHoursDatabaseController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HomePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HomePage\CreateNewMonth.xaml.cs">
       <DependentUpon>CreateNewMonth.xaml</DependentUpon>
       <SubType>Code</SubType>

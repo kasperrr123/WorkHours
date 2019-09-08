@@ -32,7 +32,6 @@ namespace WorkHours.CreateNewWorkPlace
         {
             BindingContext = this;
             this.ListOfTillæg = listoftillæg;
-           
             LønPeriode = "Løn perioden løber fra d. " + obj.LønPeriode_FraDato + " til og med d. " + obj.LønPeriode_TilDato + " den efterfølgende måned.";
             InitializeComponent();
         }
@@ -41,25 +40,29 @@ namespace WorkHours.CreateNewWorkPlace
         {
             // inserting data into database.
             InsertIntoDatabase();
+            // Updating variables
+            database.UpdateVariables(new Variables
+            {
+                ID = 1,
+                CurrentCompany = obj.CompanyName,
+
+            });
             // Go to homePage
             Navigation.PushAsync(new TabbedPage1());
         }
 
         private void InsertIntoDatabase()
         {
-          
             var user = database.GetUser();
             // Tilføjer Arbejdsplads.
             database.AddCompany(new Company
             {
                 CompanyName = obj.CompanyName,
                 TimeLøn = obj.BasisTimeLøn,
-                User = "Kasper Jørgensen",
+                User = user.FullName,
                 LønPeriode_FraDato = obj.LønPeriode_FraDato,
                 LønPeriode_TilDato = obj.LønPeriode_TilDato,
                 Color = obj.color,
-                
-
             });
             // Tilføjer alle tillæg
             foreach (var tillæg in ListOfTillæg)
@@ -67,15 +70,6 @@ namespace WorkHours.CreateNewWorkPlace
                 database.AddTillæg(tillæg);
             }
             database.Commit();
-
-            if (database.GetVariables() == null)
-            {
-                database.AddVariable(new Variables
-                {
-                    CurrentCompany = obj.CompanyName
-                });
-            }
-
         }
 
         private void NoBtn_Clicked(object sender, EventArgs e)

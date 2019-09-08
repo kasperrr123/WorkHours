@@ -4,9 +4,9 @@ using System.Text;
 using WorkHours.Data;
 using WorkHours.Models;
 
-namespace WorkHours.Arkiv
+namespace WorkHours
 {
-    class Calculations
+    public class Calculations
     {
         WorkHoursDatabaseController database = App.Database;
         public Calculations()
@@ -14,14 +14,9 @@ namespace WorkHours.Arkiv
 
         }
 
-        public void GetTotalHours()
+        public List<int> GetTotalHours(LønPeriode valgteLønPeriode)
         {
-
-        }
-
-        internal List<int> GetTotalHours(String company, LønPeriode valgteLønPeriode)
-        {
-            var records = database.FåRecords(company, valgteLønPeriode);
+            var records = database.FåRecordsByPeriode(valgteLønPeriode);
             if (records != null)
             {
                 int WorkHours = 0;
@@ -52,9 +47,9 @@ namespace WorkHours.Arkiv
 
 
 
-        internal List<int> GetTotalBreak(string company, LønPeriode valgteLønPeriode)
+        public List<int> GetTotalBreak(LønPeriode valgteLønPeriode)
         {
-            var records = database.FåRecords(company, valgteLønPeriode);
+            var records = database.FåRecordsByPeriode(valgteLønPeriode);
             if (records != null)
             {
                 int minutes = 0;

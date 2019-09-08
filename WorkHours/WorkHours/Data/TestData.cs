@@ -239,6 +239,34 @@ namespace WorkHours
                 LønPeriode_FraDato = 15,
                 LønPeriode_TilDato = 16,
                 Color = "Green",
+                Tillæg = new System.Collections.Generic.List<Tillæg>
+                {
+                   new Tillæg()
+                   {
+                       TypeOfTillæg = "Aften tillæg",
+                       AllDay = false,
+                       CompanyName = "Elgiganten A/S",
+                       TillægKr = "15",
+                       From = new TimeSpan(18,00,00),
+                   },
+                   new Tillæg()
+                   {
+                       TypeOfTillæg = "Søndags tillæg",
+                       AllDay = true,
+                       CompanyName = "Elgiganten A/S",
+                       TillægKr = "45",
+                       From = new TimeSpan(18,00,00),
+                   },
+                   new Tillæg()
+                   {
+                       TypeOfTillæg = "Lørdags tillæg",
+                       AllDay = false,
+                       CompanyName = "Elgiganten A/S",
+                       TillægKr = "25",
+                       From = new TimeSpan(15,00,00),
+                   },
+
+                },
             };
             Company company2 = new Company
             {

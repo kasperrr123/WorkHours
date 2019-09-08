@@ -126,7 +126,6 @@ namespace WorkHours.HomePage
         public Home()
         {
             BindingContext = this;
-            LabelColor = GetColor();
             UpdateAppTime();
             WelcomeUserLabel = database.GetUser().FullName;
             SetChooseWorkPlacePickerValues();
@@ -137,10 +136,10 @@ namespace WorkHours.HomePage
 
         private void HvilketPanelSkalVises()
         {
-
-            if (database.GetVariables().CurrentCompany != null)
+            if (database.GetVariables().CurrentCompany != "")
             {
                 CurrentCompany = database.GetVariables().CurrentCompany;
+                LabelColor = GetColor();
                 WhatCompanyLabel = CurrentCompany;
                 if (database.GetCompany(CurrentCompany).HasCurrentPeriode() != null)
                 {
@@ -196,6 +195,8 @@ namespace WorkHours.HomePage
 
                     case "Blue":
                         return Color.FromRgb(0, 0, 255);
+                    case "Yellow":
+                        return Color.FromRgb(255, 255, 0);
                     case "Standard":
                         return Color.CadetBlue;
                     default:
@@ -246,6 +247,7 @@ namespace WorkHours.HomePage
 
         private void SettingsBtn_Clicked(object sender, EventArgs e)
         {
+            Navigation.PopAsync();
             Navigation.PushAsync(new Settings());
 
         }
@@ -312,7 +314,6 @@ namespace WorkHours.HomePage
 
             });
 
-
             Navigation.PushAsync(new TabbedPage1());
 
         }
@@ -327,7 +328,5 @@ namespace WorkHours.HomePage
         {
             HvilketPanelSkalVises();
         }
-
     }
-
 }

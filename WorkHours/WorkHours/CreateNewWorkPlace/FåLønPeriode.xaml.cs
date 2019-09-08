@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WorkHours.Models;
+using Android.Widget;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,7 +35,6 @@ namespace WorkHours.CreateNewWorkPlace
                 list.Add(counter.ToString());
                 counter++;
             }
-
             return list;
         }
 
@@ -49,16 +45,15 @@ namespace WorkHours.CreateNewWorkPlace
 
                 createNewWorkPlace.LønPeriode_FraDato = int.Parse(TimeFrom.SelectedItem.ToString());
                 createNewWorkPlace.LønPeriode_TilDato = int.Parse(TimeTo.SelectedItem.ToString());
-                // Sætter den valgte periode ind til global variabler.
 
                 Navigation.PushAsync(new SetTillæg());
-
-
-
-
             }
             else
             {
+#if __ANDROID__
+                        Toast.MakeText(Forms.Context, "Du skal vælge en fra dato og en til dato", ToastLength.Long).Show();
+                        return;
+#endif
                 DisplayAlert("Hov!", "Du skal vælge en fra dato og en til dato", "Ok");
             }
         }

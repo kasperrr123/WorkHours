@@ -3,16 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkHours.SeLønSeddel">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="{Binding arbejdsplads}"></Label>
-            <Label Text="{Binding periode}"></Label>
-            <Label Text="{Binding antalVagter}"></Label>
-            <Label Text="{Binding antalTimer}"></Label>
-            <Label Text="{Binding pauseIMinutter}"></Label>
-            <StackLayout Orientation="Horizontal" >
-                <Button x:Name="ExportToFile" Text="Export" BackgroundColor="LightGray"></Button>
-                <Button x:Name="TilbageBtn" BackgroundColor="CadetBlue" Text="Tilbage" Clicked="TilbageBtn_Clicked" ></Button>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="{Binding arbejdsplads}"></Label>
+                <Label Text="{Binding periode}"></Label>
+                <Label Text="{Binding antalVagter}"></Label>
+                <Label Text="{Binding antalTimer}"></Label>
+                <Label Text="{Binding pauseIMinutter}"></Label>
+                <StackLayout Orientation="Horizontal" >
+                    <Button x:Name="ExportToFile" Text="Export" BackgroundColor="LightGray"></Button>
+                    <Button x:Name="TilbageBtn" BackgroundColor="CadetBlue" Text="Tilbage" Clicked="TilbageBtn_Clicked" ></Button>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+
+
+
+        </Grid>
+       
     </ContentPage.Content>
 </ContentPage>

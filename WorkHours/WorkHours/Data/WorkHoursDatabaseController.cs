@@ -23,11 +23,12 @@ namespace WorkHours.Data
             try
             {
 
-                //database.DropTable<Company>();
-                //database.DropTable<LønPeriode>();
-                //database.DropTable<Tillæg>();
-                //database.DropTable<Record>();
-                //database.DropTable<User>();
+                database.DropTable<Company>();
+                database.DropTable<LønPeriode>();
+                database.DropTable<Tillæg>();
+                database.DropTable<Record>();
+                database.DropTable<User>();
+                database.DropTable<Variables>();
 
                 database.CreateTable<User>();
                 database.CreateTable<Company>();
@@ -86,6 +87,30 @@ namespace WorkHours.Data
             return null;
 
 
+        }
+
+        internal void FactoryReset()
+        {
+            try
+            {
+                database.DropTable<Company>();
+                database.DropTable<LønPeriode>();
+                database.DropTable<Tillæg>();
+                database.DropTable<Record>();
+                database.DropTable<User>();
+
+                database.CreateTable<User>();
+                database.CreateTable<Company>();
+                database.CreateTable<Tillæg>();
+                database.CreateTable<LønPeriode>();
+                database.CreateTable<Record>();
+
+            }
+            catch (Exception x)
+            {
+                Console.WriteLine("ERROR: " + x.Message);
+
+            }
         }
 
         internal List<int> FåÅrstalForFirma(string chosenCompany)
@@ -284,18 +309,26 @@ namespace WorkHours.Data
         /// <returns></returns>
         public List<LønPeriode> FåLønPerioderForArbejdsplads(String arbejdsplads)
         {
-            if (database.Table<LønPeriode>() != null)
+            try
             {
-                List<LønPeriode> list = new List<LønPeriode>();
-                foreach (var item in database.Table<LønPeriode>().Where(n => n.CompanyName == arbejdsplads))
+                if (database.Table<LønPeriode>() != null)
                 {
-                    list.Add(item);
-                }
+                    List<LønPeriode> list = new List<LønPeriode>();
+                    foreach (var item in database.Table<LønPeriode>().Where(n => n.CompanyName == arbejdsplads))
+                    {
+                        list.Add(item);
+                    }
 
-                return list;
+                    return list;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (NullReferenceException nullException)
             {
+                Console.WriteLine(nullException.Message);
                 return null;
             }
         }
@@ -307,7 +340,7 @@ namespace WorkHours.Data
         /// <returns></returns>
         public List<LønPeriode> FåLønPerioderForArbejdsplads(String arbejdsplads, int year)
         {
-            if (database.Table<LønPeriode>() != null)
+            if (database.Table<LønPeriode>().Count() > 0)
             {
                 List<LønPeriode> list = new List<LønPeriode>();
                 foreach (var item in database.Table<LønPeriode>().Where(n => n.CompanyName == arbejdsplads && n.Year == year))
@@ -370,10 +403,27 @@ namespace WorkHours.Data
             return database.Update(company);
         }
 
-        public void DeleteCompany(Company company)
+        public void DeleteCompany(string companyStr)
         {
+            var company = database.Table<Company>().Where(n => n.CompanyName == companyStr).First();
+            var Lønperioder = database.Table<LønPeriode>().Where(n => n.CompanyName == companyStr).ToList();
+            foreach (var lønperiode in Lønperioder)
+            {
+                var records = FåRecordsByPeriode(lønperiode);
+                foreach (var record in records)
+                {
+                    SletRecord(record);
+                }
+                SletLønPeriode(lønperiode);
+            }
             database.Delete(company);
         }
+
+        private void SletLønPeriode(LønPeriode lønperiode)
+        {
+            database.Delete(lønperiode);
+        }
+
         // Controller for TABLE: Tillæg.
         public int AddTillæg(Tillæg tillæg)
         {
@@ -411,7 +461,6 @@ namespace WorkHours.Data
 
         public int UpdateVariables(Variables variables)
         {
-
             try
             {
                 database.Update(variables);

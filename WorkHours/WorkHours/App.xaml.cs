@@ -17,37 +17,10 @@ namespace WorkHours
 
         public App()
         {
+
+            MainPage = new TabbedPage1();
+
             InitializeComponent();
-           
-        
-
-            if (Database.GetUser() == null)
-            {
-                MainPage = new NavigationPage(new FirstTimeUse());
-
-            }
-            else
-            {
-                if (Database.GetVariables() == null)
-                {
-                    var variables = new Variables
-                    {
-                        ID = 1,
-                        CurrentCompany = Database.GetCompanies()[0].CompanyName,
-                       
-                    };
-                    try
-                    {
-                        Database.AddVariable(variables);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-               
-                MainPage = new NavigationPage(new TabbedPage1());
-            }
         }
 
 
@@ -60,26 +33,11 @@ namespace WorkHours
         protected override void OnSleep()
         {
 
-            //// Here i'm initializing the JsonSerializer.
-            //JsonSerializer serializer = new JsonSerializer();
-            //// Using a StreamWriter to create the txt file i want.
-            //var sqliteFileName = "GlobalVariables.txt";
-            //string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            //var path = Path.Combine(documentsPath, sqliteFileName);
-            //using (StreamWriter sw = new StreamWriter(path))
-            //// Creating the JsonWriter and giving it the specificed textWriter i want, which here is the StreamWriter (sw). 
-            //// Then i serialize my object and prints it to a txt file.
-            //using (JsonWriter writer = new JsonTextWriter(sw))
-            //{
-            //    serializer.Serialize(writer, GlobalVariables.Instance);
-            //}
-
-            //Console.WriteLine("JSON file created");
         }
 
         protected override void OnResume()
         {
-            // Handle when your app resumes
+
         }
 
 

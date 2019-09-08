@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using WorkHours.Data;
 using WorkHours.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Android.Widget;
 
 
 namespace WorkHours.Arkiv
@@ -68,10 +65,13 @@ namespace WorkHours.Arkiv
 
         public ArkivPage()
         {
-            CurrentCompany = database.GetVariables().CurrentCompany;
             BindingContext = this;
-
-            if (database.GetCompany(CurrentCompany).HasCurrentPeriode() == null)
+            CurrentCompany = database.GetVariables().CurrentCompany;
+            if (CurrentCompany == "")
+            {
+                PeriodeLabel = "Ingen arbedsplads er blevet oprettet endnu";
+            }
+            else if (database.GetCompany(CurrentCompany).HasCurrentPeriode() == null)
             {
                 PeriodeLabel = "Ingen periode oprettet endnu";
             }
@@ -92,8 +92,8 @@ namespace WorkHours.Arkiv
         private void SetTotalHoursAndBreaks()
         {
             Calculations cal = new Calculations();
-            var hours = cal.GetTotalHours(CurrentCompany, CurrentPeriode);
-            var minutes = cal.GetTotalBreak(CurrentCompany, CurrentPeriode);
+            var hours = cal.GetTotalHours(CurrentPeriode);
+            var minutes = cal.GetTotalBreak(CurrentPeriode);
             TotalTimer = hours[0].ToString() + "t " + hours[1].ToString() + "m";
             TotalPause = minutes[0].ToString() + "t " + minutes[1].ToString() + "m";
 
@@ -119,15 +119,12 @@ namespace WorkHours.Arkiv
                         list.Add(new RecordView(record.LoggedDate, record.StartTime, record.EndTime, record.LoggedDate, "LightBlue"));
                     }
                 }
-               ListOfRecords = list.OrderBy(n => n.LoggedDate).ToList();
+                ListOfRecords = list.OrderBy(n => n.LoggedDate).ToList();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-             
             }
-
-
         }
 
         protected override void OnAppearing()
@@ -137,7 +134,7 @@ namespace WorkHours.Arkiv
 
         private void ListOfRecords_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ListView view = (ListView)sender;
+            Xamarin.Forms.ListView view = (Xamarin.Forms.ListView)sender;
             RecordView record = (RecordView)view.SelectedItem;
             ListViewRecords.Unfocus();
             Navigation.PushModalAsync(new ViewLogModal(record));
@@ -145,12 +142,30 @@ namespace WorkHours.Arkiv
 
         private void SeeAllPeriodsBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SeeOldPeriods());
+            if (PeriodeLabel == "Ingen arbedsplads er blevet oprettet endnu" || PeriodeLabel == "Ingen periode oprettet endnu")
+            {
+#if __ANDROID__
+                        Toast.MakeText(Forms.Context, "Ingen records at finde", ToastLength.Long).Show();
+#endif
+            }
+            else
+            {
+                Navigation.PushAsync(new SeeOldPeriods());
+            }
         }
 
         private void SeLønSeddelBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new SeLønSeddel(database.GetLønPeriode(CurrentPeriode.LønPeriodeID)));
+            if (PeriodeLabel == "Ingen arbedsplads er blevet oprettet endnu" || PeriodeLabel == "Ingen periode oprettet endnu")
+            {
+#if __ANDROID__
+                        Toast.MakeText(Forms.Context, "Ingen records at finde", ToastLength.Long).Show();
+#endif
+            }
+            else
+            {
+                Navigation.PushModalAsync(new SeLønSeddel(database.GetLønPeriode(CurrentPeriode.LønPeriodeID)));
+            }
         }
     }
 

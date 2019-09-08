@@ -23,12 +23,11 @@ namespace WorkHours.CreateNewWorkPlace
 
         private List<string> GetColors()
         {
-            return new List<string> { "Red", "Green", "Blue", "Standard" };
+            return new List<string> { "Red", "Green", "Yellow", "Blue", "Standard" };
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-
             obj.BasisTimeLøn = TimeLøn.Text;
             obj.color = ColorPicker.SelectedItem.ToString();
             Navigation.PushAsync(new FåLønPeriode());

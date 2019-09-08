@@ -67,8 +67,8 @@ namespace WorkHours.Arkiv
         private void SetTotalHoursAndBreaks()
         {
             Calculations cal = new Calculations();
-            var hours = cal.GetTotalHours(LønPeriode.CompanyName, LønPeriode);
-            var minutes = cal.GetTotalBreak(LønPeriode.CompanyName, LønPeriode);
+            var hours = cal.GetTotalHours(LønPeriode);
+            var minutes = cal.GetTotalBreak(LønPeriode);
             TotalTimer = hours[0].ToString() + "t " + hours[1].ToString() + "m";
             TotalPause = minutes[0].ToString() + "t " + minutes[1].ToString() + "m";
 

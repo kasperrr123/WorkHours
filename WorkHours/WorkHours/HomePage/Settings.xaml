@@ -2,32 +2,28 @@
 <ContentPage x:Name="Carousel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkHours.HomePage.Settings">
-
-    <StackLayout>
+    <Grid>
         <StackLayout>
-            <Label Text="Opret ny" HorizontalTextAlignment="Center" TextColor="CadetBlue"></Label>
-            <Button x:Name="OpretNyArbejdspladsBtn" Clicked="OpretNyArbejdspladsBtn_Clicked" Text="Opret ny arbejdsplads" ></Button>
+            <StackLayout>
+                <Label Text="Opret ny" HorizontalTextAlignment="Center" TextColor="CadetBlue"></Label>
+                <Button x:Name="OpretNyArbejdspladsBtn" Clicked="OpretNyArbejdspladsBtn_Clicked" Text="Opret ny arbejdsplads" ></Button>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Ændre/slette arbejdsplads" HorizontalTextAlignment="Center" TextColor="CadetBlue"></Label>
+                <Label Text="Vælge en arbejdsplads" HorizontalTextAlignment="Start"></Label>
+                <Picker x:Name="WorkPlacePicker" Title="Vælg en arbejdsplads" ItemsSource="{Binding ArbejdsPladser}" ></Picker>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button x:Name="ÆndreArbejdspladsBtn" Clicked="ÆndreArbejdspladsBtn_Clicked" Text="Ændre i arbejdsplads" ></Button>
+                    <Button x:Name="SletArbejdspladsBtn" Clicked="SletArbejdspladsBtn_Clicked" Text="Slet arbejdsplads" ></Button>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Advanceret indstillinger" HorizontalTextAlignment="Center" TextColor="IndianRed"></Label>
+                <Button x:Name="BackUpGoogleDrive" Text="Backup to Google Drive" BackgroundColor="LightBlue" Clicked="BackUpGoogleDrive_Clicked"></Button>
+                <Button x:Name="ResetAppBtn" BackgroundColor="Red" TextColor="Black" Clicked="ResetAppBtn_ClickedAsync"  Text="Reset app"></Button>
+            </StackLayout>
         </StackLayout>
-        <StackLayout>
-            <Label Text="Ændre arbejdsplads" HorizontalTextAlignment="Center" TextColor="CadetBlue"></Label>
-            <Label Text="Vælge en arbejdsplads du vil ændre i" HorizontalTextAlignment="Start"></Label>
-            <Picker x:Name="WorkPlacePicker" Title="Vælg en arbejdsplads" ItemsSource="{Binding ArbejdsPladser}" ></Picker>
-            <Button x:Name="ÆndreArbejdspladsBtn" Clicked="ÆndreArbejdspladsBtn_Clicked" Text="Ændre i arbejdsplads" ></Button>
-        </StackLayout>
-        <StackLayout>
-            <Label Text="Advanceret indstillinger" HorizontalTextAlignment="Center" TextColor="IndianRed"></Label>
-            <Button x:Name="BackUpGoogleDrive" Text="Backup to Google Drive" BackgroundColor="LightBlue" Clicked="BackUpGoogleDrive_Clicked"></Button>
-            <Button x:Name="ResetAppBtn" BackgroundColor="Red" TextColor="Black" Clicked="ResetAppBtn_ClickedAsync"  Text="Reset app"></Button>
-        </StackLayout>
-       
-
-       
-
-    </StackLayout>
-
-
-
-
+    </Grid>
 </ContentPage>
     
     

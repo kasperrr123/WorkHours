@@ -14,16 +14,14 @@ namespace WorkHours
 
         public FirstTimeUse()
         {
-                this.LabelText = "Velkommen til appen!" + "\n" + "Da det er første gang du bruger appen, skal vi have lavet en database til dig. Det gør du" +
-                    "ved at skrive dit dit navn nede i feltet og trykker på knappen opret.";
-                BindingContext = this;
-                InitializeComponent();
+            this.LabelText = "Velkommen til appen!" + "\n" + "Da det er første gang du bruger appen, skal vi have lavet en database til dig. Det gør du" +
+                "ved at skrive dit dit navn nede i feltet og trykker på knappen opret.";
+            BindingContext = this;
+            InitializeComponent();
         }
 
         private void OpretDatabaseBtn_Clicked(object sender, EventArgs e)
         {
-
-
             var database = App.Database;
             if (FuldeNavn.Text != null)
             {
@@ -40,9 +38,15 @@ namespace WorkHours
                     DisplayAlert("Error", ex.Message, "ok");
                 }
 
-                TestData testData = new TestData(newUser);
+                //TestData testData = new TestData(newUser);
 
-                Navigation.PushAsync(new TabbedPage1());
+                database.AddVariable(new Variables
+                {
+                    ID = 1,
+                    CurrentCompany = "",
+                });
+
+                Navigation.PopAsync();
             }
             else
             {

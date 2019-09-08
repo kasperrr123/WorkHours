@@ -26,11 +26,9 @@ namespace WorkHours.CreateNewWorkPlace
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
         private WorkHoursDatabaseController database = App.Database;
         private ObservableCollection<Tillæg> listOfTillæg;
         private List<Tillæg> TempListOfTillæg;
-
         public ObservableCollection<Tillæg> ListOfTillæg
         {
             get { return listOfTillæg; }
@@ -40,23 +38,27 @@ namespace WorkHours.CreateNewWorkPlace
                 INotifyPropertyChanged();
             }
         }
-
         public List<String> PickerTillæg { get; set; }
+
+
+
+
         public SetTillæg()
         {
             BindingContext = this;
             ListOfTillæg = new ObservableCollection<Tillæg>();
-            PickerTillæg = new List<string>();
             TempListOfTillæg = new List<Tillæg>();
             PickerTillæg = ForskelligeTillæg();
             InitializeComponent();
         }
 
+
+
         private List<String> ForskelligeTillæg()
         {
             return new List<string>
             {
-                "Aften tillæg", "Syge tillæg", "Nat tillæg", "Søndags tillæg", "Lørsdags tillæg"
+                "Aften tillæg", "Syge tillæg", "Nat tillæg", "Søndags tillæg", "Lørdags tillæg"
             };
         }
 
@@ -96,7 +98,6 @@ namespace WorkHours.CreateNewWorkPlace
                     TillægKr = KrField.Text,
                     From = TillægTimePicker.Time,
                     AllDay = AllDaySwitch.IsToggled
-
                 };
 
                 foreach (var item in ListOfTillæg)
@@ -117,6 +118,10 @@ namespace WorkHours.CreateNewWorkPlace
             }
             else
             {
+#if __ANDROID__
+                        Toast.MakeText(Forms.Context, "Du skal vælge et tillæg samt fortælle, hvor mange kr du får extra de timer", ToastLength.Short).Show();
+                        return;
+#endif
                 DisplayAlert("Hov!", "Du skal vælge et tillæg samt fortælle, hvor mange kr du får extra de timer", "Ok");
             }
         }
